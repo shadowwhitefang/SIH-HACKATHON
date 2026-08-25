@@ -1,0 +1,39 @@
+{
+  "name": "civictrack-backend",
+  "version": "1.0.0",
+  "description": "CivicTrack — MP Accountability & Fund Monitoring Platform Core Backend",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "seed": "node server/seed/seed.js",
+    "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles --forceExit"
+  },
+  "keywords": [
+    "civictrack",
+    "mplads",
+    "accountability",
+    "transparency",
+    "fund-monitoring"
+  ],
+  "author": "CivicTrack Team",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^9.4.0",
+    "nodemon": "^3.1.4",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 30000,
+    "verbose": true
+  }
+}
