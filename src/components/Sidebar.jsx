@@ -11,6 +11,10 @@ export function Sidebar({
   isMobileOpen = false,
   onCloseMobileSidebar
 }) {
+  const handleNav = () => {
+    if (onCloseMobileSidebar) onCloseMobileSidebar();
+  };
+
   const handleExternalClick = (moduleName, owner) => {
     if (onCloseMobileSidebar) onCloseMobileSidebar();
     if (onExternalModuleClick) {
@@ -76,7 +80,7 @@ export function Sidebar({
                   className={`nav-item-btn ${activeRoute === '/dashboard' ? 'active' : ''}`}
                   id="nav-dashboard"
                   role="menuitem"
-                  onClick={() => onCloseMobileSidebar && onCloseMobileSidebar()}
+                  onClick={handleNav}
                 >
                   <span className="nav-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -113,12 +117,12 @@ export function Sidebar({
                 </button>
               </li>
               <li role="none">
-                <button
-                  type="button"
-                  className="nav-item-btn external-module-btn"
-                  onClick={() => handleExternalClick("MPs & Constituencies", "Frontend Developer 2")}
+                <a
+                  href="#/mps"
+                  className={`nav-item-btn ${activeRoute.startsWith('/mps') ? 'active' : ''}`}
                   id="nav-mps"
                   role="menuitem"
+                  onClick={handleNav}
                 >
                   <span className="nav-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -129,15 +133,15 @@ export function Sidebar({
                     </svg>
                   </span>
                   <span>MPs / Constituencies</span>
-                </button>
+                </a>
               </li>
               <li role="none">
-                <button
-                  type="button"
-                  className="nav-item-btn external-module-btn"
-                  onClick={() => handleExternalClick("Attention Center", "Frontend Developer 3")}
+                <a
+                  href="#/attention"
+                  className={`nav-item-btn ${activeRoute === '/attention' ? 'active' : ''}`}
                   id="nav-attention"
                   role="menuitem"
+                  onClick={handleNav}
                 >
                   <span className="nav-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -147,15 +151,15 @@ export function Sidebar({
                     </svg>
                   </span>
                   <span>Attention Center</span>
-                </button>
+                </a>
               </li>
               <li role="none">
-                <button
-                  type="button"
-                  className="nav-item-btn external-module-btn"
-                  onClick={() => handleExternalClick("Evidence Library", "Frontend Developer 3")}
+                <a
+                  href="#/evidence"
+                  className={`nav-item-btn ${activeRoute === '/evidence' ? 'active' : ''}`}
                   id="nav-evidence"
                   role="menuitem"
+                  onClick={handleNav}
                 >
                   <span className="nav-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -167,7 +171,7 @@ export function Sidebar({
                     </svg>
                   </span>
                   <span>Evidence</span>
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -177,12 +181,12 @@ export function Sidebar({
             <div className="nav-section-title">Account</div>
             <ul className="nav-items-list" role="menu">
               <li role="none">
-                <button
-                  type="button"
-                  className="nav-item-btn external-module-btn"
-                  onClick={() => handleExternalClick("Account Profile", "Frontend Developer 3")}
+                <a
+                  href="#/profile"
+                  className={`nav-item-btn ${activeRoute === '/profile' ? 'active' : ''}`}
                   id="nav-profile"
                   role="menuitem"
+                  onClick={handleNav}
                 >
                   <span className="nav-icon" aria-hidden="true">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -191,7 +195,7 @@ export function Sidebar({
                     </svg>
                   </span>
                   <span>Profile</span>
-                </button>
+                </a>
               </li>
             </ul>
           </div>

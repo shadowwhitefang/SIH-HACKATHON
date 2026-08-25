@@ -3,7 +3,7 @@
  * Structured for easy future replacement with live backend REST / GraphQL APIs.
  */
 
-// Multi-year dataset storage
+// Multi-year dataset storage for Dashboard
 export const yearDatasets = {
   "2025–26": {
     kpis: {
@@ -200,26 +200,6 @@ export const yearDatasets = {
           "Equipment procurement delayed by 28 days",
           "Verification audit pending for Phase 2 expenditure"
         ]
-      },
-      {
-        id: "proj-102",
-        title: "Solar Street Light Installation",
-        location: "Araria, Bihar",
-        constituency: "Araria",
-        mpName: "Vikram Pratap",
-        progress: 45,
-        overdueDays: 18,
-        financialUtilization: 48,
-        allocated: "₹50L",
-        spent: "₹24L",
-        remaining: "₹26L",
-        severity: "MEDIUM ATTENTION",
-        severityClass: "severity-medium",
-        category: "Energy",
-        signals: [
-          "18 days overdue on block 4 pole setup",
-          "Geo-tagged inspection report incomplete"
-        ]
       }
     ]
   },
@@ -265,7 +245,7 @@ export const yearDatasets = {
     trendChart: [
       { year: "2022–23", rate: 45, display: "45%", spent: "₹4.1 Cr", total: "₹9.1 Cr" },
       { year: "2023–24", rate: 55, display: "55%", spent: "₹5.4 Cr", total: "₹9.8 Cr" },
-      { year: "2024–25", rate: 63, display: "63%", spent: "₹7.1 Cr", total: "11.2 Cr" },
+      { year: "2024–25", rate: 63, display: "63%", spent: "₹7.1 Cr", total: "₹11.2 Cr" },
       { year: "2025–26", rate: 70, display: "70%", spent: "₹8.7 Cr", total: "₹12.4 Cr" }
     ],
     attentionProjects: [
@@ -293,15 +273,554 @@ export const yearDatasets = {
   }
 };
 
-export const mockData = {
-  currentUser: {
-    name: "Admin User",
-    email: "admin@civictrack.gov.in",
-    role: "Administrator",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
-    isAuthenticated: true
+// ==========================================
+// 1. MP DETAILS DATA (Rahul Sharma - Patna Sahib)
+// ==========================================
+export const mpDetailsData = {
+  id: "mp-1",
+  name: "Rahul Sharma",
+  constituency: "Patna Sahib",
+  state: "Bihar",
+  term: "18th Lok Sabha (2024–2029)",
+  party: "Democratic Coalition",
+  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+  kpis: {
+    allocation: "₹2.4 Cr",
+    spent: "₹1.8 Cr",
+    utilization: "75%",
+    projects: 12,
+    attention: 2
   },
+  fundChart: [
+    { label: "Allocated", amount: 2.4, display: "₹2.4 Cr", color: "#0f172a", pct: "100%" },
+    { label: "Spent", amount: 1.8, display: "₹1.8 Cr", color: "#0d9488", pct: "75%" },
+    { label: "Remaining", amount: 0.6, display: "₹0.6 Cr", color: "#f59e0b", pct: "25%" }
+  ],
+  statusChart: [
+    { status: "Completed", count: 6, percentage: 50.0, color: "#059669" },
+    { status: "Ongoing", count: 4, percentage: 33.3, color: "#2563eb" },
+    { status: "Delayed", count: 1, percentage: 8.3, color: "#f59e0b" },
+    { status: "Attention", count: 1, percentage: 8.3, color: "#dc2626" }
+  ],
+  categoryChart: [
+    { category: "Roads", count: 5, percentage: 41.7, color: "#0f766e" },
+    { category: "Education", count: 3, percentage: 25.0, color: "#2563eb" },
+    { category: "Healthcare", count: 2, percentage: 16.7, color: "#059669" },
+    { category: "Water", count: 1, percentage: 8.3, color: "#0284c7" },
+    { category: "Other", count: 1, percentage: 8.3, color: "#64748b" }
+  ],
+  projects: [
+    {
+      id: "proj-1",
+      title: "Road Construction — Ward 12",
+      allocated: "₹1.00 Cr",
+      spent: "₹25L",
+      progress: 32,
+      status: "Ongoing",
+      attention: "High",
+      category: "Roads",
+      deadline: "42 days overdue"
+    },
+    {
+      id: "proj-102",
+      title: "Primary School Renovation",
+      allocated: "₹45L",
+      spent: "₹38L",
+      progress: 82,
+      status: "Ongoing",
+      attention: "Normal",
+      category: "Education",
+      deadline: "On schedule"
+    },
+    {
+      id: "proj-103",
+      title: "Community Health Center",
+      allocated: "₹75L",
+      spent: "₹75L",
+      progress: 100,
+      status: "Completed",
+      attention: "Low",
+      category: "Healthcare",
+      deadline: "Completed"
+    },
+    {
+      id: "proj-104",
+      title: "Water Supply Project — Phase 2",
+      allocated: "₹1.15 Cr",
+      spent: "₹35L",
+      progress: 30,
+      status: "Ongoing",
+      attention: "Medium",
+      category: "Water",
+      deadline: "20 days overdue"
+    },
+    {
+      id: "proj-105",
+      title: "Drainage Improvement",
+      allocated: "₹50L",
+      spent: "₹22L",
+      progress: 45,
+      status: "Ongoing",
+      attention: "Normal",
+      category: "Roads",
+      deadline: "15 days remaining"
+    },
+    {
+      id: "proj-106",
+      title: "Solar Street Light Installation",
+      allocated: "₹30L",
+      spent: "₹30L",
+      progress: 100,
+      status: "Completed",
+      attention: "Normal",
+      category: "Other",
+      deadline: "Completed"
+    }
+  ]
+};
 
+// ==========================================
+// 2. ATTENTION CENTER DATA
+// ==========================================
+export const attentionCenterData = {
+  summary: {
+    total: 9,
+    high: 3,
+    medium: 4,
+    low: 2,
+    resolved: 5
+  },
+  items: [
+    {
+      id: "proj-1",
+      title: "Road Construction — Ward 12",
+      location: "Patna, Bihar",
+      constituency: "Patna Sahib",
+      mpName: "Rahul Sharma",
+      score: 82,
+      severity: "High",
+      severityTab: "High",
+      lastEvaluated: "Aug 24, 2026",
+      signalsCount: 3,
+      signals: [
+        "Project is overdue by 42 days against approved timeline",
+        "Physical progress is below expected level (32% vs 65% target)",
+        "Last progress update was 78 days ago from field engineer"
+      ],
+      allocated: "₹1.00 Cr",
+      spent: "₹25L",
+      progress: 32
+    },
+    {
+      id: "proj-2",
+      title: "Community Health Center",
+      location: "Muzaffarpur, Bihar",
+      constituency: "Muzaffarpur",
+      mpName: "Pawan Kumar",
+      score: 54,
+      severity: "High",
+      severityTab: "High",
+      lastEvaluated: "Aug 24, 2026",
+      signalsCount: 3,
+      signals: [
+        "Physical progress (28%) lagging behind financial burn rate (75%)",
+        "Milestone 2 pending sign-off for 35 days",
+        "Site inspection verification required"
+      ],
+      allocated: "₹75L",
+      spent: "₹56L",
+      progress: 28
+    },
+    {
+      id: "proj-101",
+      title: "District Hospital ICU Wing",
+      location: "Bhagalpur, Bihar",
+      constituency: "Bhagalpur",
+      mpName: "Sanjay Singh",
+      score: 76,
+      severity: "High",
+      severityTab: "High",
+      lastEvaluated: "Aug 23, 2026",
+      signalsCount: 2,
+      signals: [
+        "Equipment procurement delayed by 28 days",
+        "Verification audit pending for Phase 2 expenditure"
+      ],
+      allocated: "₹1.80 Cr",
+      spent: "₹1.08 Cr",
+      progress: 40
+    },
+    {
+      id: "proj-3",
+      title: "Water Supply Project — Phase 2",
+      location: "Gaya, Bihar",
+      constituency: "Gaya",
+      mpName: "Anita Verma",
+      score: 48,
+      severity: "Medium",
+      severityTab: "Medium",
+      lastEvaluated: "Aug 24, 2026",
+      signalsCount: 3,
+      signals: [
+        "20 days overdue on pipe laying phase",
+        "Vendor supply verification pending",
+        "Recent expenditure requires progress validation"
+      ],
+      allocated: "₹1.15 Cr",
+      spent: "₹35L",
+      progress: 30
+    },
+    {
+      id: "proj-201",
+      title: "Rural Drainage Improvement",
+      location: "Bhagalpur, Bihar",
+      constituency: "Bhagalpur",
+      mpName: "Neha Reddy",
+      score: 44,
+      severity: "Medium",
+      severityTab: "Medium",
+      lastEvaluated: "Aug 22, 2026",
+      signalsCount: 2,
+      signals: [
+        "Monsoon channel construction delayed by 22 days",
+        "Third-party audit requested by district magistrate"
+      ],
+      allocated: "₹90L",
+      spent: "₹58.5L",
+      progress: 60
+    },
+    {
+      id: "proj-102",
+      title: "Solar Street Light Installation",
+      location: "Araria, Bihar",
+      constituency: "Araria",
+      mpName: "Vikram Pratap",
+      score: 42,
+      severity: "Medium",
+      severityTab: "Medium",
+      lastEvaluated: "Aug 20, 2026",
+      signalsCount: 2,
+      signals: [
+        "18 days overdue on block 4 pole setup",
+        "Geo-tagged inspection report incomplete"
+      ],
+      allocated: "₹50L",
+      spent: "₹24L",
+      progress: 45
+    },
+    {
+      id: "proj-202",
+      title: "Panchayat Bhavan Extension",
+      location: "Patna, Bihar",
+      constituency: "Patna Sahib",
+      mpName: "Rahul Sharma",
+      score: 38,
+      severity: "Medium",
+      severityTab: "Medium",
+      lastEvaluated: "Aug 19, 2026",
+      signalsCount: 2,
+      signals: [
+        "Structural audit recommendation pending",
+        "Quarterly expenditure verification missing"
+      ],
+      allocated: "₹40L",
+      spent: "₹18L",
+      progress: 50
+    },
+    {
+      id: "proj-4",
+      title: "Primary School Renovation",
+      location: "Gaya, Bihar",
+      constituency: "Gaya",
+      mpName: "Anita Verma",
+      score: 28,
+      severity: "Low",
+      severityTab: "Low",
+      lastEvaluated: "Aug 21, 2026",
+      signalsCount: 2,
+      signals: [
+        "15 days delay in roof reinforcement phase",
+        "Pending updated photos from field engineer"
+      ],
+      allocated: "₹45L",
+      spent: "₹22.5L",
+      progress: 52
+    },
+    {
+      id: "proj-203",
+      title: "Anganwadi Center Repair",
+      location: "Muzaffarpur, Bihar",
+      constituency: "Muzaffarpur",
+      mpName: "Pawan Kumar",
+      score: 22,
+      severity: "Low",
+      severityTab: "Low",
+      lastEvaluated: "Aug 18, 2026",
+      signalsCount: 1,
+      signals: [
+        "Minor milestone delay (9 days) on paint work"
+      ],
+      allocated: "₹20L",
+      spent: "₹12L",
+      progress: 70
+    },
+    // Resolved items
+    {
+      id: "proj-301",
+      title: "Community Hall Construction",
+      location: "Patna, Bihar",
+      constituency: "Patna Sahib",
+      mpName: "Rahul Sharma",
+      score: 10,
+      severity: "Resolved",
+      severityTab: "Resolved",
+      lastEvaluated: "Aug 15, 2026",
+      signalsCount: 0,
+      signals: [
+        "Resolved: Field engineer submitted geotagged proof on Aug 15",
+        "Resolved: Treasury voucher audit completed"
+      ],
+      allocated: "₹60L",
+      spent: "₹60L",
+      progress: 100
+    },
+    {
+      id: "proj-302",
+      title: "Sub-Health Post Electrification",
+      location: "Gaya, Bihar",
+      constituency: "Gaya",
+      mpName: "Anita Verma",
+      score: 8,
+      severity: "Resolved",
+      severityTab: "Resolved",
+      lastEvaluated: "Aug 12, 2026",
+      signalsCount: 0,
+      signals: [
+        "Resolved: Power grid connection energized and certified"
+      ],
+      allocated: "₹25L",
+      spent: "₹25L",
+      progress: 100
+    }
+  ]
+};
+
+// ==========================================
+// 3. EVIDENCE LIBRARY DATA
+// ==========================================
+export const evidenceLibraryData = [
+  {
+    id: "ev-1",
+    title: "Road Construction — Ward 12",
+    type: "Site Photograph",
+    typeClass: "type-photo",
+    date: "Aug 16, 2026",
+    source: "Field Verification",
+    uploader: "Er. Amit Raj (Field Inspector)",
+    projectId: "proj-1",
+    projectName: "Road Construction — Ward 12",
+    location: "Patna, Bihar (25.5941° N, 85.1376° E)",
+    thumbnail: "https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?w=400&auto=format&fit=crop&q=80",
+    description: "Geotagged site photograph showing unpaved roadbed at Chainage 0+450 with drainage excavation underway.",
+    fileSize: "3.4 MB",
+    verified: true
+  },
+  {
+    id: "ev-2",
+    title: "Road Construction — Ward 12",
+    type: "Site Photograph",
+    typeClass: "type-photo",
+    date: "Aug 10, 2026",
+    source: "Field Verification",
+    uploader: "Er. Amit Raj (Field Inspector)",
+    projectId: "proj-1",
+    projectName: "Road Construction — Ward 12",
+    location: "Patna, Bihar (25.5938° N, 85.1380° E)",
+    thumbnail: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&auto=format&fit=crop&q=80",
+    description: "Photographic inspection of culvert reinforcement mesh and concrete footing preparation.",
+    fileSize: "4.1 MB",
+    verified: true
+  },
+  {
+    id: "ev-3",
+    title: "Road Construction — Ward 12",
+    type: "Progress Document",
+    typeClass: "type-doc",
+    date: "Aug 06, 2026",
+    source: "Government Portal",
+    uploader: "District Treasury Officer",
+    projectId: "proj-1",
+    projectName: "Road Construction — Ward 12",
+    location: "Patna Sahib Treasury",
+    thumbnail: "https://images.unsplash.com/photo-1568667256549-094345857637?w=400&auto=format&fit=crop&q=80",
+    description: "Official Joint Measurement Certificate & Milestone 1 Physical Verification Sanction Docket (Ref: CT-PTN-2026-088).",
+    fileSize: "1.2 MB",
+    verified: true,
+    documentData: {
+      docNumber: "MPLAD/2026/PTN/4412",
+      pages: 4,
+      signatory: "Superintending Engineer, RWD Bihar",
+      stampDate: "06-08-2026"
+    }
+  },
+  {
+    id: "ev-4",
+    title: "Primary School Renovation",
+    type: "Approval Document",
+    typeClass: "type-approval",
+    date: "Aug 18, 2026",
+    source: "Official Record",
+    uploader: "District Planning Cell",
+    projectId: "proj-4",
+    projectName: "Primary School Renovation",
+    location: "Gaya Collectorate",
+    thumbnail: "https://images.unsplash.com/photo-1450133064473-71024230f91b?w=400&auto=format&fit=crop&q=80",
+    description: "Technical sanction order for structural renovation and smart classroom electrical works.",
+    fileSize: "850 KB",
+    verified: true,
+    documentData: {
+      docNumber: "TS-EDU-2026-902",
+      pages: 2,
+      signatory: "District Magistrate, Gaya",
+      stampDate: "18-08-2026"
+    }
+  },
+  {
+    id: "ev-5",
+    title: "Community Health Center",
+    type: "Site Photograph",
+    typeClass: "type-photo",
+    date: "Aug 15, 2026",
+    source: "Field Verification",
+    uploader: "Dr. S. K. Verma (Health Officer)",
+    projectId: "proj-2",
+    projectName: "Community Health Center",
+    location: "Muzaffarpur (26.1209° N, 85.3647° E)",
+    thumbnail: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&auto=format&fit=crop&q=80",
+    description: "Exterior facade and completed roof slab of OPD building wing.",
+    fileSize: "2.8 MB",
+    verified: true
+  },
+  {
+    id: "ev-6",
+    title: "Water Supply Project — Phase 2",
+    type: "Field Verification",
+    typeClass: "type-verification",
+    date: "Aug 12, 2026",
+    source: "Field Verification",
+    uploader: "PHED Inspection Wing",
+    projectId: "proj-3",
+    projectName: "Water Supply Project — Phase 2",
+    location: "Gaya (24.7914° N, 85.0002° E)",
+    thumbnail: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&auto=format&fit=crop&q=80",
+    description: "Overhead service reservoir staging inspection and pump test log validation.",
+    fileSize: "5.2 MB",
+    verified: true
+  },
+  {
+    id: "ev-7",
+    title: "Drainage Improvement",
+    type: "Progress Document",
+    typeClass: "type-doc",
+    date: "Aug 08, 2026",
+    source: "Government Portal",
+    uploader: "Municipal Corporation",
+    projectId: "proj-105",
+    projectName: "Drainage Improvement",
+    location: "Bhagalpur",
+    thumbnail: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&auto=format&fit=crop&q=80",
+    description: "Third-party hydraulic flow report and pre-monsoon clearance certificate.",
+    fileSize: "1.8 MB",
+    verified: true,
+    documentData: {
+      docNumber: "DRN-MCB-2026-311",
+      pages: 6,
+      signatory: "Executive Engineer, Drainage Board",
+      stampDate: "08-08-2026"
+    }
+  },
+  {
+    id: "ev-8",
+    title: "Community Health Center",
+    type: "Approval Document",
+    typeClass: "type-approval",
+    date: "Aug 01, 2026",
+    source: "Official Record",
+    uploader: "State Health Mission",
+    projectId: "proj-2",
+    projectName: "Community Health Center",
+    location: "Muzaffarpur",
+    thumbnail: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=400&auto=format&fit=crop&q=80",
+    description: "Final completion certificate & bio-medical waste handling compliance approval.",
+    fileSize: "920 KB",
+    verified: true,
+    documentData: {
+      docNumber: "SHM-BIH-COMP-108",
+      pages: 3,
+      signatory: "Chief Medical Officer",
+      stampDate: "01-08-2026"
+    }
+  }
+];
+
+// ==========================================
+// 4. USER PROFILE & ACTIVITY DATA
+// ==========================================
+export const userProfileData = {
+  name: "Admin User",
+  email: "admin@civictrack.gov.in",
+  role: "Administrator",
+  department: "Ministry of Statistics & Programme Implementation (MoSPI)",
+  phone: "+91 98765 43210",
+  timezone: "Asia/Kolkata (IST +05:30)",
+  language: "English (India)",
+  twoFactorEnabled: true,
+  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+  linkedAccounts: [
+    { provider: "Google Workspace", email: "admin@civictrack.gov.in", status: "Active" },
+    { provider: "National Informatics Centre (NIC)", email: "admin-nic@gov.in", status: "Connected" }
+  ],
+  activityLogs: [
+    {
+      id: "act-1",
+      action: "Attention Signal Reviewed",
+      details: "Inspected signal details for Road Construction — Ward 12 (42 days overdue).",
+      timestamp: "Today at 11:20 AM",
+      type: "alert"
+    },
+    {
+      id: "act-2",
+      action: "Filtered Financial Year Overview",
+      details: "Switched dashboard overview dataset to FY 2025–26 across 48 monitored projects.",
+      timestamp: "Today at 09:45 AM",
+      type: "info"
+    },
+    {
+      id: "act-3",
+      action: "Evidence Verified",
+      details: "Approved photographic verification record for Community Health Center.",
+      timestamp: "Yesterday at 04:15 PM",
+      type: "success"
+    },
+    {
+      id: "act-4",
+      action: "MP LAD Report Generated",
+      details: "Downloaded comprehensive audit dossier for Rahul Sharma (Patna Sahib).",
+      timestamp: "Aug 23, 2026, 02:30 PM",
+      type: "info"
+    },
+    {
+      id: "act-5",
+      action: "System Session Authenticated",
+      details: "Successful OAuth login from IP 103.24.12.89 (Patna, India).",
+      timestamp: "Aug 22, 2026, 08:00 AM",
+      type: "security"
+    }
+  ]
+};
+
+export const mockData = {
+  currentUser: userProfileData,
   years: ["2025–26", "2024–25", "2023–24"],
   selectedYear: "2025–26",
 
@@ -423,10 +942,24 @@ export function getLandingData() {
   };
 }
 
+export function getMPDetails(id = "mp-1") {
+  return mpDetailsData;
+}
+
+export function getAttentionCenterData() {
+  return attentionCenterData;
+}
+
+export function getEvidenceLibraryData() {
+  return evidenceLibraryData;
+}
+
+export function getUserProfile() {
+  return userProfileData;
+}
+
 /**
  * Authentication Service Abstraction
- * Supports Default, Loading, Success, and Error states cleanly.
- * Ready for backend REST / OAuth API hookup.
  */
 export const authService = {
   loginWithGoogle(simulateFailure = false) {

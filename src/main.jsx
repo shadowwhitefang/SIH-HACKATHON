@@ -8,6 +8,7 @@ import '../css/base.css';
 import '../css/landing.css';
 import '../css/login.css';
 import '../css/dashboard.css';
+import '../css/modules.css';
 
 const rootElement = document.getElementById('root') || document.getElementById('app');
 

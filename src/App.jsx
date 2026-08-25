@@ -2,6 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { LandingPage } from './pages/LandingPage.jsx';
 import { LoginPage } from './pages/LoginPage.jsx';
 import { DashboardPage } from './pages/DashboardPage.jsx';
+import { MPDetailsPage } from './pages/MPDetailsPage.jsx';
+import { AttentionCenterPage } from './pages/AttentionCenterPage.jsx';
+import { EvidenceLibraryPage } from './pages/EvidenceLibraryPage.jsx';
+import { ProfilePage } from './pages/ProfilePage.jsx';
 import { ToastContainer } from './components/Toast.jsx';
 import { authService, logoutUser } from './data/mockData.js';
 
@@ -45,6 +49,11 @@ export function App() {
     window.location.hash = '#/dashboard';
   };
 
+  const handleNavigateToProject = (projectId, projectTitle) => {
+    showToast(`Navigating to Project: "${projectTitle}" (/projects/${projectId}) [Frontend 2 Module]`, 'info');
+    window.location.hash = `#/projects/${projectId}`;
+  };
+
   // Route normalization
   const rawRoute = currentHash.replace(/^#/, '').split('?')[0] || '/';
   const route = rawRoute.startsWith('/') ? rawRoute : `/${rawRoute}`;
@@ -53,7 +62,43 @@ export function App() {
   if (route === '/login') {
     pageContent = <LoginPage onLoginSuccess={handleLoginSuccess} />;
   } else if (route === '/dashboard') {
-    pageContent = <DashboardPage onSignOut={handleSignOut} onShowToast={showToast} />;
+    pageContent = (
+      <DashboardPage
+        onSignOut={handleSignOut}
+        onShowToast={showToast}
+        onNavigateToProject={handleNavigateToProject}
+      />
+    );
+  } else if (route.startsWith('/mps') || route.startsWith('/mp-details')) {
+    pageContent = (
+      <MPDetailsPage
+        onSignOut={handleSignOut}
+        onShowToast={showToast}
+        onNavigateToProject={handleNavigateToProject}
+      />
+    );
+  } else if (route === '/attention' || route === '/attention-center') {
+    pageContent = (
+      <AttentionCenterPage
+        onSignOut={handleSignOut}
+        onShowToast={showToast}
+        onNavigateToProject={handleNavigateToProject}
+      />
+    );
+  } else if (route === '/evidence') {
+    pageContent = (
+      <EvidenceLibraryPage
+        onSignOut={handleSignOut}
+        onShowToast={showToast}
+      />
+    );
+  } else if (route === '/profile') {
+    pageContent = (
+      <ProfilePage
+        onSignOut={handleSignOut}
+        onShowToast={showToast}
+      />
+    );
   } else if (route.startsWith('/projects/')) {
     const projectId = route.replace('/projects/', '');
     pageContent = (
@@ -67,7 +112,7 @@ export function App() {
           </h2>
           <p style={{ fontSize: '0.875rem', color: 'var(--slate-600)', marginBottom: '20px', lineHeight: '1.5' }}>
             This page (<code>/projects/:id</code>) is owned and implemented by <strong>Frontend Developer 2</strong>.
-            Frontend Developer 1's navigation call was dispatched successfully.
+            The navigation call was dispatched cleanly and accurately.
           </p>
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
             <a href="#/dashboard" className="btn btn-primary">
