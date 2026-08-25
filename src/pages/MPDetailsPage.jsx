@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Sidebar } from '../components/Sidebar.jsx';
 import { Topbar } from '../components/Topbar.jsx';
-import { getMPDetails } from '../data/mockData.js';
+import { getMPById, getMPProjects } from '../services/apiService.js';
 
 export function MPDetailsPage({ onSignOut, onShowToast, onNavigateToProject }) {
   const [mpData, setMpData] = useState(null);
+  const [projectsList, setProjectsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedStatus, setSelectedStatus] = useState('All');
@@ -14,14 +15,37 @@ export function MPDetailsPage({ onSignOut, onShowToast, onNavigateToProject }) {
   const [hoveredCatSlice, setHoveredCatSlice] = useState(null);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
+  // Load MP Dossier & Projects via Service Layer
   useEffect(() => {
-    // Simulated load for skeleton state
-    const timer = setTimeout(() => {
-      setMpData(getMPDetails());
-      setIsLoading(false);
-    }, 200);
-    return () => clearTimeout(timer);
-  }, []);
+    let isMounted = true;
+    async function loadData() {
+      setIsLoading(true);
+      try {
+        const [mpDetails, projects] = await Promise.all([
+          getMPById('mp-1'),
+          getMPProjects('mp-1', {
+            category: selectedCategory,
+            status: selectedStatus,
+            search: searchQuery
+          })
+        ]);
+        if (isMounted) {
+          setMpData(mpDetails);
+          setProjectsList(projects);
+          setIsLoading(false);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setIsLoading(false);
+          if (onShowToast) onShowToast('Failed to load MP details dossier', 'alert');
+        }
+      }
+    }
+    loadData();
+    return () => {
+      isMounted = false;
+    };
+  }, [selectedCategory, selectedStatus, searchQuery, onShowToast]);
 
   const handleRowClick = (projId, title) => {
     if (onNavigateToProject) {
@@ -43,17 +67,6 @@ export function MPDetailsPage({ onSignOut, onShowToast, onNavigateToProject }) {
   const handleDownload = () => {
     if (onShowToast) onShowToast('Generating and downloading official MP LAD Audit Report (PDF)...', 'info');
   };
-
-  const projects = mpData?.projects || [];
-  const filteredProjects = projects.filter((p) => {
-    const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
-    const matchesStatus = selectedStatus === 'All' || p.status === selectedStatus;
-    const matchesSearch = !searchQuery.trim() || 
-      p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.deadline.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesStatus && matchesSearch;
-  });
 
   return (
     <div className="dashboard-layout">
@@ -82,16 +95,16 @@ export function MPDetailsPage({ onSignOut, onShowToast, onNavigateToProject }) {
             <span className="breadcrumb-current">Rahul Sharma</span>
           </nav>
 
-          {isLoading ? (
+          {isLoading && !mpData ? (
             <div className="skeleton-container" aria-busy="true">
-              <div className="skeleton skeleton-mp-hero" style={{ height: '140px', borderRadius: '12px', marginBottom: '20px' }}></div>
+              <div className="skeleton" style={{ height: '140px', borderRadius: '12px', marginBottom: '20px' }}></div>
               <div className="skeleton" style={{ height: '100px', borderRadius: '12px', marginBottom: '20px' }}></div>
               <div className="skeleton" style={{ height: '240px', borderRadius: '12px', marginBottom: '20px' }}></div>
             </div>
           ) : (
             <>
               {/* MP Profile Hero Card */}
-              <section className="mp-hero-card" aria-label="Member of Parliament Details">
+              <section className="mp-hero-card" aria-label="Member of Parliament Profile">
                 <div className="mp-hero-left">
                   <img
                     src={mpData.avatar}
@@ -231,7 +244,6 @@ export function MPDetailsPage({ onSignOut, onShowToast, onNavigateToProject }) {
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '190px', gap: '12px' }}>
                     <svg width="120" height="120" viewBox="0 0 120 120">
                       {(() => {
-                        const total = mpData.statusChart.reduce((a, c) => a + c.count, 0);
                         const radius = 46;
                         const circum = 2 * Math.PI * radius;
                         let acc = 0;
@@ -394,7 +406,7 @@ export function MPDetailsPage({ onSignOut, onShowToast, onNavigateToProject }) {
                   </div>
                 </div>
 
-                {filteredProjects.length === 0 ? (
+                {projectsList.length === 0 ? (
                   <div className="attention-empty-state" role="status">
                     <div className="empty-state-icon">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -433,7 +445,7 @@ export function MPDetailsPage({ onSignOut, onShowToast, onNavigateToProject }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {filteredProjects.map((p) => {
+                        {projectsList.map((p) => {
                           const attentionClass =
                             p.attention === 'High'
                               ? 'badge-high'

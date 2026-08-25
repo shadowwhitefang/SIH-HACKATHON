@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sidebar } from '../components/Sidebar.jsx';
 import { Topbar } from '../components/Topbar.jsx';
-import { getUserProfile } from '../data/mockData.js';
+import { getProfile } from '../services/apiService.js';
 
 export function ProfilePage({ onSignOut, onShowToast }) {
   const [profile, setProfile] = useState(null);
@@ -22,21 +22,35 @@ export function ProfilePage({ onSignOut, onShowToast }) {
   });
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const data = getUserProfile();
-      setProfile(data);
-      setFormData({
-        name: data.name,
-        email: data.email,
-        department: data.department,
-        phone: data.phone,
-        timezone: data.timezone,
-        language: data.language
-      });
-      setIsLoading(false);
-    }, 200);
-    return () => clearTimeout(timer);
-  }, []);
+    let isMounted = true;
+    async function loadData() {
+      setIsLoading(true);
+      try {
+        const data = await getProfile();
+        if (isMounted) {
+          setProfile(data);
+          setFormData({
+            name: data.name,
+            email: data.email,
+            department: data.department,
+            phone: data.phone,
+            timezone: data.timezone,
+            language: data.language
+          });
+          setIsLoading(false);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setIsLoading(false);
+          if (onShowToast) onShowToast('Failed to load user profile', 'alert');
+        }
+      }
+    }
+    loadData();
+    return () => {
+      isMounted = false;
+    };
+  }, [onShowToast]);
 
   const handleSaveProfile = (e) => {
     e.preventDefault();
@@ -93,7 +107,7 @@ export function ProfilePage({ onSignOut, onShowToast }) {
             </div>
           </div>
 
-          {isLoading ? (
+          {isLoading && !profile ? (
             <div className="skeleton-container" aria-busy="true">
               <div className="skeleton" style={{ height: '140px', borderRadius: '12px', marginBottom: '20px' }}></div>
               <div className="skeleton" style={{ height: '280px', borderRadius: '12px' }}></div>

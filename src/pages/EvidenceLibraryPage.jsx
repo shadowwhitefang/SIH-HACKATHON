@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sidebar } from '../components/Sidebar.jsx';
 import { Topbar } from '../components/Topbar.jsx';
-import { getEvidenceLibraryData } from '../data/mockData.js';
+import { getEvidence } from '../services/apiService.js';
 
 export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
   const [evidenceList, setEvidenceList] = useState([]);
@@ -15,13 +15,45 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'table'
 
+  // Read URL query parameter for project deep linking (e.g. #/evidence?project=proj-1)
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setEvidenceList(getEvidenceLibraryData());
-      setIsLoading(false);
-    }, 200);
-    return () => clearTimeout(timer);
+    const hash = window.location.hash || '';
+    if (hash.includes('?')) {
+      const queryParams = new URLSearchParams(hash.split('?')[1]);
+      const projectParam = queryParams.get('project');
+      if (projectParam) {
+        setSelectedProject(projectParam);
+      }
+    }
   }, []);
+
+  // Fetch Evidence via Service Layer
+  useEffect(() => {
+    let isMounted = true;
+    async function loadData() {
+      setIsLoading(true);
+      try {
+        const data = await getEvidence({
+          projectId: selectedProject,
+          type: selectedType,
+          search: searchQuery
+        });
+        if (isMounted) {
+          setEvidenceList(data);
+          setIsLoading(false);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setIsLoading(false);
+          if (onShowToast) onShowToast('Failed to load evidence library records', 'alert');
+        }
+      }
+    }
+    loadData();
+    return () => {
+      isMounted = false;
+    };
+  }, [selectedProject, selectedType, searchQuery, onShowToast]);
 
   const handleResetFilters = () => {
     setSearchQuery('');
@@ -35,22 +67,9 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
     e.preventDefault();
     setShowUploadModal(false);
     if (onShowToast) {
-      onShowToast('Evidence uploaded successfully. Verification workflow initiated.', 'success');
+      onShowToast('Evidence submitted successfully. Audit verification workflow initiated.', 'success');
     }
   };
-
-  const filteredEvidence = evidenceList.filter((item) => {
-    const matchesProject = selectedProject === 'All' || item.projectName === selectedProject;
-    const matchesType = selectedType === 'All' || item.type === selectedType;
-    const q = searchQuery.toLowerCase();
-    const matchesSearch = !searchQuery.trim() ||
-      item.title.toLowerCase().includes(q) ||
-      item.projectName.toLowerCase().includes(q) ||
-      item.source.toLowerCase().includes(q) ||
-      item.type.toLowerCase().includes(q) ||
-      item.description.toLowerCase().includes(q);
-    return matchesProject && matchesType && matchesSearch;
-  });
 
   return (
     <div className="dashboard-layout">
@@ -126,11 +145,11 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
                 onChange={(e) => setSelectedProject(e.target.value)}
               >
                 <option value="All">All Projects</option>
-                <option value="Road Construction — Ward 12">Road Construction — Ward 12</option>
-                <option value="Community Health Center">Community Health Center</option>
-                <option value="Water Supply Project — Phase 2">Water Supply Project — Phase 2</option>
-                <option value="Primary School Renovation">Primary School Renovation</option>
-                <option value="Drainage Improvement">Drainage Improvement</option>
+                <option value="proj-1">Road Construction — Ward 12</option>
+                <option value="proj-2">Community Health Center</option>
+                <option value="proj-3">Water Supply Project — Phase 2</option>
+                <option value="proj-4">Primary School Renovation</option>
+                <option value="proj-105">Drainage Improvement</option>
               </select>
             </div>
 
@@ -212,7 +231,7 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
             </div>
           </div>
 
-          {isLoading ? (
+          {isLoading && evidenceList.length === 0 ? (
             <div className="skeleton-container" aria-busy="true">
               <div className="evidence-cards-grid">
                 {[1, 2, 3, 4].map((n) => (
@@ -222,7 +241,7 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
             </div>
           ) : (
             <>
-              {filteredEvidence.length === 0 ? (
+              {evidenceList.length === 0 ? (
                 <div className="attention-empty-state" role="status">
                   <div className="empty-state-icon">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -247,50 +266,58 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
               ) : viewMode === 'grid' ? (
                 /* Grid View */
                 <div className="evidence-cards-grid" role="feed" aria-label="Evidence cards grid">
-                  {filteredEvidence.map((item) => (
-                    <article
-                      key={item.id}
-                      className="evidence-card"
-                      tabIndex={0}
-                      role="button"
-                      aria-label={`Open evidence preview for ${item.title} (${item.type})`}
-                      onClick={() => setPreviewItem(item)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          setPreviewItem(item);
-                        }
-                      }}
-                    >
-                      {/* Thumbnail Container */}
-                      <div className="evidence-thumb-wrapper">
-                        <img
-                          src={item.thumbnail}
-                          alt={item.title}
-                          className="evidence-thumb-img"
-                          loading="lazy"
-                        />
-                        <span className={`evidence-type-tag ${item.typeClass}`}>
-                          {item.type}
-                        </span>
-                        {item.verified && (
-                          <span className="evidence-verified-badge" title="Verified by field auditor">
-                            ✓ Verified
-                          </span>
-                        )}
-                      </div>
+                  {evidenceList.map((item) => {
+                    const dateDisplay = new Date(item.createdAt).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric'
+                    });
 
-                      {/* Content */}
-                      <div className="evidence-card-content">
-                        <div className="evidence-card-project">{item.projectName}</div>
-                        <h2 className="evidence-card-title">{item.type}</h2>
-                        <div className="evidence-card-date">{item.date}</div>
-                        <div className="evidence-card-source">
-                          <span style={{ color: 'var(--slate-400)' }}>Source:</span> {item.source}
+                    return (
+                      <article
+                        key={item.evidenceId}
+                        className="evidence-card"
+                        tabIndex={0}
+                        role="button"
+                        aria-label={`Open evidence preview for ${item.projectName} (${item.type})`}
+                        onClick={() => setPreviewItem(item)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            setPreviewItem(item);
+                          }
+                        }}
+                      >
+                        {/* Thumbnail Container */}
+                        <div className="evidence-thumb-wrapper">
+                          <img
+                            src={item.url}
+                            alt={item.projectName}
+                            className="evidence-thumb-img"
+                            loading="lazy"
+                          />
+                          <span className="evidence-type-tag">
+                            {item.type}
+                          </span>
+                          {item.verified && (
+                            <span className="evidence-verified-badge" title="Verified by field auditor">
+                              ✓ Verified
+                            </span>
+                          )}
                         </div>
-                      </div>
-                    </article>
-                  ))}
+
+                        {/* Content */}
+                        <div className="evidence-card-content">
+                          <div className="evidence-card-project">{item.projectName}</div>
+                          <h2 className="evidence-card-title">{item.type}</h2>
+                          <div className="evidence-card-date">{dateDisplay}</div>
+                          <div className="evidence-card-source">
+                            <span style={{ color: 'var(--slate-400)' }}>Source:</span> {item.source}
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
                 </div>
               ) : (
                 /* Table View */
@@ -308,47 +335,55 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
                       </tr>
                     </thead>
                     <tbody>
-                      {filteredEvidence.map((item) => (
-                        <tr
-                          key={item.id}
-                          className="clickable-project-row"
-                          onClick={() => setPreviewItem(item)}
-                        >
-                          <td>
-                            <span className={`badge ${item.typeClass === 'type-photo' ? 'badge-ongoing' : 'badge-positive'}`}>
-                              {item.type}
-                            </span>
-                          </td>
-                          <td>
-                            <span className="table-project-name">{item.projectName}</span>
-                          </td>
-                          <td>
-                            <span style={{ fontSize: '0.8125rem', color: 'var(--slate-600)' }}>{item.date}</span>
-                          </td>
-                          <td>
-                            <span style={{ fontSize: '0.8125rem', color: 'var(--slate-600)' }}>{item.source}</span>
-                          </td>
-                          <td>
-                            <span style={{ fontSize: '0.75rem', color: 'var(--slate-500)' }}>{item.uploader}</span>
-                          </td>
-                          <td>
-                            <span className="badge badge-completed" style={{ fontSize: '0.6875rem' }}>Verified</span>
-                          </td>
-                          <td>
-                            <button
-                              type="button"
-                              className="btn-ghost"
-                              style={{ fontSize: '0.75rem', padding: '2px 6px', color: 'var(--teal-700)' }}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setPreviewItem(item);
-                              }}
-                            >
-                              Preview
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
+                      {evidenceList.map((item) => {
+                        const dateDisplay = new Date(item.createdAt).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric'
+                        });
+
+                        return (
+                          <tr
+                            key={item.evidenceId}
+                            className="clickable-project-row"
+                            onClick={() => setPreviewItem(item)}
+                          >
+                            <td>
+                              <span className="badge badge-ongoing">
+                                {item.type}
+                              </span>
+                            </td>
+                            <td>
+                              <span className="table-project-name">{item.projectName}</span>
+                            </td>
+                            <td>
+                              <span style={{ fontSize: '0.8125rem', color: 'var(--slate-600)' }}>{dateDisplay}</span>
+                            </td>
+                            <td>
+                              <span style={{ fontSize: '0.8125rem', color: 'var(--slate-600)' }}>{item.source}</span>
+                            </td>
+                            <td>
+                              <span style={{ fontSize: '0.75rem', color: 'var(--slate-500)' }}>{item.uploadedBy}</span>
+                            </td>
+                            <td>
+                              <span className="badge badge-completed" style={{ fontSize: '0.6875rem' }}>Verified</span>
+                            </td>
+                            <td>
+                              <button
+                                type="button"
+                                className="btn-ghost"
+                                style={{ fontSize: '0.75rem', padding: '2px 6px', color: 'var(--teal-700)' }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setPreviewItem(item);
+                                }}
+                              >
+                                Preview
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -357,7 +392,7 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
               {/* Pagination */}
               <div className="evidence-pagination-bar">
                 <span className="pagination-info">
-                  Showing 1 to {filteredEvidence.length} of 64 evidence items
+                  Showing 1 to {evidenceList.length} of 64 evidence items
                 </span>
                 <div className="pagination-buttons">
                   <button type="button" className="pagination-btn disabled" disabled aria-label="Previous page">‹</button>
@@ -399,28 +434,28 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
             </button>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-              <span className={`badge ${previewItem.typeClass}`}>{previewItem.type}</span>
+              <span className="badge badge-ongoing">{previewItem.type}</span>
               <span className="badge badge-completed">Verified Evidence</span>
             </div>
 
             <h3 id="preview-modal-title" style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--slate-900)', marginBottom: '4px' }}>
-              {previewItem.title}
+              {previewItem.projectName}
             </h3>
             <p style={{ fontSize: '0.8125rem', color: 'var(--slate-500)', marginBottom: '16px' }}>
-              {previewItem.projectName} • {previewItem.date}
+              {previewItem.type} • ID: {previewItem.publicId}
             </p>
 
             {/* Content Display: Site Photo Lightbox OR Document Preview Reader State */}
             {previewItem.type === 'Site Photograph' || previewItem.type === 'Field Verification' ? (
               <div className="modal-photo-box">
                 <img
-                  src={previewItem.thumbnail}
-                  alt={previewItem.title}
+                  src={previewItem.url}
+                  alt={previewItem.projectName}
                   className="modal-photo-full"
                 />
                 <div className="modal-photo-overlay-data">
                   <span>📍 {previewItem.location}</span>
-                  <span>📷 Timestamped on {previewItem.date}</span>
+                  <span>📷 Verified on {new Date(previewItem.createdAt).toLocaleDateString()}</span>
                 </div>
               </div>
             ) : (
@@ -455,7 +490,7 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
                     </p>
                     <div style={{ marginTop: '16px', borderTop: '1px solid #cbd5e1', paddingTop: '8px', display: 'flex', justifyContent: 'space-between', fontSize: '0.6875rem', color: 'var(--slate-500)' }}>
                       <span>Signatory: {previewItem.documentData?.signatory || 'District Officer'}</span>
-                      <span>Date: {previewItem.documentData?.stampDate || previewItem.date}</span>
+                      <span>Date: {previewItem.documentData?.stampDate || new Date(previewItem.createdAt).toLocaleDateString()}</span>
                     </div>
                   </div>
                 </div>
@@ -471,7 +506,7 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
               <div className="meta-2col">
                 <div>
                   <span className="meta-label">Submitted by</span>
-                  <span className="meta-val">{previewItem.uploader}</span>
+                  <span className="meta-val">{previewItem.uploadedBy}</span>
                 </div>
                 <div>
                   <span className="meta-label">Source System</span>
@@ -485,7 +520,7 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
                 type="button"
                 className="btn btn-secondary"
                 onClick={() => {
-                  if (onShowToast) onShowToast('Evidence record file downloading...', 'info');
+                  if (onShowToast) onShowToast('Downloading official evidence asset...', 'info');
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -493,7 +528,7 @@ export function EvidenceLibraryPage({ onSignOut, onShowToast }) {
                   <polyline points="7 10 12 15 17 10" />
                   <line x1="12" y1="15" x2="12" y2="3" />
                 </svg>
-                Download Original File
+                Download Original Asset
               </button>
               <button
                 type="button"

@@ -1,23 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { Sidebar } from '../components/Sidebar.jsx';
 import { Topbar } from '../components/Topbar.jsx';
-import { getAttentionCenterData } from '../data/mockData.js';
+import { getAlerts } from '../services/apiService.js';
 
 export function AttentionCenterPage({ onSignOut, onShowToast, onNavigateToProject }) {
-  const [data, setData] = useState(null);
+  const [alertsList, setAlertsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('All'); // 'All' | 'High' | 'Medium' | 'Low' | 'Resolved'
   const [searchQuery, setSearchQuery] = useState('');
-  const [expandedSignals, setExpandedSignals] = useState({}); // { [projId]: boolean }
+  const [expandedSignals, setExpandedSignals] = useState({}); // { [alertId]: boolean }
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
+  // Load Alerts through Service Layer
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setData(getAttentionCenterData());
-      setIsLoading(false);
-    }, 200);
-    return () => clearTimeout(timer);
-  }, []);
+    let isMounted = true;
+    async function loadData() {
+      setIsLoading(true);
+      try {
+        const data = await getAlerts({
+          severity: activeTab,
+          search: searchQuery
+        });
+        if (isMounted) {
+          setAlertsList(data);
+          setIsLoading(false);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setIsLoading(false);
+          if (onShowToast) onShowToast('Failed to load attention alerts', 'alert');
+        }
+      }
+    }
+    loadData();
+    return () => {
+      isMounted = false;
+    };
+  }, [activeTab, searchQuery, onShowToast]);
 
   const handleToggleExpand = (id) => {
     setExpandedSignals((prev) => ({
@@ -26,11 +45,11 @@ export function AttentionCenterPage({ onSignOut, onShowToast, onNavigateToProjec
     }));
   };
 
-  const handleViewProject = (id, title) => {
+  const handleViewProject = (projId, title) => {
     if (onNavigateToProject) {
-      onNavigateToProject(id, title);
+      onNavigateToProject(projId, title);
     } else {
-      window.location.hash = `#/projects/${id}`;
+      window.location.hash = `#/projects/${projId}`;
     }
   };
 
@@ -38,27 +57,6 @@ export function AttentionCenterPage({ onSignOut, onShowToast, onNavigateToProjec
     if (onShowToast) {
       onShowToast('Exporting Attention Center audit signals dossier (CSV / PDF)...', 'info');
     }
-  };
-
-  const items = data?.items || [];
-  const filteredItems = items.filter((item) => {
-    const matchesTab = activeTab === 'All' || item.severityTab === activeTab;
-    const q = searchQuery.toLowerCase();
-    const matchesSearch = !searchQuery.trim() ||
-      item.title.toLowerCase().includes(q) ||
-      item.location.toLowerCase().includes(q) ||
-      item.constituency.toLowerCase().includes(q) ||
-      item.mpName.toLowerCase().includes(q) ||
-      item.signals.some((s) => s.toLowerCase().includes(q));
-    return matchesTab && matchesSearch;
-  });
-
-  const tabCounts = {
-    All: items.length,
-    High: items.filter((i) => i.severityTab === 'High').length,
-    Medium: items.filter((i) => i.severityTab === 'Medium').length,
-    Low: items.filter((i) => i.severityTab === 'Low').length,
-    Resolved: items.filter((i) => i.severityTab === 'Resolved').length
   };
 
   return (
@@ -107,38 +105,44 @@ export function AttentionCenterPage({ onSignOut, onShowToast, onNavigateToProjec
 
           {/* Navigation Tabs */}
           <div className="attention-tabs-bar" role="tablist" aria-label="Attention severity filters">
-            {['All', 'High', 'Medium', 'Low', 'Resolved'].map((tab) => {
-              const isActive = activeTab === tab;
+            {[
+              { label: 'All', key: 'All', count: 9 },
+              { label: 'High', key: 'High', count: 3 },
+              { label: 'Medium', key: 'Medium', count: 4 },
+              { label: 'Low', key: 'Low', count: 2 },
+              { label: 'Resolved', key: 'Resolved', count: 2 }
+            ].map((tab) => {
+              const isActive = activeTab === tab.key;
               return (
                 <button
-                  key={tab}
+                  key={tab.key}
                   type="button"
                   role="tab"
                   aria-selected={isActive}
-                  id={`tab-attention-${tab.toLowerCase()}`}
+                  id={`tab-attention-${tab.key.toLowerCase()}`}
                   className={`attention-tab-pill ${isActive ? 'active' : ''}`}
-                  onClick={() => setActiveTab(tab)}
+                  onClick={() => setActiveTab(tab.key)}
                 >
-                  <span>{tab}</span>
-                  <span className={`tab-count-badge ${tab.toLowerCase()}`}>
-                    {tabCounts[tab] || 0}
+                  <span>{tab.label}</span>
+                  <span className={`tab-count-badge ${tab.key.toLowerCase()}`}>
+                    {tab.count}
                   </span>
                 </button>
               );
             })}
           </div>
 
-          {isLoading ? (
+          {isLoading && alertsList.length === 0 ? (
             <div className="skeleton-container" aria-busy="true">
               {[1, 2, 3].map((n) => (
-                <div key={n} className="skeleton attention-item-skeleton" style={{ height: '90px', borderRadius: '10px', marginBottom: '12px' }}></div>
+                <div key={n} className="skeleton" style={{ height: '90px', borderRadius: '10px', marginBottom: '12px' }}></div>
               ))}
             </div>
           ) : (
             <>
               {/* Attention Cards List */}
               <div className="attention-cards-container" role="feed" aria-label="Attention signals list">
-                {filteredItems.length === 0 ? (
+                {alertsList.length === 0 ? (
                   <div className="attention-empty-state" role="status">
                     <div className="empty-state-icon">
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -165,45 +169,52 @@ export function AttentionCenterPage({ onSignOut, onShowToast, onNavigateToProjec
                     )}
                   </div>
                 ) : (
-                  filteredItems.map((item) => {
-                    const isExpanded = !!expandedSignals[item.id];
+                  alertsList.map((alert) => {
+                    const isExpanded = !!expandedSignals[alert.alertId];
+                    const sev = alert.severity.toUpperCase();
                     const severityClass =
-                      item.severityTab === 'High'
+                      sev === 'HIGH'
                         ? 'badge-high'
-                        : item.severityTab === 'Medium'
+                        : sev === 'MEDIUM'
                         ? 'badge-medium'
-                        : item.severityTab === 'Low'
+                        : sev === 'LOW'
                         ? 'badge-low'
                         : 'badge-completed';
 
                     const scoreColor =
-                      item.score >= 70 ? 'var(--rose-600)' : item.score >= 40 ? 'var(--amber-600)' : 'var(--emerald-600)';
+                      alert.score >= 70 ? 'var(--rose-600)' : alert.score >= 40 ? 'var(--amber-600)' : 'var(--emerald-600)';
+
+                    const dateDisplay = new Date(alert.createdAt).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric'
+                    });
 
                     return (
                       <article
-                        key={item.id}
+                        key={alert.alertId}
                         className={`attention-center-card ${isExpanded ? 'expanded' : ''}`}
-                        aria-label={`Attention alert for ${item.title}`}
+                        aria-label={`Attention alert for ${alert.projectTitle}`}
                       >
                         <div className="attention-card-main-row">
                           {/* Left: Project title & location */}
                           <div className="attention-card-project-info">
                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                               <span className={`badge ${severityClass}`} style={{ fontSize: '0.625rem' }}>
-                                {item.severityTab}
+                                {alert.severity}
                               </span>
                               <span style={{ fontSize: '0.75rem', color: 'var(--slate-500)' }}>
-                                MP: {item.mpName}
+                                MP: {alert.mpName}
                               </span>
                             </div>
-                            <h2 className="attention-card-title">{item.title}</h2>
-                            <span className="attention-card-loc">{item.location} • {item.constituency}</span>
+                            <h2 className="attention-card-title">{alert.projectTitle}</h2>
+                            <span className="attention-card-loc">{alert.location} • {alert.constituency}</span>
                           </div>
 
                           {/* Score Badge */}
                           <div className="attention-score-box">
                             <div className="attention-score-val" style={{ color: scoreColor }}>
-                              {item.score} <span className="score-total">/ 100</span>
+                              {alert.score} <span className="score-total">/ 100</span>
                             </div>
                             <span className="attention-score-label">Attention Score</span>
                           </div>
@@ -214,7 +225,7 @@ export function AttentionCenterPage({ onSignOut, onShowToast, onNavigateToProjec
                               type="button"
                               className="btn-signals-toggle"
                               aria-expanded={isExpanded}
-                              onClick={() => handleToggleExpand(item.id)}
+                              onClick={() => handleToggleExpand(alert.alertId)}
                             >
                               <span className="signals-count-bubble">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -222,7 +233,7 @@ export function AttentionCenterPage({ onSignOut, onShowToast, onNavigateToProjec
                                   <line x1="12" y1="8" x2="12" y2="12" />
                                   <line x1="12" y1="16" x2="12.01" y2="16" />
                                 </svg>
-                                {item.signalsCount} signals detected
+                                {alert.rulesTriggered.length} signals detected
                               </span>
                               <svg
                                 className={`chevron-icon ${isExpanded ? 'rotated' : ''}`}
@@ -241,7 +252,7 @@ export function AttentionCenterPage({ onSignOut, onShowToast, onNavigateToProjec
                           {/* Last Evaluated */}
                           <div className="attention-evaluated-col">
                             <span className="evaluated-label">Last evaluated</span>
-                            <span className="evaluated-date">{item.lastEvaluated}</span>
+                            <span className="evaluated-date">{dateDisplay}</span>
                           </div>
 
                           {/* View Project Button */}
@@ -249,30 +260,37 @@ export function AttentionCenterPage({ onSignOut, onShowToast, onNavigateToProjec
                             <button
                               type="button"
                               className="btn btn-secondary btn-view-project"
-                              onClick={() => handleViewProject(item.id, item.title)}
-                              aria-label={`View Project details for ${item.title}`}
+                              onClick={() => handleViewProject(alert.projectId, alert.projectTitle)}
+                              aria-label={`View Project details for ${alert.projectTitle}`}
                             >
                               View Project
                             </button>
                           </div>
                         </div>
 
-                        {/* Expandable Signal Checklist Details */}
+                        {/* Expandable Signal Checklist Details from Data Contract */}
                         {isExpanded && (
                           <div className="attention-card-expanded-signals" aria-live="polite">
                             <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--slate-800)', marginBottom: '8px' }}>
                               Detected Verification Signals:
                             </div>
                             <ul className="expanded-signals-list">
-                              {item.signals.map((sig, sIdx) => (
-                                <li key={sIdx} className="expanded-signal-item">
+                              {alert.rulesTriggered.map((ruleItem, rIdx) => (
+                                <li key={rIdx} className="expanded-signal-item">
                                   <span className="signal-check-icon">✓</span>
-                                  <span>{sig}</span>
+                                  <div>
+                                    <span style={{ fontWeight: 600 }}>{ruleItem.message}</span>
+                                    {ruleItem.relevantValues && (
+                                      <span style={{ fontSize: '0.6875rem', color: 'var(--slate-500)', marginLeft: '6px' }}>
+                                        ({Object.entries(ruleItem.relevantValues).map(([k, v]) => `${k}: ${v}`).join(', ')})
+                                      </span>
+                                    )}
+                                  </div>
                                 </li>
                               ))}
                             </ul>
                             <div style={{ marginTop: '10px', fontSize: '0.6875rem', color: 'var(--slate-500)', fontStyle: 'italic' }}>
-                              Note: These data signals are advisory and intended for administrative verification without presumption of misconduct.
+                              Note: These data signals are advisory indicators designed to aid verification without presumption of wrongdoing.
                             </div>
                           </div>
                         )}

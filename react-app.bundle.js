@@ -23931,7 +23931,7 @@
       trendChart: [
         { year: "2022\u201323", rate: 45, display: "45%", spent: "\u20B94.1 Cr", total: "\u20B99.1 Cr" },
         { year: "2023\u201324", rate: 55, display: "55%", spent: "\u20B95.4 Cr", total: "\u20B99.8 Cr" },
-        { year: "2024\u201325", rate: 63, display: "63%", spent: "\u20B97.1 Cr", total: "\u20B911.2 Cr" },
+        { year: "2024\u201325", rate: 63, display: "63%", spent: "\u20B97.1 Cr", total: "11.2 Cr" },
         { year: "2025\u201326", rate: 70, display: "70%", spent: "\u20B98.7 Cr", total: "\u20B912.4 Cr" }
       ],
       attentionProjects: [
@@ -24060,275 +24060,329 @@
       }
     ]
   };
-  var attentionCenterData = {
-    summary: {
-      total: 9,
-      high: 3,
-      medium: 4,
-      low: 2,
-      resolved: 5
-    },
-    items: [
-      {
-        id: "proj-1",
-        title: "Road Construction \u2014 Ward 12",
-        location: "Patna, Bihar",
-        constituency: "Patna Sahib",
-        mpName: "Rahul Sharma",
-        score: 82,
-        severity: "High",
-        severityTab: "High",
-        lastEvaluated: "Aug 24, 2026",
-        signalsCount: 3,
-        signals: [
-          "Project is overdue by 42 days against approved timeline",
-          "Physical progress is below expected level (32% vs 65% target)",
-          "Last progress update was 78 days ago from field engineer"
-        ],
-        allocated: "\u20B91.00 Cr",
-        spent: "\u20B925L",
-        progress: 32
-      },
-      {
-        id: "proj-2",
-        title: "Community Health Center",
-        location: "Muzaffarpur, Bihar",
-        constituency: "Muzaffarpur",
-        mpName: "Pawan Kumar",
-        score: 54,
-        severity: "High",
-        severityTab: "High",
-        lastEvaluated: "Aug 24, 2026",
-        signalsCount: 3,
-        signals: [
-          "Physical progress (28%) lagging behind financial burn rate (75%)",
-          "Milestone 2 pending sign-off for 35 days",
-          "Site inspection verification required"
-        ],
-        allocated: "\u20B975L",
-        spent: "\u20B956L",
-        progress: 28
-      },
-      {
-        id: "proj-101",
-        title: "District Hospital ICU Wing",
-        location: "Bhagalpur, Bihar",
-        constituency: "Bhagalpur",
-        mpName: "Sanjay Singh",
-        score: 76,
-        severity: "High",
-        severityTab: "High",
-        lastEvaluated: "Aug 23, 2026",
-        signalsCount: 2,
-        signals: [
-          "Equipment procurement delayed by 28 days",
-          "Verification audit pending for Phase 2 expenditure"
-        ],
-        allocated: "\u20B91.80 Cr",
-        spent: "\u20B91.08 Cr",
-        progress: 40
-      },
-      {
-        id: "proj-3",
-        title: "Water Supply Project \u2014 Phase 2",
-        location: "Gaya, Bihar",
-        constituency: "Gaya",
-        mpName: "Anita Verma",
-        score: 48,
-        severity: "Medium",
-        severityTab: "Medium",
-        lastEvaluated: "Aug 24, 2026",
-        signalsCount: 3,
-        signals: [
-          "20 days overdue on pipe laying phase",
-          "Vendor supply verification pending",
-          "Recent expenditure requires progress validation"
-        ],
-        allocated: "\u20B91.15 Cr",
-        spent: "\u20B935L",
-        progress: 30
-      },
-      {
-        id: "proj-201",
-        title: "Rural Drainage Improvement",
-        location: "Bhagalpur, Bihar",
-        constituency: "Bhagalpur",
-        mpName: "Neha Reddy",
-        score: 44,
-        severity: "Medium",
-        severityTab: "Medium",
-        lastEvaluated: "Aug 22, 2026",
-        signalsCount: 2,
-        signals: [
-          "Monsoon channel construction delayed by 22 days",
-          "Third-party audit requested by district magistrate"
-        ],
-        allocated: "\u20B990L",
-        spent: "\u20B958.5L",
-        progress: 60
-      },
-      {
-        id: "proj-102",
-        title: "Solar Street Light Installation",
-        location: "Araria, Bihar",
-        constituency: "Araria",
-        mpName: "Vikram Pratap",
-        score: 42,
-        severity: "Medium",
-        severityTab: "Medium",
-        lastEvaluated: "Aug 20, 2026",
-        signalsCount: 2,
-        signals: [
-          "18 days overdue on block 4 pole setup",
-          "Geo-tagged inspection report incomplete"
-        ],
-        allocated: "\u20B950L",
-        spent: "\u20B924L",
-        progress: 45
-      },
-      {
-        id: "proj-202",
-        title: "Panchayat Bhavan Extension",
-        location: "Patna, Bihar",
-        constituency: "Patna Sahib",
-        mpName: "Rahul Sharma",
-        score: 38,
-        severity: "Medium",
-        severityTab: "Medium",
-        lastEvaluated: "Aug 19, 2026",
-        signalsCount: 2,
-        signals: [
-          "Structural audit recommendation pending",
-          "Quarterly expenditure verification missing"
-        ],
-        allocated: "\u20B940L",
-        spent: "\u20B918L",
-        progress: 50
-      },
-      {
-        id: "proj-4",
-        title: "Primary School Renovation",
-        location: "Gaya, Bihar",
-        constituency: "Gaya",
-        mpName: "Anita Verma",
-        score: 28,
-        severity: "Low",
-        severityTab: "Low",
-        lastEvaluated: "Aug 21, 2026",
-        signalsCount: 2,
-        signals: [
-          "15 days delay in roof reinforcement phase",
-          "Pending updated photos from field engineer"
-        ],
-        allocated: "\u20B945L",
-        spent: "\u20B922.5L",
-        progress: 52
-      },
-      {
-        id: "proj-203",
-        title: "Anganwadi Center Repair",
-        location: "Muzaffarpur, Bihar",
-        constituency: "Muzaffarpur",
-        mpName: "Pawan Kumar",
-        score: 22,
-        severity: "Low",
-        severityTab: "Low",
-        lastEvaluated: "Aug 18, 2026",
-        signalsCount: 1,
-        signals: [
-          "Minor milestone delay (9 days) on paint work"
-        ],
-        allocated: "\u20B920L",
-        spent: "\u20B912L",
-        progress: 70
-      },
-      // Resolved items
-      {
-        id: "proj-301",
-        title: "Community Hall Construction",
-        location: "Patna, Bihar",
-        constituency: "Patna Sahib",
-        mpName: "Rahul Sharma",
-        score: 10,
-        severity: "Resolved",
-        severityTab: "Resolved",
-        lastEvaluated: "Aug 15, 2026",
-        signalsCount: 0,
-        signals: [
-          "Resolved: Field engineer submitted geotagged proof on Aug 15",
-          "Resolved: Treasury voucher audit completed"
-        ],
-        allocated: "\u20B960L",
-        spent: "\u20B960L",
-        progress: 100
-      },
-      {
-        id: "proj-302",
-        title: "Sub-Health Post Electrification",
-        location: "Gaya, Bihar",
-        constituency: "Gaya",
-        mpName: "Anita Verma",
-        score: 8,
-        severity: "Resolved",
-        severityTab: "Resolved",
-        lastEvaluated: "Aug 12, 2026",
-        signalsCount: 0,
-        signals: [
-          "Resolved: Power grid connection energized and certified"
-        ],
-        allocated: "\u20B925L",
-        spent: "\u20B925L",
-        progress: 100
-      }
-    ]
-  };
-  var evidenceLibraryData = [
+  var attentionAlertsContractData = [
     {
-      id: "ev-1",
-      title: "Road Construction \u2014 Ward 12",
-      type: "Site Photograph",
-      typeClass: "type-photo",
-      date: "Aug 16, 2026",
-      source: "Field Verification",
-      uploader: "Er. Amit Raj (Field Inspector)",
+      alertId: "alt-001",
+      projectId: "proj-1",
+      projectTitle: "Road Construction \u2014 Ward 12",
+      location: "Patna, Bihar",
+      constituency: "Patna Sahib",
+      mpName: "Rahul Sharma",
+      severity: "HIGH",
+      score: 82,
+      rulesTriggered: [
+        {
+          rule: "OVERDUE_DEADLINE",
+          message: "Project is overdue by 42 days",
+          relevantValues: { overdueDays: 42, targetDate: "2026-07-14", threshold: 0 }
+        },
+        {
+          rule: "PHYSICAL_PROGRESS_LAG",
+          message: "Physical progress is below expected level",
+          relevantValues: { actualProgress: 32, expectedProgress: 65, variance: -33 }
+        },
+        {
+          rule: "STALE_UPDATE",
+          message: "Last update was 78 days ago",
+          relevantValues: { lastUpdateDays: 78, maxAllowedFreshness: 30 }
+        }
+      ],
+      createdAt: "2026-08-24T08:30:00Z",
+      resolvedAt: null,
+      status: "OPEN"
+    },
+    {
+      alertId: "alt-002",
+      projectId: "proj-2",
+      projectTitle: "Community Health Center",
+      location: "Muzaffarpur, Bihar",
+      constituency: "Muzaffarpur",
+      mpName: "Pawan Kumar",
+      severity: "HIGH",
+      score: 54,
+      rulesTriggered: [
+        {
+          rule: "FINANCIAL_BURNOUT_MISMATCH",
+          message: "Physical progress (28%) lagging behind financial burn rate (75%)",
+          relevantValues: { physicalPct: 28, financialPct: 75, divergence: 47 }
+        },
+        {
+          rule: "MILESTONE_SIGN_OFF_DELAY",
+          message: "Milestone 2 pending sign-off for 35 days",
+          relevantValues: { milestoneIndex: 2, pendingDays: 35 }
+        },
+        {
+          rule: "INSPECTION_PENDING",
+          message: "Site inspection verification required",
+          relevantValues: { auditStatus: "REQUIRED" }
+        }
+      ],
+      createdAt: "2026-08-24T06:15:00Z",
+      resolvedAt: null,
+      status: "OPEN"
+    },
+    {
+      alertId: "alt-003",
+      projectId: "proj-101",
+      projectTitle: "District Hospital ICU Wing",
+      location: "Bhagalpur, Bihar",
+      constituency: "Bhagalpur",
+      mpName: "Sanjay Singh",
+      severity: "HIGH",
+      score: 76,
+      rulesTriggered: [
+        {
+          rule: "EQUIPMENT_PROCUREMENT_DELAY",
+          message: "Equipment procurement delayed by 28 days",
+          relevantValues: { delayedDays: 28 }
+        },
+        {
+          rule: "AUDIT_VERIFICATION_PENDING",
+          message: "Verification audit pending for Phase 2 expenditure",
+          relevantValues: { phase: 2, amount: "\u20B91.08 Cr" }
+        }
+      ],
+      createdAt: "2026-08-23T11:45:00Z",
+      resolvedAt: null,
+      status: "OPEN"
+    },
+    {
+      alertId: "alt-004",
+      projectId: "proj-3",
+      projectTitle: "Water Supply Project \u2014 Phase 2",
+      location: "Gaya, Bihar",
+      constituency: "Gaya",
+      mpName: "Anita Verma",
+      severity: "MEDIUM",
+      score: 48,
+      rulesTriggered: [
+        {
+          rule: "PHASE_OVERDUE",
+          message: "20 days overdue on pipe laying phase",
+          relevantValues: { overdueDays: 20, phaseName: "Pipe Laying" }
+        },
+        {
+          rule: "VENDOR_SUPPLY_UNVERIFIED",
+          message: "Vendor supply verification pending",
+          relevantValues: { vendorId: "VEND-8841" }
+        },
+        {
+          rule: "EXPENDITURE_PROGRESS_VALIDATION",
+          message: "Recent expenditure requires progress validation",
+          relevantValues: { recentDisbursement: "\u20B935L" }
+        }
+      ],
+      createdAt: "2026-08-24T04:20:00Z",
+      resolvedAt: null,
+      status: "OPEN"
+    },
+    {
+      alertId: "alt-005",
+      projectId: "proj-201",
+      projectTitle: "Rural Drainage Improvement",
+      location: "Bhagalpur, Bihar",
+      constituency: "Bhagalpur",
+      mpName: "Neha Reddy",
+      severity: "MEDIUM",
+      score: 44,
+      rulesTriggered: [
+        {
+          rule: "MONSOON_CHANNEL_DELAY",
+          message: "Monsoon channel construction delayed by 22 days",
+          relevantValues: { delayedDays: 22 }
+        },
+        {
+          rule: "MAGISTRATE_AUDIT_REQUEST",
+          message: "Third-party audit requested by district magistrate",
+          relevantValues: { authority: "District Magistrate" }
+        }
+      ],
+      createdAt: "2026-08-22T09:10:00Z",
+      resolvedAt: null,
+      status: "OPEN"
+    },
+    {
+      alertId: "alt-006",
+      projectId: "proj-102",
+      projectTitle: "Solar Street Light Installation",
+      location: "Araria, Bihar",
+      constituency: "Araria",
+      mpName: "Vikram Pratap",
+      severity: "MEDIUM",
+      score: 42,
+      rulesTriggered: [
+        {
+          rule: "POLE_SETUP_OVERDUE",
+          message: "18 days overdue on block 4 pole setup",
+          relevantValues: { overdueDays: 18, block: 4 }
+        },
+        {
+          rule: "GEOTAGGED_REPORT_INCOMPLETE",
+          message: "Geo-tagged inspection report incomplete",
+          relevantValues: { submittedPhotos: 2, requiredPhotos: 8 }
+        }
+      ],
+      createdAt: "2026-08-20T14:30:00Z",
+      resolvedAt: null,
+      status: "OPEN"
+    },
+    {
+      alertId: "alt-007",
+      projectId: "proj-202",
+      projectTitle: "Panchayat Bhavan Extension",
+      location: "Patna, Bihar",
+      constituency: "Patna Sahib",
+      mpName: "Rahul Sharma",
+      severity: "MEDIUM",
+      score: 38,
+      rulesTriggered: [
+        {
+          rule: "STRUCTURAL_AUDIT_RECOMMENDED",
+          message: "Structural audit recommendation pending",
+          relevantValues: { recommendationId: "STR-09" }
+        },
+        {
+          rule: "QUARTERLY_EXPENDITURE_MISSING",
+          message: "Quarterly expenditure verification missing",
+          relevantValues: { quarter: "Q1" }
+        }
+      ],
+      createdAt: "2026-08-19T10:00:00Z",
+      resolvedAt: null,
+      status: "OPEN"
+    },
+    {
+      alertId: "alt-008",
+      projectId: "proj-4",
+      projectTitle: "Primary School Renovation",
+      location: "Gaya, Bihar",
+      constituency: "Gaya",
+      mpName: "Anita Verma",
+      severity: "LOW",
+      score: 28,
+      rulesTriggered: [
+        {
+          rule: "ROOF_REINFORCEMENT_DELAY",
+          message: "15 days delay in roof reinforcement phase",
+          relevantValues: { delayedDays: 15 }
+        },
+        {
+          rule: "PHOTO_UPDATE_PENDING",
+          message: "Pending updated photos from field engineer",
+          relevantValues: { inspector: "Er. Anita" }
+        }
+      ],
+      createdAt: "2026-08-21T07:45:00Z",
+      resolvedAt: null,
+      status: "OPEN"
+    },
+    {
+      alertId: "alt-009",
+      projectId: "proj-203",
+      projectTitle: "Anganwadi Center Repair",
+      location: "Muzaffarpur, Bihar",
+      constituency: "Muzaffarpur",
+      mpName: "Pawan Kumar",
+      severity: "LOW",
+      score: 22,
+      rulesTriggered: [
+        {
+          rule: "MINOR_PAINT_DELAY",
+          message: "Minor milestone delay (9 days) on paint work",
+          relevantValues: { delayedDays: 9 }
+        }
+      ],
+      createdAt: "2026-08-18T13:20:00Z",
+      resolvedAt: null,
+      status: "OPEN"
+    },
+    {
+      alertId: "alt-010",
+      projectId: "proj-301",
+      projectTitle: "Community Hall Construction",
+      location: "Patna, Bihar",
+      constituency: "Patna Sahib",
+      mpName: "Rahul Sharma",
+      severity: "RESOLVED",
+      score: 10,
+      rulesTriggered: [
+        {
+          rule: "RESOLVED_AUDIT",
+          message: "Resolved: Field engineer submitted geotagged proof on Aug 15",
+          relevantValues: { resolutionType: "FIELD_VERIFIED" }
+        },
+        {
+          rule: "TREASURY_VOUCHER_VERIFIED",
+          message: "Resolved: Treasury voucher audit completed",
+          relevantValues: { auditNumber: "TR-9022" }
+        }
+      ],
+      createdAt: "2026-08-10T09:00:00Z",
+      resolvedAt: "2026-08-15T16:30:00Z",
+      status: "RESOLVED"
+    },
+    {
+      alertId: "alt-011",
+      projectId: "proj-302",
+      projectTitle: "Sub-Health Post Electrification",
+      location: "Gaya, Bihar",
+      constituency: "Gaya",
+      mpName: "Anita Verma",
+      severity: "RESOLVED",
+      score: 8,
+      rulesTriggered: [
+        {
+          rule: "GRID_CONNECTION_ENERGIZED",
+          message: "Resolved: Power grid connection energized and certified",
+          relevantValues: { meterId: "GRID-771" }
+        }
+      ],
+      createdAt: "2026-08-08T11:00:00Z",
+      resolvedAt: "2026-08-12T14:20:00Z",
+      status: "RESOLVED"
+    }
+  ];
+  var evidenceContractData = [
+    {
+      evidenceId: "ev-001",
       projectId: "proj-1",
       projectName: "Road Construction \u2014 Ward 12",
-      location: "Patna, Bihar (25.5941\xB0 N, 85.1376\xB0 E)",
-      thumbnail: "https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?w=400&auto=format&fit=crop&q=80",
+      type: "Site Photograph",
+      url: "https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?w=800&auto=format&fit=crop&q=80",
+      publicId: "civictrack/evidence/proj-1/site-photo-01",
+      uploadedBy: "Er. Amit Raj (Field Inspector)",
+      createdAt: "2026-08-16T09:15:00Z",
+      source: "Field Verification",
       description: "Geotagged site photograph showing unpaved roadbed at Chainage 0+450 with drainage excavation underway.",
-      fileSize: "3.4 MB",
+      location: "Patna, Bihar (25.5941\xB0 N, 85.1376\xB0 E)",
       verified: true
     },
     {
-      id: "ev-2",
-      title: "Road Construction \u2014 Ward 12",
+      evidenceId: "ev-002",
+      projectId: "proj-1",
+      projectName: "Road Construction \u2014 Ward 12",
       type: "Site Photograph",
-      typeClass: "type-photo",
-      date: "Aug 10, 2026",
+      url: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop&q=80",
+      publicId: "civictrack/evidence/proj-1/site-photo-02",
+      uploadedBy: "Er. Amit Raj (Field Inspector)",
+      createdAt: "2026-08-10T14:30:00Z",
       source: "Field Verification",
-      uploader: "Er. Amit Raj (Field Inspector)",
-      projectId: "proj-1",
-      projectName: "Road Construction \u2014 Ward 12",
-      location: "Patna, Bihar (25.5938\xB0 N, 85.1380\xB0 E)",
-      thumbnail: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&auto=format&fit=crop&q=80",
       description: "Photographic inspection of culvert reinforcement mesh and concrete footing preparation.",
-      fileSize: "4.1 MB",
+      location: "Patna, Bihar (25.5938\xB0 N, 85.1380\xB0 E)",
       verified: true
     },
     {
-      id: "ev-3",
-      title: "Road Construction \u2014 Ward 12",
-      type: "Progress Document",
-      typeClass: "type-doc",
-      date: "Aug 06, 2026",
-      source: "Government Portal",
-      uploader: "District Treasury Officer",
+      evidenceId: "ev-003",
       projectId: "proj-1",
       projectName: "Road Construction \u2014 Ward 12",
-      location: "Patna Sahib Treasury",
-      thumbnail: "https://images.unsplash.com/photo-1568667256549-094345857637?w=400&auto=format&fit=crop&q=80",
+      type: "Progress Document",
+      url: "https://images.unsplash.com/photo-1568667256549-094345857637?w=800&auto=format&fit=crop&q=80",
+      publicId: "civictrack/evidence/proj-1/joint-measurement-docket",
+      uploadedBy: "District Treasury Officer",
+      createdAt: "2026-08-06T11:00:00Z",
+      source: "Government Portal",
       description: "Official Joint Measurement Certificate & Milestone 1 Physical Verification Sanction Docket (Ref: CT-PTN-2026-088).",
-      fileSize: "1.2 MB",
+      location: "Patna Sahib Treasury",
       verified: true,
       documentData: {
         docNumber: "MPLAD/2026/PTN/4412",
@@ -24338,19 +24392,17 @@
       }
     },
     {
-      id: "ev-4",
-      title: "Primary School Renovation",
-      type: "Approval Document",
-      typeClass: "type-approval",
-      date: "Aug 18, 2026",
-      source: "Official Record",
-      uploader: "District Planning Cell",
+      evidenceId: "ev-004",
       projectId: "proj-4",
       projectName: "Primary School Renovation",
-      location: "Gaya Collectorate",
-      thumbnail: "https://images.unsplash.com/photo-1450133064473-71024230f91b?w=400&auto=format&fit=crop&q=80",
+      type: "Approval Document",
+      url: "https://images.unsplash.com/photo-1450133064473-71024230f91b?w=800&auto=format&fit=crop&q=80",
+      publicId: "civictrack/evidence/proj-4/technical-sanction",
+      uploadedBy: "District Planning Cell",
+      createdAt: "2026-08-18T10:20:00Z",
+      source: "Official Record",
       description: "Technical sanction order for structural renovation and smart classroom electrical works.",
-      fileSize: "850 KB",
+      location: "Gaya Collectorate",
       verified: true,
       documentData: {
         docNumber: "TS-EDU-2026-902",
@@ -24360,51 +24412,45 @@
       }
     },
     {
-      id: "ev-5",
-      title: "Community Health Center",
-      type: "Site Photograph",
-      typeClass: "type-photo",
-      date: "Aug 15, 2026",
-      source: "Field Verification",
-      uploader: "Dr. S. K. Verma (Health Officer)",
+      evidenceId: "ev-005",
       projectId: "proj-2",
       projectName: "Community Health Center",
-      location: "Muzaffarpur (26.1209\xB0 N, 85.3647\xB0 E)",
-      thumbnail: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&auto=format&fit=crop&q=80",
+      type: "Site Photograph",
+      url: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&auto=format&fit=crop&q=80",
+      publicId: "civictrack/evidence/proj-2/facade-inspection",
+      uploadedBy: "Dr. S. K. Verma (Health Officer)",
+      createdAt: "2026-08-15T15:40:00Z",
+      source: "Field Verification",
       description: "Exterior facade and completed roof slab of OPD building wing.",
-      fileSize: "2.8 MB",
+      location: "Muzaffarpur (26.1209\xB0 N, 85.3647\xB0 E)",
       verified: true
     },
     {
-      id: "ev-6",
-      title: "Water Supply Project \u2014 Phase 2",
-      type: "Field Verification",
-      typeClass: "type-verification",
-      date: "Aug 12, 2026",
-      source: "Field Verification",
-      uploader: "PHED Inspection Wing",
+      evidenceId: "ev-006",
       projectId: "proj-3",
       projectName: "Water Supply Project \u2014 Phase 2",
-      location: "Gaya (24.7914\xB0 N, 85.0002\xB0 E)",
-      thumbnail: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&auto=format&fit=crop&q=80",
+      type: "Field Verification",
+      url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format&fit=crop&q=80",
+      publicId: "civictrack/evidence/proj-3/reservoir-inspection",
+      uploadedBy: "PHED Inspection Wing",
+      createdAt: "2026-08-12T12:10:00Z",
+      source: "Field Verification",
       description: "Overhead service reservoir staging inspection and pump test log validation.",
-      fileSize: "5.2 MB",
+      location: "Gaya (24.7914\xB0 N, 85.0002\xB0 E)",
       verified: true
     },
     {
-      id: "ev-7",
-      title: "Drainage Improvement",
-      type: "Progress Document",
-      typeClass: "type-doc",
-      date: "Aug 08, 2026",
-      source: "Government Portal",
-      uploader: "Municipal Corporation",
+      evidenceId: "ev-007",
       projectId: "proj-105",
       projectName: "Drainage Improvement",
-      location: "Bhagalpur",
-      thumbnail: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&auto=format&fit=crop&q=80",
+      type: "Progress Document",
+      url: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&auto=format&fit=crop&q=80",
+      publicId: "civictrack/evidence/proj-105/hydraulic-report",
+      uploadedBy: "Municipal Corporation",
+      createdAt: "2026-08-08T16:00:00Z",
+      source: "Government Portal",
       description: "Third-party hydraulic flow report and pre-monsoon clearance certificate.",
-      fileSize: "1.8 MB",
+      location: "Bhagalpur",
       verified: true,
       documentData: {
         docNumber: "DRN-MCB-2026-311",
@@ -24414,19 +24460,17 @@
       }
     },
     {
-      id: "ev-8",
-      title: "Community Health Center",
-      type: "Approval Document",
-      typeClass: "type-approval",
-      date: "Aug 01, 2026",
-      source: "Official Record",
-      uploader: "State Health Mission",
+      evidenceId: "ev-008",
       projectId: "proj-2",
       projectName: "Community Health Center",
-      location: "Muzaffarpur",
-      thumbnail: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=400&auto=format&fit=crop&q=80",
+      type: "Approval Document",
+      url: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&auto=format&fit=crop&q=80",
+      publicId: "civictrack/evidence/proj-2/completion-cert",
+      uploadedBy: "State Health Mission",
+      createdAt: "2026-08-01T08:50:00Z",
+      source: "Official Record",
       description: "Final completion certificate & bio-medical waste handling compliance approval.",
-      fileSize: "920 KB",
+      location: "Muzaffarpur",
       verified: true,
       documentData: {
         docNumber: "SHM-BIH-COMP-108",
@@ -24436,16 +24480,16 @@
       }
     }
   ];
-  var userProfileData = {
+  var userProfileContractData = {
     name: "Admin User",
     email: "admin@civictrack.gov.in",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
     role: "Administrator",
     department: "Ministry of Statistics & Programme Implementation (MoSPI)",
     phone: "+91 98765 43210",
     timezone: "Asia/Kolkata (IST +05:30)",
     language: "English (India)",
     twoFactorEnabled: true,
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
     linkedAccounts: [
       { provider: "Google Workspace", email: "admin@civictrack.gov.in", status: "Active" },
       { provider: "National Informatics Centre (NIC)", email: "admin-nic@gov.in", status: "Connected" }
@@ -24489,7 +24533,7 @@
     ]
   };
   var mockData = {
-    currentUser: userProfileData,
+    currentUser: userProfileContractData,
     years: ["2025\u201326", "2024\u201325", "2023\u201324"],
     selectedYear: "2025\u201326",
     landingMetrics: {
@@ -24601,18 +24645,6 @@
       howItWorks: mockData.howItWorksSteps,
       attentionExample: mockData.attentionExample
     };
-  }
-  function getMPDetails(id = "mp-1") {
-    return mpDetailsData;
-  }
-  function getAttentionCenterData() {
-    return attentionCenterData;
-  }
-  function getEvidenceLibraryData() {
-    return evidenceLibraryData;
-  }
-  function getUserProfile() {
-    return userProfileData;
   }
   var authService = {
     loginWithGoogle(simulateFailure = false) {
@@ -25485,8 +25517,86 @@
 
   // src/pages/MPDetailsPage.jsx
   var import_react11 = __toESM(require_react(), 1);
+
+  // src/services/apiService.js
+  async function getMPById(mpId = "mp-1") {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(mpDetailsData);
+      }, 120);
+    });
+  }
+  async function getMPProjects(mpId = "mp-1", filters = {}) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        let list = [...mpDetailsData.projects];
+        if (filters.category && filters.category !== "All") {
+          list = list.filter((p) => p.category === filters.category);
+        }
+        if (filters.status && filters.status !== "All") {
+          list = list.filter((p) => p.status === filters.status);
+        }
+        if (filters.search && filters.search.trim()) {
+          const q = filters.search.toLowerCase();
+          list = list.filter(
+            (p) => p.title.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.deadline.toLowerCase().includes(q)
+          );
+        }
+        resolve(list);
+      }, 100);
+    });
+  }
+  async function getAlerts(filters = {}) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        let list = [...attentionAlertsContractData];
+        if (filters.severity && filters.severity !== "All") {
+          list = list.filter(
+            (item) => item.severity.toUpperCase() === filters.severity.toUpperCase()
+          );
+        }
+        if (filters.search && filters.search.trim()) {
+          const q = filters.search.toLowerCase();
+          list = list.filter(
+            (item) => item.projectTitle.toLowerCase().includes(q) || item.location.toLowerCase().includes(q) || item.constituency.toLowerCase().includes(q) || item.mpName.toLowerCase().includes(q) || item.rulesTriggered.some((r) => r.message.toLowerCase().includes(q))
+          );
+        }
+        resolve(list);
+      }, 120);
+    });
+  }
+  async function getEvidence(filters = {}) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        let list = [...evidenceContractData];
+        if (filters.projectId && filters.projectId !== "All") {
+          list = list.filter((item) => item.projectId === filters.projectId || item.projectName === filters.projectId);
+        }
+        if (filters.type && filters.type !== "All") {
+          list = list.filter((item) => item.type === filters.type);
+        }
+        if (filters.search && filters.search.trim()) {
+          const q = filters.search.toLowerCase();
+          list = list.filter(
+            (item) => item.projectName.toLowerCase().includes(q) || item.type.toLowerCase().includes(q) || item.source.toLowerCase().includes(q) || item.description.toLowerCase().includes(q)
+          );
+        }
+        resolve(list);
+      }, 120);
+    });
+  }
+  async function getProfile() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(userProfileContractData);
+      }, 100);
+    });
+  }
+
+  // src/pages/MPDetailsPage.jsx
   function MPDetailsPage({ onSignOut, onShowToast, onNavigateToProject }) {
     const [mpData, setMpData] = (0, import_react11.useState)(null);
+    const [projectsList, setProjectsList] = (0, import_react11.useState)([]);
     const [isLoading, setIsLoading] = (0, import_react11.useState)(true);
     const [selectedCategory, setSelectedCategory] = (0, import_react11.useState)("All");
     const [selectedStatus, setSelectedStatus] = (0, import_react11.useState)("All");
@@ -25496,12 +25606,35 @@
     const [hoveredCatSlice, setHoveredCatSlice] = (0, import_react11.useState)(null);
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = (0, import_react11.useState)(false);
     (0, import_react11.useEffect)(() => {
-      const timer = setTimeout(() => {
-        setMpData(getMPDetails());
-        setIsLoading(false);
-      }, 200);
-      return () => clearTimeout(timer);
-    }, []);
+      let isMounted = true;
+      async function loadData() {
+        setIsLoading(true);
+        try {
+          const [mpDetails, projects] = await Promise.all([
+            getMPById("mp-1"),
+            getMPProjects("mp-1", {
+              category: selectedCategory,
+              status: selectedStatus,
+              search: searchQuery
+            })
+          ]);
+          if (isMounted) {
+            setMpData(mpDetails);
+            setProjectsList(projects);
+            setIsLoading(false);
+          }
+        } catch (err) {
+          if (isMounted) {
+            setIsLoading(false);
+            if (onShowToast) onShowToast("Failed to load MP details dossier", "alert");
+          }
+        }
+      }
+      loadData();
+      return () => {
+        isMounted = false;
+      };
+    }, [selectedCategory, selectedStatus, searchQuery, onShowToast]);
     const handleRowClick = (projId, title) => {
       if (onNavigateToProject) {
         onNavigateToProject(projId, title);
@@ -25520,13 +25653,6 @@
     const handleDownload = () => {
       if (onShowToast) onShowToast("Generating and downloading official MP LAD Audit Report (PDF)...", "info");
     };
-    const projects = mpData?.projects || [];
-    const filteredProjects = projects.filter((p) => {
-      const matchesCategory = selectedCategory === "All" || p.category === selectedCategory;
-      const matchesStatus = selectedStatus === "All" || p.status === selectedStatus;
-      const matchesSearch = !searchQuery.trim() || p.title.toLowerCase().includes(searchQuery.toLowerCase()) || p.category.toLowerCase().includes(searchQuery.toLowerCase()) || p.deadline.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesStatus && matchesSearch;
-    });
     return /* @__PURE__ */ import_react11.default.createElement("div", { className: "dashboard-layout" }, /* @__PURE__ */ import_react11.default.createElement(
       Sidebar,
       {
@@ -25543,7 +25669,7 @@
         onSignOut,
         onOpenMobileSidebar: () => setIsMobileSidebarOpen(true)
       }
-    ), /* @__PURE__ */ import_react11.default.createElement("main", { className: "dashboard-content-body", id: "mp-details-content" }, /* @__PURE__ */ import_react11.default.createElement("nav", { className: "module-breadcrumb", "aria-label": "Breadcrumb" }, /* @__PURE__ */ import_react11.default.createElement("a", { href: "#/dashboard", className: "breadcrumb-link" }, "Overview"), /* @__PURE__ */ import_react11.default.createElement("span", { className: "breadcrumb-sep" }, "/"), /* @__PURE__ */ import_react11.default.createElement("a", { href: "#/mps", className: "breadcrumb-link" }, "MPs & Constituencies"), /* @__PURE__ */ import_react11.default.createElement("span", { className: "breadcrumb-sep" }, "/"), /* @__PURE__ */ import_react11.default.createElement("span", { className: "breadcrumb-current" }, "Rahul Sharma")), isLoading ? /* @__PURE__ */ import_react11.default.createElement("div", { className: "skeleton-container", "aria-busy": "true" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "skeleton skeleton-mp-hero", style: { height: "140px", borderRadius: "12px", marginBottom: "20px" } }), /* @__PURE__ */ import_react11.default.createElement("div", { className: "skeleton", style: { height: "100px", borderRadius: "12px", marginBottom: "20px" } }), /* @__PURE__ */ import_react11.default.createElement("div", { className: "skeleton", style: { height: "240px", borderRadius: "12px", marginBottom: "20px" } })) : /* @__PURE__ */ import_react11.default.createElement(import_react11.default.Fragment, null, /* @__PURE__ */ import_react11.default.createElement("section", { className: "mp-hero-card", "aria-label": "Member of Parliament Details" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "mp-hero-left" }, /* @__PURE__ */ import_react11.default.createElement(
+    ), /* @__PURE__ */ import_react11.default.createElement("main", { className: "dashboard-content-body", id: "mp-details-content" }, /* @__PURE__ */ import_react11.default.createElement("nav", { className: "module-breadcrumb", "aria-label": "Breadcrumb" }, /* @__PURE__ */ import_react11.default.createElement("a", { href: "#/dashboard", className: "breadcrumb-link" }, "Overview"), /* @__PURE__ */ import_react11.default.createElement("span", { className: "breadcrumb-sep" }, "/"), /* @__PURE__ */ import_react11.default.createElement("a", { href: "#/mps", className: "breadcrumb-link" }, "MPs & Constituencies"), /* @__PURE__ */ import_react11.default.createElement("span", { className: "breadcrumb-sep" }, "/"), /* @__PURE__ */ import_react11.default.createElement("span", { className: "breadcrumb-current" }, "Rahul Sharma")), isLoading && !mpData ? /* @__PURE__ */ import_react11.default.createElement("div", { className: "skeleton-container", "aria-busy": "true" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "skeleton", style: { height: "140px", borderRadius: "12px", marginBottom: "20px" } }), /* @__PURE__ */ import_react11.default.createElement("div", { className: "skeleton", style: { height: "100px", borderRadius: "12px", marginBottom: "20px" } }), /* @__PURE__ */ import_react11.default.createElement("div", { className: "skeleton", style: { height: "240px", borderRadius: "12px", marginBottom: "20px" } })) : /* @__PURE__ */ import_react11.default.createElement(import_react11.default.Fragment, null, /* @__PURE__ */ import_react11.default.createElement("section", { className: "mp-hero-card", "aria-label": "Member of Parliament Profile" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "mp-hero-left" }, /* @__PURE__ */ import_react11.default.createElement(
       "img",
       {
         src: mpData.avatar,
@@ -25586,7 +25712,6 @@
         /* @__PURE__ */ import_react11.default.createElement("text", { x: x + 16, y: "158", fontSize: "10", fontWeight: "500", fill: "#64748b", textAnchor: "middle" }, item.label)
       );
     })), hoveredBar && /* @__PURE__ */ import_react11.default.createElement("div", { className: "chart-interactive-tooltip", role: "tooltip" }, /* @__PURE__ */ import_react11.default.createElement("div", { style: { fontWeight: 700, color: "#fff" } }, hoveredBar.label), /* @__PURE__ */ import_react11.default.createElement("div", { style: { color: "#99f6e4", fontSize: "0.8125rem" } }, hoveredBar.display, " (", hoveredBar.pct, ")")))), /* @__PURE__ */ import_react11.default.createElement("article", { className: "chart-card", id: "mp-chart-status" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "chart-card-header" }, /* @__PURE__ */ import_react11.default.createElement("h2", { className: "chart-title" }, "Project Status")), /* @__PURE__ */ import_react11.default.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "center", height: "190px", gap: "12px" } }, /* @__PURE__ */ import_react11.default.createElement("svg", { width: "120", height: "120", viewBox: "0 0 120 120" }, (() => {
-      const total = mpData.statusChart.reduce((a, c) => a + c.count, 0);
       const radius = 46;
       const circum = 2 * Math.PI * radius;
       let acc = 0;
@@ -25692,7 +25817,7 @@
       /* @__PURE__ */ import_react11.default.createElement("option", { value: "Ongoing" }, "Ongoing"),
       /* @__PURE__ */ import_react11.default.createElement("option", { value: "Completed" }, "Completed"),
       /* @__PURE__ */ import_react11.default.createElement("option", { value: "Delayed" }, "Delayed")
-    )))), filteredProjects.length === 0 ? /* @__PURE__ */ import_react11.default.createElement("div", { className: "attention-empty-state", role: "status" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "empty-state-icon" }, /* @__PURE__ */ import_react11.default.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react11.default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ import_react11.default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" }))), /* @__PURE__ */ import_react11.default.createElement("h3", { className: "empty-state-title" }, "No projects found"), /* @__PURE__ */ import_react11.default.createElement("p", { className: "empty-state-text" }, "No projects matched the selected filters."), /* @__PURE__ */ import_react11.default.createElement(
+    )))), projectsList.length === 0 ? /* @__PURE__ */ import_react11.default.createElement("div", { className: "attention-empty-state", role: "status" }, /* @__PURE__ */ import_react11.default.createElement("div", { className: "empty-state-icon" }, /* @__PURE__ */ import_react11.default.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react11.default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ import_react11.default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" }))), /* @__PURE__ */ import_react11.default.createElement("h3", { className: "empty-state-title" }, "No projects found"), /* @__PURE__ */ import_react11.default.createElement("p", { className: "empty-state-text" }, "No projects matched the selected filters."), /* @__PURE__ */ import_react11.default.createElement(
       "button",
       {
         type: "button",
@@ -25705,7 +25830,7 @@
         }
       },
       "Reset Filters"
-    )) : /* @__PURE__ */ import_react11.default.createElement("div", { className: "responsive-table-wrapper" }, /* @__PURE__ */ import_react11.default.createElement("table", { className: "mp-projects-table", "aria-label": "MP Projects List" }, /* @__PURE__ */ import_react11.default.createElement("thead", null, /* @__PURE__ */ import_react11.default.createElement("tr", null, /* @__PURE__ */ import_react11.default.createElement("th", null, "Project Name"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Category"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Allocated"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Spent"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Progress"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Status"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Attention"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Deadline / Phase"))), /* @__PURE__ */ import_react11.default.createElement("tbody", null, filteredProjects.map((p) => {
+    )) : /* @__PURE__ */ import_react11.default.createElement("div", { className: "responsive-table-wrapper" }, /* @__PURE__ */ import_react11.default.createElement("table", { className: "mp-projects-table", "aria-label": "MP Projects List" }, /* @__PURE__ */ import_react11.default.createElement("thead", null, /* @__PURE__ */ import_react11.default.createElement("tr", null, /* @__PURE__ */ import_react11.default.createElement("th", null, "Project Name"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Category"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Allocated"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Spent"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Progress"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Status"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Attention"), /* @__PURE__ */ import_react11.default.createElement("th", null, "Deadline / Phase"))), /* @__PURE__ */ import_react11.default.createElement("tbody", null, projectsList.map((p) => {
       const attentionClass = p.attention === "High" ? "badge-high" : p.attention === "Medium" ? "badge-medium" : p.attention === "Low" ? "badge-low" : "badge-completed";
       const statusClass = p.status === "Completed" ? "badge-completed" : p.status === "Ongoing" ? "badge-ongoing" : "badge-low";
       return /* @__PURE__ */ import_react11.default.createElement(
@@ -25739,50 +25864,54 @@
   // src/pages/AttentionCenterPage.jsx
   var import_react12 = __toESM(require_react(), 1);
   function AttentionCenterPage({ onSignOut, onShowToast, onNavigateToProject }) {
-    const [data, setData] = (0, import_react12.useState)(null);
+    const [alertsList, setAlertsList] = (0, import_react12.useState)([]);
     const [isLoading, setIsLoading] = (0, import_react12.useState)(true);
     const [activeTab, setActiveTab] = (0, import_react12.useState)("All");
     const [searchQuery, setSearchQuery] = (0, import_react12.useState)("");
     const [expandedSignals, setExpandedSignals] = (0, import_react12.useState)({});
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = (0, import_react12.useState)(false);
     (0, import_react12.useEffect)(() => {
-      const timer = setTimeout(() => {
-        setData(getAttentionCenterData());
-        setIsLoading(false);
-      }, 200);
-      return () => clearTimeout(timer);
-    }, []);
+      let isMounted = true;
+      async function loadData() {
+        setIsLoading(true);
+        try {
+          const data = await getAlerts({
+            severity: activeTab,
+            search: searchQuery
+          });
+          if (isMounted) {
+            setAlertsList(data);
+            setIsLoading(false);
+          }
+        } catch (err) {
+          if (isMounted) {
+            setIsLoading(false);
+            if (onShowToast) onShowToast("Failed to load attention alerts", "alert");
+          }
+        }
+      }
+      loadData();
+      return () => {
+        isMounted = false;
+      };
+    }, [activeTab, searchQuery, onShowToast]);
     const handleToggleExpand = (id) => {
       setExpandedSignals((prev) => ({
         ...prev,
         [id]: !prev[id]
       }));
     };
-    const handleViewProject = (id, title) => {
+    const handleViewProject = (projId, title) => {
       if (onNavigateToProject) {
-        onNavigateToProject(id, title);
+        onNavigateToProject(projId, title);
       } else {
-        window.location.hash = `#/projects/${id}`;
+        window.location.hash = `#/projects/${projId}`;
       }
     };
     const handleExport = () => {
       if (onShowToast) {
         onShowToast("Exporting Attention Center audit signals dossier (CSV / PDF)...", "info");
       }
-    };
-    const items = data?.items || [];
-    const filteredItems = items.filter((item) => {
-      const matchesTab = activeTab === "All" || item.severityTab === activeTab;
-      const q = searchQuery.toLowerCase();
-      const matchesSearch = !searchQuery.trim() || item.title.toLowerCase().includes(q) || item.location.toLowerCase().includes(q) || item.constituency.toLowerCase().includes(q) || item.mpName.toLowerCase().includes(q) || item.signals.some((s) => s.toLowerCase().includes(q));
-      return matchesTab && matchesSearch;
-    });
-    const tabCounts = {
-      All: items.length,
-      High: items.filter((i) => i.severityTab === "High").length,
-      Medium: items.filter((i) => i.severityTab === "Medium").length,
-      Low: items.filter((i) => i.severityTab === "Low").length,
-      Resolved: items.filter((i) => i.severityTab === "Resolved").length
     };
     return /* @__PURE__ */ import_react12.default.createElement("div", { className: "dashboard-layout" }, /* @__PURE__ */ import_react12.default.createElement(
       Sidebar,
@@ -25810,23 +25939,29 @@
       },
       /* @__PURE__ */ import_react12.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react12.default.createElement("path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" }), /* @__PURE__ */ import_react12.default.createElement("polyline", { points: "7 10 12 15 17 10" }), /* @__PURE__ */ import_react12.default.createElement("line", { x1: "12", y1: "15", x2: "12", y2: "3" })),
       "Export"
-    ))), /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-tabs-bar", role: "tablist", "aria-label": "Attention severity filters" }, ["All", "High", "Medium", "Low", "Resolved"].map((tab) => {
-      const isActive = activeTab === tab;
+    ))), /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-tabs-bar", role: "tablist", "aria-label": "Attention severity filters" }, [
+      { label: "All", key: "All", count: 9 },
+      { label: "High", key: "High", count: 3 },
+      { label: "Medium", key: "Medium", count: 4 },
+      { label: "Low", key: "Low", count: 2 },
+      { label: "Resolved", key: "Resolved", count: 2 }
+    ].map((tab) => {
+      const isActive = activeTab === tab.key;
       return /* @__PURE__ */ import_react12.default.createElement(
         "button",
         {
-          key: tab,
+          key: tab.key,
           type: "button",
           role: "tab",
           "aria-selected": isActive,
-          id: `tab-attention-${tab.toLowerCase()}`,
+          id: `tab-attention-${tab.key.toLowerCase()}`,
           className: `attention-tab-pill ${isActive ? "active" : ""}`,
-          onClick: () => setActiveTab(tab)
+          onClick: () => setActiveTab(tab.key)
         },
-        /* @__PURE__ */ import_react12.default.createElement("span", null, tab),
-        /* @__PURE__ */ import_react12.default.createElement("span", { className: `tab-count-badge ${tab.toLowerCase()}` }, tabCounts[tab] || 0)
+        /* @__PURE__ */ import_react12.default.createElement("span", null, tab.label),
+        /* @__PURE__ */ import_react12.default.createElement("span", { className: `tab-count-badge ${tab.key.toLowerCase()}` }, tab.count)
       );
-    })), isLoading ? /* @__PURE__ */ import_react12.default.createElement("div", { className: "skeleton-container", "aria-busy": "true" }, [1, 2, 3].map((n) => /* @__PURE__ */ import_react12.default.createElement("div", { key: n, className: "skeleton attention-item-skeleton", style: { height: "90px", borderRadius: "10px", marginBottom: "12px" } }))) : /* @__PURE__ */ import_react12.default.createElement(import_react12.default.Fragment, null, /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-cards-container", role: "feed", "aria-label": "Attention signals list" }, filteredItems.length === 0 ? /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-empty-state", role: "status" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "empty-state-icon" }, /* @__PURE__ */ import_react12.default.createElement("svg", { width: "28", height: "28", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react12.default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ import_react12.default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }), /* @__PURE__ */ import_react12.default.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" }))), /* @__PURE__ */ import_react12.default.createElement("h3", { className: "empty-state-title" }, "No attention signals found"), /* @__PURE__ */ import_react12.default.createElement("p", { className: "empty-state-text" }, searchQuery ? `No attention projects matched "${searchQuery}" in the ${activeTab} tab.` : `There are currently no projects marked with ${activeTab} severity.`), searchQuery && /* @__PURE__ */ import_react12.default.createElement(
+    })), isLoading && alertsList.length === 0 ? /* @__PURE__ */ import_react12.default.createElement("div", { className: "skeleton-container", "aria-busy": "true" }, [1, 2, 3].map((n) => /* @__PURE__ */ import_react12.default.createElement("div", { key: n, className: "skeleton", style: { height: "90px", borderRadius: "10px", marginBottom: "12px" } }))) : /* @__PURE__ */ import_react12.default.createElement(import_react12.default.Fragment, null, /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-cards-container", role: "feed", "aria-label": "Attention signals list" }, alertsList.length === 0 ? /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-empty-state", role: "status" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "empty-state-icon" }, /* @__PURE__ */ import_react12.default.createElement("svg", { width: "28", height: "28", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react12.default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ import_react12.default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }), /* @__PURE__ */ import_react12.default.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" }))), /* @__PURE__ */ import_react12.default.createElement("h3", { className: "empty-state-title" }, "No attention signals found"), /* @__PURE__ */ import_react12.default.createElement("p", { className: "empty-state-text" }, searchQuery ? `No attention projects matched "${searchQuery}" in the ${activeTab} tab.` : `There are currently no projects marked with ${activeTab} severity.`), searchQuery && /* @__PURE__ */ import_react12.default.createElement(
       "button",
       {
         type: "button",
@@ -25835,26 +25970,32 @@
         onClick: () => setSearchQuery("")
       },
       "Clear search"
-    )) : filteredItems.map((item) => {
-      const isExpanded = !!expandedSignals[item.id];
-      const severityClass = item.severityTab === "High" ? "badge-high" : item.severityTab === "Medium" ? "badge-medium" : item.severityTab === "Low" ? "badge-low" : "badge-completed";
-      const scoreColor = item.score >= 70 ? "var(--rose-600)" : item.score >= 40 ? "var(--amber-600)" : "var(--emerald-600)";
+    )) : alertsList.map((alert) => {
+      const isExpanded = !!expandedSignals[alert.alertId];
+      const sev = alert.severity.toUpperCase();
+      const severityClass = sev === "HIGH" ? "badge-high" : sev === "MEDIUM" ? "badge-medium" : sev === "LOW" ? "badge-low" : "badge-completed";
+      const scoreColor = alert.score >= 70 ? "var(--rose-600)" : alert.score >= 40 ? "var(--amber-600)" : "var(--emerald-600)";
+      const dateDisplay = new Date(alert.createdAt).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+      });
       return /* @__PURE__ */ import_react12.default.createElement(
         "article",
         {
-          key: item.id,
+          key: alert.alertId,
           className: `attention-center-card ${isExpanded ? "expanded" : ""}`,
-          "aria-label": `Attention alert for ${item.title}`
+          "aria-label": `Attention alert for ${alert.projectTitle}`
         },
-        /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-card-main-row" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-card-project-info" }, /* @__PURE__ */ import_react12.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" } }, /* @__PURE__ */ import_react12.default.createElement("span", { className: `badge ${severityClass}`, style: { fontSize: "0.625rem" } }, item.severityTab), /* @__PURE__ */ import_react12.default.createElement("span", { style: { fontSize: "0.75rem", color: "var(--slate-500)" } }, "MP: ", item.mpName)), /* @__PURE__ */ import_react12.default.createElement("h2", { className: "attention-card-title" }, item.title), /* @__PURE__ */ import_react12.default.createElement("span", { className: "attention-card-loc" }, item.location, " \u2022 ", item.constituency)), /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-score-box" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-score-val", style: { color: scoreColor } }, item.score, " ", /* @__PURE__ */ import_react12.default.createElement("span", { className: "score-total" }, "/ 100")), /* @__PURE__ */ import_react12.default.createElement("span", { className: "attention-score-label" }, "Attention Score")), /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-signals-trigger" }, /* @__PURE__ */ import_react12.default.createElement(
+        /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-card-main-row" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-card-project-info" }, /* @__PURE__ */ import_react12.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" } }, /* @__PURE__ */ import_react12.default.createElement("span", { className: `badge ${severityClass}`, style: { fontSize: "0.625rem" } }, alert.severity), /* @__PURE__ */ import_react12.default.createElement("span", { style: { fontSize: "0.75rem", color: "var(--slate-500)" } }, "MP: ", alert.mpName)), /* @__PURE__ */ import_react12.default.createElement("h2", { className: "attention-card-title" }, alert.projectTitle), /* @__PURE__ */ import_react12.default.createElement("span", { className: "attention-card-loc" }, alert.location, " \u2022 ", alert.constituency)), /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-score-box" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-score-val", style: { color: scoreColor } }, alert.score, " ", /* @__PURE__ */ import_react12.default.createElement("span", { className: "score-total" }, "/ 100")), /* @__PURE__ */ import_react12.default.createElement("span", { className: "attention-score-label" }, "Attention Score")), /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-signals-trigger" }, /* @__PURE__ */ import_react12.default.createElement(
           "button",
           {
             type: "button",
             className: "btn-signals-toggle",
             "aria-expanded": isExpanded,
-            onClick: () => handleToggleExpand(item.id)
+            onClick: () => handleToggleExpand(alert.alertId)
           },
-          /* @__PURE__ */ import_react12.default.createElement("span", { className: "signals-count-bubble" }, /* @__PURE__ */ import_react12.default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5" }, /* @__PURE__ */ import_react12.default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ import_react12.default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }), /* @__PURE__ */ import_react12.default.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" })), item.signalsCount, " signals detected"),
+          /* @__PURE__ */ import_react12.default.createElement("span", { className: "signals-count-bubble" }, /* @__PURE__ */ import_react12.default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5" }, /* @__PURE__ */ import_react12.default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ import_react12.default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }), /* @__PURE__ */ import_react12.default.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" })), alert.rulesTriggered.length, " signals detected"),
           /* @__PURE__ */ import_react12.default.createElement(
             "svg",
             {
@@ -25868,17 +26009,17 @@
             },
             /* @__PURE__ */ import_react12.default.createElement("polyline", { points: "6 9 12 15 18 9" })
           )
-        )), /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-evaluated-col" }, /* @__PURE__ */ import_react12.default.createElement("span", { className: "evaluated-label" }, "Last evaluated"), /* @__PURE__ */ import_react12.default.createElement("span", { className: "evaluated-date" }, item.lastEvaluated)), /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-action-col" }, /* @__PURE__ */ import_react12.default.createElement(
+        )), /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-evaluated-col" }, /* @__PURE__ */ import_react12.default.createElement("span", { className: "evaluated-label" }, "Last evaluated"), /* @__PURE__ */ import_react12.default.createElement("span", { className: "evaluated-date" }, dateDisplay)), /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-action-col" }, /* @__PURE__ */ import_react12.default.createElement(
           "button",
           {
             type: "button",
             className: "btn btn-secondary btn-view-project",
-            onClick: () => handleViewProject(item.id, item.title),
-            "aria-label": `View Project details for ${item.title}`
+            onClick: () => handleViewProject(alert.projectId, alert.projectTitle),
+            "aria-label": `View Project details for ${alert.projectTitle}`
           },
           "View Project"
         ))),
-        isExpanded && /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-card-expanded-signals", "aria-live": "polite" }, /* @__PURE__ */ import_react12.default.createElement("div", { style: { fontSize: "0.75rem", fontWeight: 700, color: "var(--slate-800)", marginBottom: "8px" } }, "Detected Verification Signals:"), /* @__PURE__ */ import_react12.default.createElement("ul", { className: "expanded-signals-list" }, item.signals.map((sig, sIdx) => /* @__PURE__ */ import_react12.default.createElement("li", { key: sIdx, className: "expanded-signal-item" }, /* @__PURE__ */ import_react12.default.createElement("span", { className: "signal-check-icon" }, "\u2713"), /* @__PURE__ */ import_react12.default.createElement("span", null, sig)))), /* @__PURE__ */ import_react12.default.createElement("div", { style: { marginTop: "10px", fontSize: "0.6875rem", color: "var(--slate-500)", fontStyle: "italic" } }, "Note: These data signals are advisory and intended for administrative verification without presumption of misconduct."))
+        isExpanded && /* @__PURE__ */ import_react12.default.createElement("div", { className: "attention-card-expanded-signals", "aria-live": "polite" }, /* @__PURE__ */ import_react12.default.createElement("div", { style: { fontSize: "0.75rem", fontWeight: 700, color: "var(--slate-800)", marginBottom: "8px" } }, "Detected Verification Signals:"), /* @__PURE__ */ import_react12.default.createElement("ul", { className: "expanded-signals-list" }, alert.rulesTriggered.map((ruleItem, rIdx) => /* @__PURE__ */ import_react12.default.createElement("li", { key: rIdx, className: "expanded-signal-item" }, /* @__PURE__ */ import_react12.default.createElement("span", { className: "signal-check-icon" }, "\u2713"), /* @__PURE__ */ import_react12.default.createElement("div", null, /* @__PURE__ */ import_react12.default.createElement("span", { style: { fontWeight: 600 } }, ruleItem.message), ruleItem.relevantValues && /* @__PURE__ */ import_react12.default.createElement("span", { style: { fontSize: "0.6875rem", color: "var(--slate-500)", marginLeft: "6px" } }, "(", Object.entries(ruleItem.relevantValues).map(([k, v]) => `${k}: ${v}`).join(", "), ")"))))), /* @__PURE__ */ import_react12.default.createElement("div", { style: { marginTop: "10px", fontSize: "0.6875rem", color: "var(--slate-500)", fontStyle: "italic" } }, "Note: These data signals are advisory indicators designed to aid verification without presumption of wrongdoing."))
       );
     })), /* @__PURE__ */ import_react12.default.createElement("section", { className: "how-scoring-works-card", "aria-label": "Attention Scoring Methodology" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "scoring-icon-box" }, /* @__PURE__ */ import_react12.default.createElement("svg", { width: "22", height: "22", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react12.default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ import_react12.default.createElement("line", { x1: "12", y1: "16", x2: "12", y2: "12" }), /* @__PURE__ */ import_react12.default.createElement("line", { x1: "12", y1: "8", x2: "12.01", y2: "8" }))), /* @__PURE__ */ import_react12.default.createElement("div", { className: "scoring-text-content" }, /* @__PURE__ */ import_react12.default.createElement("h3", { className: "scoring-title" }, "How attention scoring works"), /* @__PURE__ */ import_react12.default.createElement("p", { className: "scoring-desc" }, "The score combines measurable indicators such as project deadline, physical progress, fund utilization, update freshness, and financial vs physical progress to surface projects that may require further verification.")), /* @__PURE__ */ import_react12.default.createElement(
       "button",
@@ -25907,12 +26048,41 @@
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = (0, import_react13.useState)(false);
     const [viewMode, setViewMode] = (0, import_react13.useState)("grid");
     (0, import_react13.useEffect)(() => {
-      const timer = setTimeout(() => {
-        setEvidenceList(getEvidenceLibraryData());
-        setIsLoading(false);
-      }, 200);
-      return () => clearTimeout(timer);
+      const hash = window.location.hash || "";
+      if (hash.includes("?")) {
+        const queryParams = new URLSearchParams(hash.split("?")[1]);
+        const projectParam = queryParams.get("project");
+        if (projectParam) {
+          setSelectedProject(projectParam);
+        }
+      }
     }, []);
+    (0, import_react13.useEffect)(() => {
+      let isMounted = true;
+      async function loadData() {
+        setIsLoading(true);
+        try {
+          const data = await getEvidence({
+            projectId: selectedProject,
+            type: selectedType,
+            search: searchQuery
+          });
+          if (isMounted) {
+            setEvidenceList(data);
+            setIsLoading(false);
+          }
+        } catch (err) {
+          if (isMounted) {
+            setIsLoading(false);
+            if (onShowToast) onShowToast("Failed to load evidence library records", "alert");
+          }
+        }
+      }
+      loadData();
+      return () => {
+        isMounted = false;
+      };
+    }, [selectedProject, selectedType, searchQuery, onShowToast]);
     const handleResetFilters = () => {
       setSearchQuery("");
       setSelectedProject("All");
@@ -25924,16 +26094,9 @@
       e.preventDefault();
       setShowUploadModal(false);
       if (onShowToast) {
-        onShowToast("Evidence uploaded successfully. Verification workflow initiated.", "success");
+        onShowToast("Evidence submitted successfully. Audit verification workflow initiated.", "success");
       }
     };
-    const filteredEvidence = evidenceList.filter((item) => {
-      const matchesProject = selectedProject === "All" || item.projectName === selectedProject;
-      const matchesType = selectedType === "All" || item.type === selectedType;
-      const q = searchQuery.toLowerCase();
-      const matchesSearch = !searchQuery.trim() || item.title.toLowerCase().includes(q) || item.projectName.toLowerCase().includes(q) || item.source.toLowerCase().includes(q) || item.type.toLowerCase().includes(q) || item.description.toLowerCase().includes(q);
-      return matchesProject && matchesType && matchesSearch;
-    });
     return /* @__PURE__ */ import_react13.default.createElement("div", { className: "dashboard-layout" }, /* @__PURE__ */ import_react13.default.createElement(
       Sidebar,
       {
@@ -25979,11 +26142,11 @@
         onChange: (e) => setSelectedProject(e.target.value)
       },
       /* @__PURE__ */ import_react13.default.createElement("option", { value: "All" }, "All Projects"),
-      /* @__PURE__ */ import_react13.default.createElement("option", { value: "Road Construction \u2014 Ward 12" }, "Road Construction \u2014 Ward 12"),
-      /* @__PURE__ */ import_react13.default.createElement("option", { value: "Community Health Center" }, "Community Health Center"),
-      /* @__PURE__ */ import_react13.default.createElement("option", { value: "Water Supply Project \u2014 Phase 2" }, "Water Supply Project \u2014 Phase 2"),
-      /* @__PURE__ */ import_react13.default.createElement("option", { value: "Primary School Renovation" }, "Primary School Renovation"),
-      /* @__PURE__ */ import_react13.default.createElement("option", { value: "Drainage Improvement" }, "Drainage Improvement")
+      /* @__PURE__ */ import_react13.default.createElement("option", { value: "proj-1" }, "Road Construction \u2014 Ward 12"),
+      /* @__PURE__ */ import_react13.default.createElement("option", { value: "proj-2" }, "Community Health Center"),
+      /* @__PURE__ */ import_react13.default.createElement("option", { value: "proj-3" }, "Water Supply Project \u2014 Phase 2"),
+      /* @__PURE__ */ import_react13.default.createElement("option", { value: "proj-4" }, "Primary School Renovation"),
+      /* @__PURE__ */ import_react13.default.createElement("option", { value: "proj-105" }, "Drainage Improvement")
     )), /* @__PURE__ */ import_react13.default.createElement("div", { className: "filter-select-box" }, /* @__PURE__ */ import_react13.default.createElement("label", { htmlFor: "evidence-type-select", className: "sr-only" }, "Evidence Type"), /* @__PURE__ */ import_react13.default.createElement(
       "select",
       {
@@ -26038,7 +26201,7 @@
         onClick: () => setViewMode("table")
       },
       /* @__PURE__ */ import_react13.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react13.default.createElement("line", { x1: "8", y1: "6", x2: "21", y2: "6" }), /* @__PURE__ */ import_react13.default.createElement("line", { x1: "8", y1: "12", x2: "21", y2: "12" }), /* @__PURE__ */ import_react13.default.createElement("line", { x1: "8", y1: "18", x2: "21", y2: "18" }), /* @__PURE__ */ import_react13.default.createElement("line", { x1: "3", y1: "6", x2: "3.01", y2: "6" }), /* @__PURE__ */ import_react13.default.createElement("line", { x1: "3", y1: "12", x2: "3.01", y2: "12" }), /* @__PURE__ */ import_react13.default.createElement("line", { x1: "3", y1: "18", x2: "3.01", y2: "18" }))
-    ))), isLoading ? /* @__PURE__ */ import_react13.default.createElement("div", { className: "skeleton-container", "aria-busy": "true" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-cards-grid" }, [1, 2, 3, 4].map((n) => /* @__PURE__ */ import_react13.default.createElement("div", { key: n, className: "skeleton", style: { height: "220px", borderRadius: "12px" } })))) : /* @__PURE__ */ import_react13.default.createElement(import_react13.default.Fragment, null, filteredEvidence.length === 0 ? /* @__PURE__ */ import_react13.default.createElement("div", { className: "attention-empty-state", role: "status" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "empty-state-icon" }, /* @__PURE__ */ import_react13.default.createElement("svg", { width: "28", height: "28", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react13.default.createElement("rect", { x: "3", y: "3", width: "18", height: "18", rx: "2", ry: "2" }), /* @__PURE__ */ import_react13.default.createElement("circle", { cx: "8.5", cy: "8.5", r: "1.5" }), /* @__PURE__ */ import_react13.default.createElement("polyline", { points: "21 15 16 10 5 21" }))), /* @__PURE__ */ import_react13.default.createElement("h3", { className: "empty-state-title" }, "No evidence available for this project"), /* @__PURE__ */ import_react13.default.createElement("p", { className: "empty-state-text" }, "No records match the selected filter criteria. Try resetting filters or uploading new verification items."), /* @__PURE__ */ import_react13.default.createElement(
+    ))), isLoading && evidenceList.length === 0 ? /* @__PURE__ */ import_react13.default.createElement("div", { className: "skeleton-container", "aria-busy": "true" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-cards-grid" }, [1, 2, 3, 4].map((n) => /* @__PURE__ */ import_react13.default.createElement("div", { key: n, className: "skeleton", style: { height: "220px", borderRadius: "12px" } })))) : /* @__PURE__ */ import_react13.default.createElement(import_react13.default.Fragment, null, evidenceList.length === 0 ? /* @__PURE__ */ import_react13.default.createElement("div", { className: "attention-empty-state", role: "status" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "empty-state-icon" }, /* @__PURE__ */ import_react13.default.createElement("svg", { width: "28", height: "28", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react13.default.createElement("rect", { x: "3", y: "3", width: "18", height: "18", rx: "2", ry: "2" }), /* @__PURE__ */ import_react13.default.createElement("circle", { cx: "8.5", cy: "8.5", r: "1.5" }), /* @__PURE__ */ import_react13.default.createElement("polyline", { points: "21 15 16 10 5 21" }))), /* @__PURE__ */ import_react13.default.createElement("h3", { className: "empty-state-title" }, "No evidence available for this project"), /* @__PURE__ */ import_react13.default.createElement("p", { className: "empty-state-text" }, "No records match the selected filter criteria. Try resetting filters or uploading new verification items."), /* @__PURE__ */ import_react13.default.createElement(
       "button",
       {
         type: "button",
@@ -26049,63 +26212,77 @@
       "Reset all filters"
     )) : viewMode === "grid" ? (
       /* Grid View */
-      /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-cards-grid", role: "feed", "aria-label": "Evidence cards grid" }, filteredEvidence.map((item) => /* @__PURE__ */ import_react13.default.createElement(
-        "article",
-        {
-          key: item.id,
-          className: "evidence-card",
-          tabIndex: 0,
-          role: "button",
-          "aria-label": `Open evidence preview for ${item.title} (${item.type})`,
-          onClick: () => setPreviewItem(item),
-          onKeyDown: (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setPreviewItem(item);
-            }
-          }
-        },
-        /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-thumb-wrapper" }, /* @__PURE__ */ import_react13.default.createElement(
-          "img",
+      /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-cards-grid", role: "feed", "aria-label": "Evidence cards grid" }, evidenceList.map((item) => {
+        const dateDisplay = new Date(item.createdAt).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric"
+        });
+        return /* @__PURE__ */ import_react13.default.createElement(
+          "article",
           {
-            src: item.thumbnail,
-            alt: item.title,
-            className: "evidence-thumb-img",
-            loading: "lazy"
-          }
-        ), /* @__PURE__ */ import_react13.default.createElement("span", { className: `evidence-type-tag ${item.typeClass}` }, item.type), item.verified && /* @__PURE__ */ import_react13.default.createElement("span", { className: "evidence-verified-badge", title: "Verified by field auditor" }, "\u2713 Verified")),
-        /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-card-content" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-card-project" }, item.projectName), /* @__PURE__ */ import_react13.default.createElement("h2", { className: "evidence-card-title" }, item.type), /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-card-date" }, item.date), /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-card-source" }, /* @__PURE__ */ import_react13.default.createElement("span", { style: { color: "var(--slate-400)" } }, "Source:"), " ", item.source))
-      )))
-    ) : (
-      /* Table View */
-      /* @__PURE__ */ import_react13.default.createElement("div", { className: "responsive-table-wrapper" }, /* @__PURE__ */ import_react13.default.createElement("table", { className: "mp-projects-table", "aria-label": "Evidence Table" }, /* @__PURE__ */ import_react13.default.createElement("thead", null, /* @__PURE__ */ import_react13.default.createElement("tr", null, /* @__PURE__ */ import_react13.default.createElement("th", null, "Evidence Type"), /* @__PURE__ */ import_react13.default.createElement("th", null, "Project"), /* @__PURE__ */ import_react13.default.createElement("th", null, "Date"), /* @__PURE__ */ import_react13.default.createElement("th", null, "Source"), /* @__PURE__ */ import_react13.default.createElement("th", null, "Uploader"), /* @__PURE__ */ import_react13.default.createElement("th", null, "Status"), /* @__PURE__ */ import_react13.default.createElement("th", null, "Action"))), /* @__PURE__ */ import_react13.default.createElement("tbody", null, filteredEvidence.map((item) => /* @__PURE__ */ import_react13.default.createElement(
-        "tr",
-        {
-          key: item.id,
-          className: "clickable-project-row",
-          onClick: () => setPreviewItem(item)
-        },
-        /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement("span", { className: `badge ${item.typeClass === "type-photo" ? "badge-ongoing" : "badge-positive"}` }, item.type)),
-        /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement("span", { className: "table-project-name" }, item.projectName)),
-        /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement("span", { style: { fontSize: "0.8125rem", color: "var(--slate-600)" } }, item.date)),
-        /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement("span", { style: { fontSize: "0.8125rem", color: "var(--slate-600)" } }, item.source)),
-        /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement("span", { style: { fontSize: "0.75rem", color: "var(--slate-500)" } }, item.uploader)),
-        /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement("span", { className: "badge badge-completed", style: { fontSize: "0.6875rem" } }, "Verified")),
-        /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement(
-          "button",
-          {
-            type: "button",
-            className: "btn-ghost",
-            style: { fontSize: "0.75rem", padding: "2px 6px", color: "var(--teal-700)" },
-            onClick: (e) => {
-              e.stopPropagation();
-              setPreviewItem(item);
+            key: item.evidenceId,
+            className: "evidence-card",
+            tabIndex: 0,
+            role: "button",
+            "aria-label": `Open evidence preview for ${item.projectName} (${item.type})`,
+            onClick: () => setPreviewItem(item),
+            onKeyDown: (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setPreviewItem(item);
+              }
             }
           },
-          "Preview"
-        ))
-      )))))
-    ), /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-pagination-bar" }, /* @__PURE__ */ import_react13.default.createElement("span", { className: "pagination-info" }, "Showing 1 to ", filteredEvidence.length, " of 64 evidence items"), /* @__PURE__ */ import_react13.default.createElement("div", { className: "pagination-buttons" }, /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn disabled", disabled: true, "aria-label": "Previous page" }, "\u2039"), /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn active", "aria-label": "Page 1" }, "1"), /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn", "aria-label": "Page 2" }, "2"), /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn", "aria-label": "Page 3" }, "3"), /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn", "aria-label": "Page 4" }, "4"), /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn", "aria-label": "Page 5" }, "5"), /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn", "aria-label": "Next page" }, "\u203A")))))), previewItem && /* @__PURE__ */ import_react13.default.createElement(
+          /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-thumb-wrapper" }, /* @__PURE__ */ import_react13.default.createElement(
+            "img",
+            {
+              src: item.url,
+              alt: item.projectName,
+              className: "evidence-thumb-img",
+              loading: "lazy"
+            }
+          ), /* @__PURE__ */ import_react13.default.createElement("span", { className: "evidence-type-tag" }, item.type), item.verified && /* @__PURE__ */ import_react13.default.createElement("span", { className: "evidence-verified-badge", title: "Verified by field auditor" }, "\u2713 Verified")),
+          /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-card-content" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-card-project" }, item.projectName), /* @__PURE__ */ import_react13.default.createElement("h2", { className: "evidence-card-title" }, item.type), /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-card-date" }, dateDisplay), /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-card-source" }, /* @__PURE__ */ import_react13.default.createElement("span", { style: { color: "var(--slate-400)" } }, "Source:"), " ", item.source))
+        );
+      }))
+    ) : (
+      /* Table View */
+      /* @__PURE__ */ import_react13.default.createElement("div", { className: "responsive-table-wrapper" }, /* @__PURE__ */ import_react13.default.createElement("table", { className: "mp-projects-table", "aria-label": "Evidence Table" }, /* @__PURE__ */ import_react13.default.createElement("thead", null, /* @__PURE__ */ import_react13.default.createElement("tr", null, /* @__PURE__ */ import_react13.default.createElement("th", null, "Evidence Type"), /* @__PURE__ */ import_react13.default.createElement("th", null, "Project"), /* @__PURE__ */ import_react13.default.createElement("th", null, "Date"), /* @__PURE__ */ import_react13.default.createElement("th", null, "Source"), /* @__PURE__ */ import_react13.default.createElement("th", null, "Uploader"), /* @__PURE__ */ import_react13.default.createElement("th", null, "Status"), /* @__PURE__ */ import_react13.default.createElement("th", null, "Action"))), /* @__PURE__ */ import_react13.default.createElement("tbody", null, evidenceList.map((item) => {
+        const dateDisplay = new Date(item.createdAt).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric"
+        });
+        return /* @__PURE__ */ import_react13.default.createElement(
+          "tr",
+          {
+            key: item.evidenceId,
+            className: "clickable-project-row",
+            onClick: () => setPreviewItem(item)
+          },
+          /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement("span", { className: "badge badge-ongoing" }, item.type)),
+          /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement("span", { className: "table-project-name" }, item.projectName)),
+          /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement("span", { style: { fontSize: "0.8125rem", color: "var(--slate-600)" } }, dateDisplay)),
+          /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement("span", { style: { fontSize: "0.8125rem", color: "var(--slate-600)" } }, item.source)),
+          /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement("span", { style: { fontSize: "0.75rem", color: "var(--slate-500)" } }, item.uploadedBy)),
+          /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement("span", { className: "badge badge-completed", style: { fontSize: "0.6875rem" } }, "Verified")),
+          /* @__PURE__ */ import_react13.default.createElement("td", null, /* @__PURE__ */ import_react13.default.createElement(
+            "button",
+            {
+              type: "button",
+              className: "btn-ghost",
+              style: { fontSize: "0.75rem", padding: "2px 6px", color: "var(--teal-700)" },
+              onClick: (e) => {
+                e.stopPropagation();
+                setPreviewItem(item);
+              }
+            },
+            "Preview"
+          ))
+        );
+      }))))
+    ), /* @__PURE__ */ import_react13.default.createElement("div", { className: "evidence-pagination-bar" }, /* @__PURE__ */ import_react13.default.createElement("span", { className: "pagination-info" }, "Showing 1 to ", evidenceList.length, " of 64 evidence items"), /* @__PURE__ */ import_react13.default.createElement("div", { className: "pagination-buttons" }, /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn disabled", disabled: true, "aria-label": "Previous page" }, "\u2039"), /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn active", "aria-label": "Page 1" }, "1"), /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn", "aria-label": "Page 2" }, "2"), /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn", "aria-label": "Page 3" }, "3"), /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn", "aria-label": "Page 4" }, "4"), /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn", "aria-label": "Page 5" }, "5"), /* @__PURE__ */ import_react13.default.createElement("button", { type: "button", className: "pagination-btn", "aria-label": "Next page" }, "\u203A")))))), previewItem && /* @__PURE__ */ import_react13.default.createElement(
       "div",
       {
         className: "modal-backdrop",
@@ -26125,24 +26302,24 @@
           onClick: () => setPreviewItem(null)
         },
         /* @__PURE__ */ import_react13.default.createElement("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react13.default.createElement("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), /* @__PURE__ */ import_react13.default.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" }))
-      ), /* @__PURE__ */ import_react13.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" } }, /* @__PURE__ */ import_react13.default.createElement("span", { className: `badge ${previewItem.typeClass}` }, previewItem.type), /* @__PURE__ */ import_react13.default.createElement("span", { className: "badge badge-completed" }, "Verified Evidence")), /* @__PURE__ */ import_react13.default.createElement("h3", { id: "preview-modal-title", style: { fontSize: "1.25rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "4px" } }, previewItem.title), /* @__PURE__ */ import_react13.default.createElement("p", { style: { fontSize: "0.8125rem", color: "var(--slate-500)", marginBottom: "16px" } }, previewItem.projectName, " \u2022 ", previewItem.date), previewItem.type === "Site Photograph" || previewItem.type === "Field Verification" ? /* @__PURE__ */ import_react13.default.createElement("div", { className: "modal-photo-box" }, /* @__PURE__ */ import_react13.default.createElement(
+      ), /* @__PURE__ */ import_react13.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" } }, /* @__PURE__ */ import_react13.default.createElement("span", { className: "badge badge-ongoing" }, previewItem.type), /* @__PURE__ */ import_react13.default.createElement("span", { className: "badge badge-completed" }, "Verified Evidence")), /* @__PURE__ */ import_react13.default.createElement("h3", { id: "preview-modal-title", style: { fontSize: "1.25rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "4px" } }, previewItem.projectName), /* @__PURE__ */ import_react13.default.createElement("p", { style: { fontSize: "0.8125rem", color: "var(--slate-500)", marginBottom: "16px" } }, previewItem.type, " \u2022 ID: ", previewItem.publicId), previewItem.type === "Site Photograph" || previewItem.type === "Field Verification" ? /* @__PURE__ */ import_react13.default.createElement("div", { className: "modal-photo-box" }, /* @__PURE__ */ import_react13.default.createElement(
         "img",
         {
-          src: previewItem.thumbnail,
-          alt: previewItem.title,
+          src: previewItem.url,
+          alt: previewItem.projectName,
           className: "modal-photo-full"
         }
-      ), /* @__PURE__ */ import_react13.default.createElement("div", { className: "modal-photo-overlay-data" }, /* @__PURE__ */ import_react13.default.createElement("span", null, "\u{1F4CD} ", previewItem.location), /* @__PURE__ */ import_react13.default.createElement("span", null, "\u{1F4F7} Timestamped on ", previewItem.date))) : /* @__PURE__ */ import_react13.default.createElement("div", { className: "modal-doc-box", role: "region", "aria-label": "Document Reader Preview" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "doc-preview-header" }, /* @__PURE__ */ import_react13.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "10px" } }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "doc-pdf-badge" }, "PDF"), /* @__PURE__ */ import_react13.default.createElement("div", null, /* @__PURE__ */ import_react13.default.createElement("div", { style: { fontWeight: 700, fontSize: "0.875rem", color: "var(--slate-900)" } }, previewItem.documentData?.docNumber || "DOC-REF-2026"), /* @__PURE__ */ import_react13.default.createElement("div", { style: { fontSize: "0.75rem", color: "var(--slate-500)" } }, previewItem.documentData?.pages || 3, " pages \u2022 Official Sanction Docket"))), /* @__PURE__ */ import_react13.default.createElement("span", { className: "badge badge-completed" }, "Digitally Signed")), /* @__PURE__ */ import_react13.default.createElement("div", { className: "doc-preview-body" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "doc-mock-page" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "doc-seal-stamp" }, "GOVERNMENT OF BIHAR", /* @__PURE__ */ import_react13.default.createElement("br", null), "RURAL WORKS DEPARTMENT", /* @__PURE__ */ import_react13.default.createElement("br", null), "OFFICIALLY VERIFIED"), /* @__PURE__ */ import_react13.default.createElement("p", { style: { fontWeight: 700, marginBottom: "6px" } }, "JOINT MEASUREMENT & PHYSICAL SANCTION VOUCHER"), /* @__PURE__ */ import_react13.default.createElement("p", { style: { fontSize: "0.75rem", color: "var(--slate-600)", lineHeight: "1.5" } }, previewItem.description), /* @__PURE__ */ import_react13.default.createElement("div", { style: { marginTop: "16px", borderTop: "1px solid #cbd5e1", paddingTop: "8px", display: "flex", justifyContent: "space-between", fontSize: "0.6875rem", color: "var(--slate-500)" } }, /* @__PURE__ */ import_react13.default.createElement("span", null, "Signatory: ", previewItem.documentData?.signatory || "District Officer"), /* @__PURE__ */ import_react13.default.createElement("span", null, "Date: ", previewItem.documentData?.stampDate || previewItem.date))))), /* @__PURE__ */ import_react13.default.createElement("div", { className: "modal-evidence-meta-grid" }, /* @__PURE__ */ import_react13.default.createElement("div", null, /* @__PURE__ */ import_react13.default.createElement("span", { className: "meta-label" }, "Description"), /* @__PURE__ */ import_react13.default.createElement("p", { className: "meta-val" }, previewItem.description)), /* @__PURE__ */ import_react13.default.createElement("div", { className: "meta-2col" }, /* @__PURE__ */ import_react13.default.createElement("div", null, /* @__PURE__ */ import_react13.default.createElement("span", { className: "meta-label" }, "Submitted by"), /* @__PURE__ */ import_react13.default.createElement("span", { className: "meta-val" }, previewItem.uploader)), /* @__PURE__ */ import_react13.default.createElement("div", null, /* @__PURE__ */ import_react13.default.createElement("span", { className: "meta-label" }, "Source System"), /* @__PURE__ */ import_react13.default.createElement("span", { className: "meta-val" }, previewItem.source)))), /* @__PURE__ */ import_react13.default.createElement("div", { className: "modal-actions-footer" }, /* @__PURE__ */ import_react13.default.createElement(
+      ), /* @__PURE__ */ import_react13.default.createElement("div", { className: "modal-photo-overlay-data" }, /* @__PURE__ */ import_react13.default.createElement("span", null, "\u{1F4CD} ", previewItem.location), /* @__PURE__ */ import_react13.default.createElement("span", null, "\u{1F4F7} Verified on ", new Date(previewItem.createdAt).toLocaleDateString()))) : /* @__PURE__ */ import_react13.default.createElement("div", { className: "modal-doc-box", role: "region", "aria-label": "Document Reader Preview" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "doc-preview-header" }, /* @__PURE__ */ import_react13.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "10px" } }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "doc-pdf-badge" }, "PDF"), /* @__PURE__ */ import_react13.default.createElement("div", null, /* @__PURE__ */ import_react13.default.createElement("div", { style: { fontWeight: 700, fontSize: "0.875rem", color: "var(--slate-900)" } }, previewItem.documentData?.docNumber || "DOC-REF-2026"), /* @__PURE__ */ import_react13.default.createElement("div", { style: { fontSize: "0.75rem", color: "var(--slate-500)" } }, previewItem.documentData?.pages || 3, " pages \u2022 Official Sanction Docket"))), /* @__PURE__ */ import_react13.default.createElement("span", { className: "badge badge-completed" }, "Digitally Signed")), /* @__PURE__ */ import_react13.default.createElement("div", { className: "doc-preview-body" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "doc-mock-page" }, /* @__PURE__ */ import_react13.default.createElement("div", { className: "doc-seal-stamp" }, "GOVERNMENT OF BIHAR", /* @__PURE__ */ import_react13.default.createElement("br", null), "RURAL WORKS DEPARTMENT", /* @__PURE__ */ import_react13.default.createElement("br", null), "OFFICIALLY VERIFIED"), /* @__PURE__ */ import_react13.default.createElement("p", { style: { fontWeight: 700, marginBottom: "6px" } }, "JOINT MEASUREMENT & PHYSICAL SANCTION VOUCHER"), /* @__PURE__ */ import_react13.default.createElement("p", { style: { fontSize: "0.75rem", color: "var(--slate-600)", lineHeight: "1.5" } }, previewItem.description), /* @__PURE__ */ import_react13.default.createElement("div", { style: { marginTop: "16px", borderTop: "1px solid #cbd5e1", paddingTop: "8px", display: "flex", justifyContent: "space-between", fontSize: "0.6875rem", color: "var(--slate-500)" } }, /* @__PURE__ */ import_react13.default.createElement("span", null, "Signatory: ", previewItem.documentData?.signatory || "District Officer"), /* @__PURE__ */ import_react13.default.createElement("span", null, "Date: ", previewItem.documentData?.stampDate || new Date(previewItem.createdAt).toLocaleDateString()))))), /* @__PURE__ */ import_react13.default.createElement("div", { className: "modal-evidence-meta-grid" }, /* @__PURE__ */ import_react13.default.createElement("div", null, /* @__PURE__ */ import_react13.default.createElement("span", { className: "meta-label" }, "Description"), /* @__PURE__ */ import_react13.default.createElement("p", { className: "meta-val" }, previewItem.description)), /* @__PURE__ */ import_react13.default.createElement("div", { className: "meta-2col" }, /* @__PURE__ */ import_react13.default.createElement("div", null, /* @__PURE__ */ import_react13.default.createElement("span", { className: "meta-label" }, "Submitted by"), /* @__PURE__ */ import_react13.default.createElement("span", { className: "meta-val" }, previewItem.uploadedBy)), /* @__PURE__ */ import_react13.default.createElement("div", null, /* @__PURE__ */ import_react13.default.createElement("span", { className: "meta-label" }, "Source System"), /* @__PURE__ */ import_react13.default.createElement("span", { className: "meta-val" }, previewItem.source)))), /* @__PURE__ */ import_react13.default.createElement("div", { className: "modal-actions-footer" }, /* @__PURE__ */ import_react13.default.createElement(
         "button",
         {
           type: "button",
           className: "btn btn-secondary",
           onClick: () => {
-            if (onShowToast) onShowToast("Evidence record file downloading...", "info");
+            if (onShowToast) onShowToast("Downloading official evidence asset...", "info");
           }
         },
         /* @__PURE__ */ import_react13.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react13.default.createElement("path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" }), /* @__PURE__ */ import_react13.default.createElement("polyline", { points: "7 10 12 15 17 10" }), /* @__PURE__ */ import_react13.default.createElement("line", { x1: "12", y1: "15", x2: "12", y2: "3" })),
-        "Download Original File"
+        "Download Original Asset"
       ), /* @__PURE__ */ import_react13.default.createElement(
         "button",
         {
@@ -26211,21 +26388,35 @@
       language: ""
     });
     (0, import_react14.useEffect)(() => {
-      const timer = setTimeout(() => {
-        const data = getUserProfile();
-        setProfile(data);
-        setFormData({
-          name: data.name,
-          email: data.email,
-          department: data.department,
-          phone: data.phone,
-          timezone: data.timezone,
-          language: data.language
-        });
-        setIsLoading(false);
-      }, 200);
-      return () => clearTimeout(timer);
-    }, []);
+      let isMounted = true;
+      async function loadData() {
+        setIsLoading(true);
+        try {
+          const data = await getProfile();
+          if (isMounted) {
+            setProfile(data);
+            setFormData({
+              name: data.name,
+              email: data.email,
+              department: data.department,
+              phone: data.phone,
+              timezone: data.timezone,
+              language: data.language
+            });
+            setIsLoading(false);
+          }
+        } catch (err) {
+          if (isMounted) {
+            setIsLoading(false);
+            if (onShowToast) onShowToast("Failed to load user profile", "alert");
+          }
+        }
+      }
+      loadData();
+      return () => {
+        isMounted = false;
+      };
+    }, [onShowToast]);
     const handleSaveProfile = (e) => {
       e.preventDefault();
       setProfile((prev) => ({
@@ -26266,7 +26457,7 @@
         onSignOut,
         onOpenMobileSidebar: () => setIsMobileSidebarOpen(true)
       }
-    ), /* @__PURE__ */ import_react14.default.createElement("main", { className: "dashboard-content-body", id: "profile-page-content" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "module-page-header" }, /* @__PURE__ */ import_react14.default.createElement("div", null, /* @__PURE__ */ import_react14.default.createElement("h1", { className: "topbar-title" }, "Profile"), /* @__PURE__ */ import_react14.default.createElement("p", { className: "topbar-subtitle" }, "Manage your account settings, authentication, and system activity logs."))), isLoading ? /* @__PURE__ */ import_react14.default.createElement("div", { className: "skeleton-container", "aria-busy": "true" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "skeleton", style: { height: "140px", borderRadius: "12px", marginBottom: "20px" } }), /* @__PURE__ */ import_react14.default.createElement("div", { className: "skeleton", style: { height: "280px", borderRadius: "12px" } })) : /* @__PURE__ */ import_react14.default.createElement(import_react14.default.Fragment, null, /* @__PURE__ */ import_react14.default.createElement("section", { className: "profile-hero-card", "aria-label": "User Profile Card" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "profile-hero-left" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "profile-hero-avatar" }, "AU"), /* @__PURE__ */ import_react14.default.createElement("div", { className: "profile-hero-info" }, /* @__PURE__ */ import_react14.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "8px" } }, /* @__PURE__ */ import_react14.default.createElement("h2", { className: "profile-hero-name" }, profile.name), /* @__PURE__ */ import_react14.default.createElement("span", { className: "badge badge-positive", style: { fontSize: "0.6875rem" } }, "Verified Admin")), /* @__PURE__ */ import_react14.default.createElement("p", { className: "profile-hero-email" }, profile.email), /* @__PURE__ */ import_react14.default.createElement("p", { className: "profile-hero-role" }, "Role: ", /* @__PURE__ */ import_react14.default.createElement("strong", null, profile.role), " \u2022 ", profile.department))), /* @__PURE__ */ import_react14.default.createElement("div", { className: "profile-hero-actions" }, /* @__PURE__ */ import_react14.default.createElement(
+    ), /* @__PURE__ */ import_react14.default.createElement("main", { className: "dashboard-content-body", id: "profile-page-content" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "module-page-header" }, /* @__PURE__ */ import_react14.default.createElement("div", null, /* @__PURE__ */ import_react14.default.createElement("h1", { className: "topbar-title" }, "Profile"), /* @__PURE__ */ import_react14.default.createElement("p", { className: "topbar-subtitle" }, "Manage your account settings, authentication, and system activity logs."))), isLoading && !profile ? /* @__PURE__ */ import_react14.default.createElement("div", { className: "skeleton-container", "aria-busy": "true" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "skeleton", style: { height: "140px", borderRadius: "12px", marginBottom: "20px" } }), /* @__PURE__ */ import_react14.default.createElement("div", { className: "skeleton", style: { height: "280px", borderRadius: "12px" } })) : /* @__PURE__ */ import_react14.default.createElement(import_react14.default.Fragment, null, /* @__PURE__ */ import_react14.default.createElement("section", { className: "profile-hero-card", "aria-label": "User Profile Card" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "profile-hero-left" }, /* @__PURE__ */ import_react14.default.createElement("div", { className: "profile-hero-avatar" }, "AU"), /* @__PURE__ */ import_react14.default.createElement("div", { className: "profile-hero-info" }, /* @__PURE__ */ import_react14.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "8px" } }, /* @__PURE__ */ import_react14.default.createElement("h2", { className: "profile-hero-name" }, profile.name), /* @__PURE__ */ import_react14.default.createElement("span", { className: "badge badge-positive", style: { fontSize: "0.6875rem" } }, "Verified Admin")), /* @__PURE__ */ import_react14.default.createElement("p", { className: "profile-hero-email" }, profile.email), /* @__PURE__ */ import_react14.default.createElement("p", { className: "profile-hero-role" }, "Role: ", /* @__PURE__ */ import_react14.default.createElement("strong", null, profile.role), " \u2022 ", profile.department))), /* @__PURE__ */ import_react14.default.createElement("div", { className: "profile-hero-actions" }, /* @__PURE__ */ import_react14.default.createElement(
       "button",
       {
         type: "button",
@@ -26530,7 +26721,7 @@
       );
     } else if (route.startsWith("/projects/")) {
       const projectId = route.replace("/projects/", "");
-      pageContent = /* @__PURE__ */ import_react16.default.createElement("div", { className: "external-route-placeholder" }, /* @__PURE__ */ import_react16.default.createElement("div", { className: "external-route-card" }, /* @__PURE__ */ import_react16.default.createElement("div", { className: "badge badge-ongoing", style: { marginBottom: "12px", alignSelf: "center" } }, "Frontend 2 Ownership Boundary"), /* @__PURE__ */ import_react16.default.createElement("h2", { style: { fontSize: "1.25rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "8px" } }, "Project Details: ", projectId), /* @__PURE__ */ import_react16.default.createElement("p", { style: { fontSize: "0.875rem", color: "var(--slate-600)", marginBottom: "20px", lineHeight: "1.5" } }, "This page (", /* @__PURE__ */ import_react16.default.createElement("code", null, "/projects/:id"), ") is owned and implemented by ", /* @__PURE__ */ import_react16.default.createElement("strong", null, "Frontend Developer 2"), ". The navigation call was dispatched cleanly and accurately."), /* @__PURE__ */ import_react16.default.createElement("div", { style: { display: "flex", gap: "12px", justifyContent: "center" } }, /* @__PURE__ */ import_react16.default.createElement("a", { href: "#/dashboard", className: "btn btn-primary" }, "\u2190 Return to Dashboard"))));
+      pageContent = /* @__PURE__ */ import_react16.default.createElement("div", { className: "external-route-placeholder" }, /* @__PURE__ */ import_react16.default.createElement("div", { className: "external-route-card" }, /* @__PURE__ */ import_react16.default.createElement("div", { className: "badge badge-ongoing", style: { marginBottom: "12px", alignSelf: "center" } }, "Frontend 2 Ownership Boundary"), /* @__PURE__ */ import_react16.default.createElement("h2", { style: { fontSize: "1.25rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "8px" } }, "Project Details: ", projectId), /* @__PURE__ */ import_react16.default.createElement("p", { style: { fontSize: "0.875rem", color: "var(--slate-600)", marginBottom: "20px", lineHeight: "1.5" } }, "This page (", /* @__PURE__ */ import_react16.default.createElement("code", null, "/projects/:id"), ") is owned and implemented by ", /* @__PURE__ */ import_react16.default.createElement("strong", null, "Frontend Developer 2"), ". The navigation call was dispatched cleanly and accurately with full parameter integrity."), /* @__PURE__ */ import_react16.default.createElement("div", { style: { display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" } }, /* @__PURE__ */ import_react16.default.createElement("a", { href: `#/evidence?project=${projectId}`, className: "btn btn-secondary" }, "\u{1F4C1} View Project Evidence"), /* @__PURE__ */ import_react16.default.createElement("a", { href: "#/mps", className: "btn btn-secondary" }, "\u{1F464} View MP Dossier"), /* @__PURE__ */ import_react16.default.createElement("a", { href: "#/dashboard", className: "btn btn-primary" }, "\u2190 Return to Dashboard"))));
     } else {
       pageContent = /* @__PURE__ */ import_react16.default.createElement(LandingPage, null);
     }

@@ -7,7 +7,7 @@ import { AttentionCenterPage } from './pages/AttentionCenterPage.jsx';
 import { EvidenceLibraryPage } from './pages/EvidenceLibraryPage.jsx';
 import { ProfilePage } from './pages/ProfilePage.jsx';
 import { ToastContainer } from './components/Toast.jsx';
-import { authService, logoutUser } from './data/mockData.js';
+import { logoutUser } from './data/mockData.js';
 
 export function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash || '#/');
@@ -112,9 +112,15 @@ export function App() {
           </h2>
           <p style={{ fontSize: '0.875rem', color: 'var(--slate-600)', marginBottom: '20px', lineHeight: '1.5' }}>
             This page (<code>/projects/:id</code>) is owned and implemented by <strong>Frontend Developer 2</strong>.
-            The navigation call was dispatched cleanly and accurately.
+            The navigation call was dispatched cleanly and accurately with full parameter integrity.
           </p>
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href={`#/evidence?project=${projectId}`} className="btn btn-secondary">
+              📁 View Project Evidence
+            </a>
+            <a href="#/mps" className="btn btn-secondary">
+              👤 View MP Dossier
+            </a>
             <a href="#/dashboard" className="btn btn-primary">
               ← Return to Dashboard
             </a>
