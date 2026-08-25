@@ -1,29 +1,42 @@
 import React, { useState } from 'react';
-import { loginUser } from '../data/mockData.js';
+import { authService } from '../data/mockData.js';
 
 export function LoginPage({ onLoginSuccess }) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [authState, setAuthState] = useState('idle'); // 'idle' | 'loading' | 'error' | 'success'
+  const [errorMessage, setErrorMessage] = useState('');
+  const [simulateFailure, setSimulateFailure] = useState(false);
 
-  const handleGoogleLogin = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      loginUser();
-      setIsLoading(false);
+  const handleGoogleLogin = async () => {
+    setAuthState('loading');
+    setErrorMessage('');
+
+    try {
+      await authService.loginWithGoogle(simulateFailure);
+      setAuthState('success');
       if (onLoginSuccess) {
         onLoginSuccess();
       } else {
         window.location.hash = "#/dashboard";
       }
-    }, 500);
+    } catch (err) {
+      setAuthState('error');
+      setErrorMessage(err.message || 'Authentication failed. Please verify your Google account permissions and try again.');
+    }
+  };
+
+  const handleRetry = () => {
+    setSimulateFailure(false);
+    setAuthState('idle');
+    setErrorMessage('');
   };
 
   return (
     <div className="login-page-wrapper">
       <div className="login-backdrop-decor"></div>
 
-      <div className="login-card" role="main">
+      <div className="login-card" role="main" aria-label="Sign In Card">
         <div className="login-logo-container">
-          <a href="#/" className="civic-logo" style={{ justifyContent: 'center' }}>
+          <a href="#/" className="civic-logo" style={{ justifyContent: 'center' }} aria-label="Back to CivicTrack Home">
             <div className="civic-logo-icon">
               <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon points="16,3 28,10 28,22 16,29 4,22 4,10" stroke="#0f172a" strokeWidth="2.5" fill="#f8fafc" />
@@ -45,19 +58,50 @@ export function LoginPage({ onLoginSuccess }) {
           <p className="login-subtitle">Sign in to continue monitoring public development projects.</p>
         </div>
 
-        {/* Google OAuth Button */}
+        {/* Clean Error Alert State */}
+        {authState === 'error' && (
+          <div className="auth-error-banner" role="alert" aria-live="assertive">
+            <div className="auth-error-header">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--rose-600)', flexShrink: 0 }}>
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              <span style={{ fontWeight: 600, fontSize: '0.8125rem', color: 'var(--rose-900)' }}>
+                Authentication Error
+              </span>
+            </div>
+            <p className="auth-error-text">{errorMessage}</p>
+            <div style={{ marginTop: '8px', display: 'flex', gap: '8px' }}>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                style={{ fontSize: '0.75rem', padding: '4px 10px', borderRadius: '4px' }}
+                onClick={handleRetry}
+              >
+                Dismiss &amp; Retry
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Google OAuth Button with Interactive States */}
         <button
           type="button"
           id="btn-google-login"
           className="btn-google-auth"
-          aria-label="Continue with Google"
+          aria-label={authState === 'loading' ? 'Signing in with Google...' : 'Continue with Google'}
+          aria-busy={authState === 'loading'}
           onClick={handleGoogleLogin}
-          disabled={isLoading}
+          disabled={authState === 'loading'}
         >
-          {isLoading ? (
+          {authState === 'loading' ? (
             <>
-              <span style={{ display: 'inline-block', animation: 'spin 1s linear infinite' }}>⏳</span>
-              <span>Signing in securely...</span>
+              <svg className="login-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <circle cx="12" cy="12" r="10" strokeOpacity="0.25" />
+                <path d="M12 2a10 10 0 0 1 10 10" />
+              </svg>
+              <span>Signing in...</span>
             </>
           ) : (
             <>
@@ -73,6 +117,20 @@ export function LoginPage({ onLoginSuccess }) {
             </>
           )}
         </button>
+
+        {/* Auth Simulation / Developer Switch for Error State Verification */}
+        <div style={{ marginTop: '0.75rem', fontSize: '0.6875rem', color: 'var(--slate-400)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              id="simulate-auth-error-checkbox"
+              checked={simulateFailure}
+              onChange={(e) => setSimulateFailure(e.target.checked)}
+              style={{ cursor: 'pointer' }}
+            />
+            <span>Simulate auth network failure</span>
+          </label>
+        </div>
 
         <div className="login-divider">
           <span>or</span>

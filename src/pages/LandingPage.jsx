@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from '../components/Navbar.jsx';
 import { Footer } from '../components/Footer.jsx';
 import { getLandingData } from '../data/mockData.js';
@@ -48,12 +48,21 @@ function getFeatureIcon(type) {
 
 export function LandingPage() {
   const data = getLandingData();
+  const [activeStepIndex, setActiveStepIndex] = useState(0);
+
+  const handleScrollToSection = (e, targetId) => {
+    e.preventDefault();
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="landing-page">
       <Navbar />
 
-      <main>
+      <main id="main-content">
         {/* Hero Section */}
         <section className="landing-hero" aria-label="Hero Section">
           <div className="hero-content">
@@ -64,27 +73,37 @@ export function LandingPage() {
               Monitor allocations, project progress, utilization and evidence — and quickly identify projects that may need attention.
             </p>
             <div className="hero-actions">
-              <a href="#/dashboard" className="btn btn-primary" id="hero-btn-explore">Explore Dashboard</a>
-              <a href="#how-it-works" className="btn btn-secondary" id="hero-btn-how">
+              <a href="#/dashboard" className="btn btn-primary" id="hero-btn-explore">
+                Explore Dashboard
+              </a>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                id="hero-btn-how"
+                onClick={(e) => handleScrollToSection(e, 'how-it-works')}
+                aria-label="Scroll to How It Works section"
+              >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polygon points="5 3 19 12 5 21 5 3" />
                 </svg>
                 How It Works
-              </a>
+              </button>
             </div>
           </div>
 
           {/* Hero Visual: Perspective Dashboard Preview */}
           <div className="hero-visual-wrapper">
-            <div className="hero-preview-card">
+            <div className="hero-preview-card" role="region" aria-label="Live Dashboard Snapshot Preview">
               <div className="preview-topbar">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <div style={{ width: '20px', height: '20px', background: '#0f172a', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#14b8a6', fontSize: '10px', fontWeight: 800 }}>
                     CT
                   </div>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#0f172a' }}>CivicTrack Preview</span>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#0f172a' }}>CivicTrack Live Overview</span>
                 </div>
-                <span className="badge badge-attention" style={{ fontSize: '0.6875rem' }}>2 projects may need attention</span>
+                <span className="badge badge-attention" style={{ fontSize: '0.6875rem' }}>
+                  2 projects may need attention
+                </span>
               </div>
 
               {/* Preview KPIs */}
@@ -140,15 +159,15 @@ export function LandingPage() {
         {/* Landing Metrics Section */}
         <section className="landing-metrics-section" id="metrics" aria-label="Key Metrics">
           <div className="metrics-grid">
-            <div className="metric-card">
+            <div className="metric-card" tabIndex="0">
               <div className="metric-value">{data.metrics.fundsTracked}</div>
               <div className="metric-label">Funds Tracked</div>
             </div>
-            <div className="metric-card">
+            <div className="metric-card" tabIndex="0">
               <div className="metric-value">{data.metrics.projectsMonitored}</div>
               <div className="metric-label">Projects Monitored</div>
             </div>
-            <div className="metric-card attention">
+            <div className="metric-card attention" tabIndex="0">
               <div className="metric-value">{data.metrics.projectsNeedingAttention}</div>
               <div className="metric-label">Projects Needing Attention</div>
             </div>
@@ -159,8 +178,8 @@ export function LandingPage() {
         <section className="landing-features-section" id="features" aria-label="Platform Features">
           <div className="features-grid">
             {data.features.map((f) => (
-              <div key={f.id} className="feature-card">
-                <div className="feature-icon-wrapper">
+              <div key={f.id} className="feature-card" tabIndex="0">
+                <div className="feature-icon-wrapper" aria-hidden="true">
                   {getFeatureIcon(f.icon)}
                 </div>
                 <h3 className="feature-title">{f.title}</h3>
@@ -170,17 +189,37 @@ export function LandingPage() {
           </div>
         </section>
 
-        {/* How It Works Section */}
-        <section className="landing-how-section" id="how-it-works" aria-label="How It Works">
+        {/* Interactive How It Works Section */}
+        <section className="landing-how-section" id="how-it-works" aria-label="How It Works Pipeline">
           <div className="section-header">
             <h2 className="section-title">How It Works</h2>
+            <p style={{ color: 'var(--slate-500)', fontSize: '0.9375rem', marginTop: '0.5rem' }}>
+              Click any stage to understand how data moves from raw fund records into actionable civic insights.
+            </p>
           </div>
 
-          <div className="steps-container">
+          <div className="steps-container" role="tablist" aria-label="How it works stages">
             {data.howItWorks.map((step, idx) => (
               <React.Fragment key={step.step}>
-                <div className="step-card">
-                  <span className="step-number">{step.step}</span>
+                <div
+                  className={`step-card ${activeStepIndex === idx ? 'step-card-active' : ''}`}
+                  role="tab"
+                  tabIndex={0}
+                  aria-selected={activeStepIndex === idx}
+                  onClick={() => setActiveStepIndex(idx)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setActiveStepIndex(idx);
+                    }
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span className="step-number">{step.step}</span>
+                    {activeStepIndex === idx && (
+                      <span className="badge badge-ongoing" style={{ fontSize: '0.625rem' }}>Active Stage</span>
+                    )}
+                  </div>
                   <h3 className="step-title">{step.title}</h3>
                   <p className="step-subtitle">{step.subtitle}</p>
                 </div>
@@ -195,6 +234,21 @@ export function LandingPage() {
               </React.Fragment>
             ))}
           </div>
+
+          {/* Interactive Step Detail Card */}
+          <div className="step-active-detail-box" role="tabpanel" aria-live="polite">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--teal-600)', letterSpacing: '0.05em' }}>
+                STAGE {data.howItWorks[activeStepIndex].step} DEEP-DIVE
+              </span>
+            </div>
+            <h4 style={{ fontSize: '1.125rem', fontWeight: 700, color: 'var(--slate-900)', marginBottom: '6px' }}>
+              {data.howItWorks[activeStepIndex].title}: {data.howItWorks[activeStepIndex].subtitle}
+            </h4>
+            <p style={{ fontSize: '0.875rem', color: 'var(--slate-600)', lineHeight: '1.6' }}>
+              {data.howItWorks[activeStepIndex].details}
+            </p>
+          </div>
         </section>
 
         {/* Attention Example Section */}
@@ -208,13 +262,15 @@ export function LandingPage() {
               <p className="showcase-left-subtext">
                 CivicTrack automatically detects anomalies in project milestones, spending velocity, and physical verification to surface actionable data signals without political bias.
               </p>
-              <div style={{ marginTop: '1.5rem' }}>
-                <a href="#/dashboard" className="btn btn-primary">See how it works</a>
+              <div style={{ marginTop: '1.75rem' }}>
+                <a href="#/dashboard" className="btn btn-primary">
+                  Explore Live Dashboard
+                </a>
               </div>
             </div>
 
             {/* Example Project Card */}
-            <div className="showcase-project-box">
+            <div className="showcase-project-box" tabIndex="0" role="region" aria-label="Sample Flagged Project Detail">
               <div className="showcase-box-header">
                 <div>
                   <h3 className="showcase-box-title">{data.attentionExample.title}</h3>
@@ -270,7 +326,9 @@ export function LandingPage() {
               </ul>
 
               <div style={{ marginTop: '0.5rem' }}>
-                <a href="#/dashboard" className="btn btn-primary" style={{ width: '100%' }}>See how it works</a>
+                <a href="#/dashboard" className="btn btn-primary" style={{ width: '100%' }}>
+                  See how it works
+                </a>
               </div>
             </div>
           </div>

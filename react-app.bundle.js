@@ -1084,7 +1084,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState5(initialState) {
+          function useState8(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1096,7 +1096,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect3(create, deps) {
+          function useEffect5(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1879,7 +1879,7 @@
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect3;
+          exports.useEffect = useEffect5;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -1887,7 +1887,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef2;
-          exports.useState = useState5;
+          exports.useState = useState8;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -23536,7 +23536,153 @@
   // src/components/Navbar.jsx
   var import_react = __toESM(require_react(), 1);
   function Navbar() {
-    return /* @__PURE__ */ import_react.default.createElement("nav", { className: "landing-nav", "aria-label": "Main Navigation" }, /* @__PURE__ */ import_react.default.createElement("a", { href: "#/", className: "civic-logo", id: "nav-logo" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "civic-logo-icon" }, /* @__PURE__ */ import_react.default.createElement("svg", { width: "32", height: "32", viewBox: "0 0 32 32", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, /* @__PURE__ */ import_react.default.createElement("polygon", { points: "16,3 28,10 28,22 16,29 4,22 4,10", stroke: "#0f172a", strokeWidth: "2.5", fill: "#f8fafc" }), /* @__PURE__ */ import_react.default.createElement("circle", { cx: "16", cy: "16", r: "4.5", fill: "#0d9488" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "16", y1: "3", x2: "16", y2: "11.5", stroke: "#0d9488", strokeWidth: "2" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "28", y1: "22", x2: "19.5", y2: "18.5", stroke: "#0d9488", strokeWidth: "2" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "4", y1: "22", x2: "12.5", y2: "18.5", stroke: "#0d9488", strokeWidth: "2" }))), /* @__PURE__ */ import_react.default.createElement("div", { className: "civic-logo-text" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "civic-logo-title" }, "CivicTrack"), /* @__PURE__ */ import_react.default.createElement("span", { className: "civic-logo-subtitle" }, "MP Accountability & Fund Monitoring"))), /* @__PURE__ */ import_react.default.createElement("ul", { className: "landing-nav-links" }, /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("a", { href: "#how-it-works", className: "landing-nav-link" }, "How It Works")), /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("a", { href: "#metrics", className: "landing-nav-link" }, "Monitoring")), /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement("a", { href: "#features", className: "landing-nav-link" }, "About"))), /* @__PURE__ */ import_react.default.createElement("div", { className: "landing-nav-actions" }, /* @__PURE__ */ import_react.default.createElement("a", { href: "#/login", className: "btn btn-ghost", id: "nav-login-btn" }, "Sign in"), /* @__PURE__ */ import_react.default.createElement("a", { href: "#/dashboard", className: "btn btn-primary", id: "nav-explore-btn" }, "Explore Dashboard")));
+    const [mobileMenuOpen, setMobileMenuOpen] = (0, import_react.useState)(false);
+    (0, import_react.useEffect)(() => {
+      const handleKeyDown = (e) => {
+        if (e.key === "Escape") {
+          setMobileMenuOpen(false);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => window.removeEventListener("keydown", handleKeyDown);
+    }, []);
+    (0, import_react.useEffect)(() => {
+      const handleResize = () => {
+        if (window.innerWidth > 768) {
+          setMobileMenuOpen(false);
+        }
+      };
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+    const handleNavClick = (e, targetId) => {
+      e.preventDefault();
+      setMobileMenuOpen(false);
+      if (window.location.hash && window.location.hash !== "#/" && !window.location.hash.startsWith("#how-") && !window.location.hash.startsWith("#metric") && !window.location.hash.startsWith("#feature")) {
+        window.location.hash = "#/";
+        setTimeout(() => {
+          const el = document.getElementById(targetId);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+    return /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, /* @__PURE__ */ import_react.default.createElement("nav", { className: "landing-nav", "aria-label": "Main Navigation" }, /* @__PURE__ */ import_react.default.createElement("a", { href: "#/", className: "civic-logo", id: "nav-logo", "aria-label": "CivicTrack Homepage" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "civic-logo-icon" }, /* @__PURE__ */ import_react.default.createElement("svg", { width: "32", height: "32", viewBox: "0 0 32 32", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, /* @__PURE__ */ import_react.default.createElement("polygon", { points: "16,3 28,10 28,22 16,29 4,22 4,10", stroke: "#0f172a", strokeWidth: "2.5", fill: "#f8fafc" }), /* @__PURE__ */ import_react.default.createElement("circle", { cx: "16", cy: "16", r: "4.5", fill: "#0d9488" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "16", y1: "3", x2: "16", y2: "11.5", stroke: "#0d9488", strokeWidth: "2" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "28", y1: "22", x2: "19.5", y2: "18.5", stroke: "#0d9488", strokeWidth: "2" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "4", y1: "22", x2: "12.5", y2: "18.5", stroke: "#0d9488", strokeWidth: "2" }))), /* @__PURE__ */ import_react.default.createElement("div", { className: "civic-logo-text" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "civic-logo-title" }, "CivicTrack"), /* @__PURE__ */ import_react.default.createElement("span", { className: "civic-logo-subtitle" }, "MP Accountability & Fund Monitoring"))), /* @__PURE__ */ import_react.default.createElement("ul", { className: "landing-nav-links", role: "menubar" }, /* @__PURE__ */ import_react.default.createElement("li", { role: "none" }, /* @__PURE__ */ import_react.default.createElement(
+      "a",
+      {
+        href: "#how-it-works",
+        className: "landing-nav-link",
+        role: "menuitem",
+        onClick: (e) => handleNavClick(e, "how-it-works")
+      },
+      "How It Works"
+    )), /* @__PURE__ */ import_react.default.createElement("li", { role: "none" }, /* @__PURE__ */ import_react.default.createElement(
+      "a",
+      {
+        href: "#metrics",
+        className: "landing-nav-link",
+        role: "menuitem",
+        onClick: (e) => handleNavClick(e, "metrics")
+      },
+      "Monitoring"
+    )), /* @__PURE__ */ import_react.default.createElement("li", { role: "none" }, /* @__PURE__ */ import_react.default.createElement(
+      "a",
+      {
+        href: "#features",
+        className: "landing-nav-link",
+        role: "menuitem",
+        onClick: (e) => handleNavClick(e, "features")
+      },
+      "About"
+    ))), /* @__PURE__ */ import_react.default.createElement("div", { className: "landing-nav-actions" }, /* @__PURE__ */ import_react.default.createElement("a", { href: "#/login", className: "btn btn-ghost", id: "nav-login-btn" }, "Sign in"), /* @__PURE__ */ import_react.default.createElement("a", { href: "#/dashboard", className: "btn btn-primary", id: "nav-explore-btn" }, "Explore Dashboard")), /* @__PURE__ */ import_react.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "mobile-nav-toggle",
+        id: "btn-mobile-nav-toggle",
+        "aria-label": "Toggle navigation menu",
+        "aria-expanded": mobileMenuOpen,
+        "aria-controls": "mobile-nav-drawer",
+        onClick: () => setMobileMenuOpen(!mobileMenuOpen)
+      },
+      mobileMenuOpen ? /* @__PURE__ */ import_react.default.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react.default.createElement("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" })) : /* @__PURE__ */ import_react.default.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react.default.createElement("line", { x1: "3", y1: "12", x2: "21", y2: "12" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "3", y1: "6", x2: "21", y2: "6" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "3", y1: "18", x2: "21", y2: "18" }))
+    )), mobileMenuOpen && /* @__PURE__ */ import_react.default.createElement(
+      "div",
+      {
+        className: "mobile-drawer-backdrop",
+        onClick: () => setMobileMenuOpen(false),
+        "aria-hidden": "true"
+      }
+    ), /* @__PURE__ */ import_react.default.createElement(
+      "div",
+      {
+        id: "mobile-nav-drawer",
+        className: `mobile-nav-drawer ${mobileMenuOpen ? "open" : ""}`,
+        "aria-hidden": !mobileMenuOpen
+      },
+      /* @__PURE__ */ import_react.default.createElement("div", { className: "mobile-drawer-header" }, /* @__PURE__ */ import_react.default.createElement("span", { className: "civic-logo-title", style: { fontSize: "1rem", fontWeight: 700 } }, "Menu"), /* @__PURE__ */ import_react.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "btn-ghost",
+          style: { padding: "4px" },
+          "aria-label": "Close menu",
+          onClick: () => setMobileMenuOpen(false)
+        },
+        /* @__PURE__ */ import_react.default.createElement("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react.default.createElement("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" }))
+      )),
+      /* @__PURE__ */ import_react.default.createElement("ul", { className: "mobile-nav-list" }, /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement(
+        "a",
+        {
+          href: "#how-it-works",
+          className: "mobile-nav-item",
+          onClick: (e) => handleNavClick(e, "how-it-works")
+        },
+        /* @__PURE__ */ import_react.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react.default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ import_react.default.createElement("polyline", { points: "12 6 12 12 14 14" })),
+        "How It Works"
+      )), /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement(
+        "a",
+        {
+          href: "#metrics",
+          className: "mobile-nav-item",
+          onClick: (e) => handleNavClick(e, "metrics")
+        },
+        /* @__PURE__ */ import_react.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react.default.createElement("line", { x1: "18", y1: "20", x2: "18", y2: "10" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "12", y1: "20", x2: "12", y2: "4" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "6", y1: "20", x2: "6", y2: "14" })),
+        "Monitoring"
+      )), /* @__PURE__ */ import_react.default.createElement("li", null, /* @__PURE__ */ import_react.default.createElement(
+        "a",
+        {
+          href: "#features",
+          className: "mobile-nav-item",
+          onClick: (e) => handleNavClick(e, "features")
+        },
+        /* @__PURE__ */ import_react.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react.default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "12", y1: "16", x2: "12", y2: "12" }), /* @__PURE__ */ import_react.default.createElement("line", { x1: "12", y1: "8", x2: "12.01", y2: "8" })),
+        "About"
+      ))),
+      /* @__PURE__ */ import_react.default.createElement("div", { className: "mobile-drawer-actions" }, /* @__PURE__ */ import_react.default.createElement(
+        "a",
+        {
+          href: "#/login",
+          className: "btn btn-secondary",
+          style: { width: "100%" },
+          onClick: () => setMobileMenuOpen(false)
+        },
+        "Sign in"
+      ), /* @__PURE__ */ import_react.default.createElement(
+        "a",
+        {
+          href: "#/dashboard",
+          className: "btn btn-primary",
+          style: { width: "100%" },
+          onClick: () => setMobileMenuOpen(false)
+        },
+        "Explore Dashboard"
+      ))
+    ));
   }
 
   // src/components/Footer.jsx
@@ -23546,6 +23692,292 @@
   }
 
   // src/data/mockData.js
+  var yearDatasets = {
+    "2025\u201326": {
+      kpis: {
+        totalAllocation: {
+          value: "\u20B912.4 Cr",
+          rawAmount: 12.4,
+          subtext: "\u2191 8.2% from previous year",
+          badgeType: "positive"
+        },
+        totalExpenditure: {
+          value: "\u20B98.7 Cr",
+          rawAmount: 8.7,
+          subtext: "70.2% utilization",
+          progress: 70.2,
+          badgeType: "neutral"
+        },
+        remaining: {
+          value: "\u20B93.7 Cr",
+          rawAmount: 3.7,
+          subtext: "30% of allocation",
+          badgeType: "neutral"
+        },
+        projects: {
+          value: "48",
+          subtext: "9 need attention",
+          badgeType: "attention"
+        }
+      },
+      fundChart: [
+        { label: "Allocated", amount: 12.4, display: "\u20B912.4 Cr", color: "#0f172a", pct: "100%" },
+        { label: "Spent", amount: 8.7, display: "\u20B98.7 Cr", color: "#0d9488", pct: "70.2%" },
+        { label: "Remaining", amount: 3.7, display: "\u20B93.7 Cr", color: "#f59e0b", pct: "29.8%" }
+      ],
+      statusChart: [
+        { status: "Completed", count: 21, percentage: 43.8, color: "#059669" },
+        { status: "Ongoing", count: 18, percentage: 37.5, color: "#2563eb" },
+        { status: "Delayed", count: 6, percentage: 12.5, color: "#f59e0b" },
+        { status: "Attention", count: 3, percentage: 6.2, color: "#dc2626" }
+      ],
+      trendChart: [
+        { year: "2022\u201323", rate: 45, display: "45%", spent: "\u20B94.1 Cr", total: "\u20B99.1 Cr" },
+        { year: "2023\u201324", rate: 55, display: "55%", spent: "\u20B95.4 Cr", total: "\u20B99.8 Cr" },
+        { year: "2024\u201325", rate: 63, display: "63%", spent: "\u20B97.1 Cr", total: "\u20B911.2 Cr" },
+        { year: "2025\u201326", rate: 70, display: "70%", spent: "\u20B98.7 Cr", total: "\u20B912.4 Cr" }
+      ],
+      attentionProjects: [
+        {
+          id: "proj-1",
+          title: "Road Construction \u2014 Ward 12",
+          location: "Patna, Bihar",
+          constituency: "Patna Sahib",
+          mpName: "Rahul Sharma",
+          progress: 32,
+          overdueDays: 42,
+          financialUtilization: 25,
+          allocated: "\u20B91.00 Cr",
+          spent: "\u20B925L",
+          remaining: "\u20B975L",
+          severity: "HIGH ATTENTION",
+          severityClass: "severity-high",
+          category: "Infrastructure",
+          signals: [
+            "Project is overdue by 42 days",
+            "Physical progress is below expected level (32% vs 65% target)",
+            "Last progress update was 78 days ago"
+          ]
+        },
+        {
+          id: "proj-2",
+          title: "Community Health Center",
+          location: "Muzaffarpur, Bihar",
+          constituency: "Muzaffarpur",
+          mpName: "Pawan Kumar",
+          progress: 28,
+          overdueDays: 35,
+          financialUtilization: 75,
+          allocated: "\u20B975L",
+          spent: "\u20B956L",
+          remaining: "\u20B919L",
+          severity: "MEDIUM ATTENTION",
+          severityClass: "severity-medium",
+          category: "Healthcare",
+          signals: [
+            "Physical progress (28%) lagging behind financial burn rate (75%)",
+            "Milestone 2 pending sign-off for 35 days",
+            "Site inspection verification required"
+          ]
+        },
+        {
+          id: "proj-3",
+          title: "Water Supply Project \u2014 Phase 2",
+          location: "Gaya, Bihar",
+          constituency: "Gaya",
+          mpName: "Anita Verma",
+          progress: 30,
+          overdueDays: 20,
+          financialUtilization: 30,
+          allocated: "\u20B91.15 Cr",
+          spent: "\u20B935L",
+          remaining: "\u20B980L",
+          severity: "ATTENTION",
+          severityClass: "severity-low",
+          category: "Sanitation",
+          signals: [
+            "20 days overdue on pipe laying phase",
+            "Vendor supply verification pending",
+            "Recent expenditure requires progress validation"
+          ]
+        },
+        {
+          id: "proj-4",
+          title: "Primary School Renovation",
+          location: "Gaya, Bihar",
+          constituency: "Gaya",
+          mpName: "Anita Verma",
+          progress: 52,
+          overdueDays: 15,
+          financialUtilization: 50,
+          allocated: "\u20B945L",
+          spent: "\u20B922.5L",
+          remaining: "\u20B922.5L",
+          severity: "ATTENTION",
+          severityClass: "severity-low",
+          category: "Education",
+          signals: [
+            "15 days delay in roof reinforcement phase",
+            "Pending updated photos from field engineer"
+          ]
+        }
+      ]
+    },
+    "2024\u201325": {
+      kpis: {
+        totalAllocation: {
+          value: "\u20B911.2 Cr",
+          rawAmount: 11.2,
+          subtext: "\u2191 14.3% from previous year",
+          badgeType: "positive"
+        },
+        totalExpenditure: {
+          value: "\u20B97.1 Cr",
+          rawAmount: 7.1,
+          subtext: "63.4% utilization",
+          progress: 63.4,
+          badgeType: "neutral"
+        },
+        remaining: {
+          value: "\u20B94.1 Cr",
+          rawAmount: 4.1,
+          subtext: "36.6% of allocation",
+          badgeType: "neutral"
+        },
+        projects: {
+          value: "44",
+          subtext: "6 need attention",
+          badgeType: "attention"
+        }
+      },
+      fundChart: [
+        { label: "Allocated", amount: 11.2, display: "\u20B911.2 Cr", color: "#0f172a", pct: "100%" },
+        { label: "Spent", amount: 7.1, display: "\u20B97.1 Cr", color: "#0d9488", pct: "63.4%" },
+        { label: "Remaining", amount: 4.1, display: "\u20B94.1 Cr", color: "#f59e0b", pct: "36.6%" }
+      ],
+      statusChart: [
+        { status: "Completed", count: 26, percentage: 59.1, color: "#059669" },
+        { status: "Ongoing", count: 12, percentage: 27.3, color: "#2563eb" },
+        { status: "Delayed", count: 4, percentage: 9.1, color: "#f59e0b" },
+        { status: "Attention", count: 2, percentage: 4.5, color: "#dc2626" }
+      ],
+      trendChart: [
+        { year: "2022\u201323", rate: 45, display: "45%", spent: "\u20B94.1 Cr", total: "\u20B99.1 Cr" },
+        { year: "2023\u201324", rate: 55, display: "55%", spent: "\u20B95.4 Cr", total: "\u20B99.8 Cr" },
+        { year: "2024\u201325", rate: 63, display: "63%", spent: "\u20B97.1 Cr", total: "\u20B911.2 Cr" },
+        { year: "2025\u201326", rate: 70, display: "70%", spent: "\u20B98.7 Cr", total: "\u20B912.4 Cr" }
+      ],
+      attentionProjects: [
+        {
+          id: "proj-101",
+          title: "District Hospital ICU Wing",
+          location: "Bhagalpur, Bihar",
+          constituency: "Bhagalpur",
+          mpName: "Sanjay Singh",
+          progress: 40,
+          overdueDays: 28,
+          financialUtilization: 60,
+          allocated: "\u20B91.80 Cr",
+          spent: "\u20B91.08 Cr",
+          remaining: "\u20B972L",
+          severity: "HIGH ATTENTION",
+          severityClass: "severity-high",
+          category: "Healthcare",
+          signals: [
+            "Equipment procurement delayed by 28 days",
+            "Verification audit pending for Phase 2 expenditure"
+          ]
+        },
+        {
+          id: "proj-102",
+          title: "Solar Street Light Installation",
+          location: "Araria, Bihar",
+          constituency: "Araria",
+          mpName: "Vikram Pratap",
+          progress: 45,
+          overdueDays: 18,
+          financialUtilization: 48,
+          allocated: "\u20B950L",
+          spent: "\u20B924L",
+          remaining: "\u20B926L",
+          severity: "MEDIUM ATTENTION",
+          severityClass: "severity-medium",
+          category: "Energy",
+          signals: [
+            "18 days overdue on block 4 pole setup",
+            "Geo-tagged inspection report incomplete"
+          ]
+        }
+      ]
+    },
+    "2023\u201324": {
+      kpis: {
+        totalAllocation: {
+          value: "\u20B99.8 Cr",
+          rawAmount: 9.8,
+          subtext: "\u2191 7.7% from previous year",
+          badgeType: "positive"
+        },
+        totalExpenditure: {
+          value: "\u20B95.4 Cr",
+          rawAmount: 5.4,
+          subtext: "55.1% utilization",
+          progress: 55.1,
+          badgeType: "neutral"
+        },
+        remaining: {
+          value: "\u20B94.4 Cr",
+          rawAmount: 4.4,
+          subtext: "44.9% of allocation",
+          badgeType: "neutral"
+        },
+        projects: {
+          value: "38",
+          subtext: "4 need attention",
+          badgeType: "attention"
+        }
+      },
+      fundChart: [
+        { label: "Allocated", amount: 9.8, display: "\u20B99.8 Cr", color: "#0f172a", pct: "100%" },
+        { label: "Spent", amount: 5.4, display: "\u20B95.4 Cr", color: "#0d9488", pct: "55.1%" },
+        { label: "Remaining", amount: 4.4, display: "\u20B94.4 Cr", color: "#f59e0b", pct: "44.9%" }
+      ],
+      statusChart: [
+        { status: "Completed", count: 28, percentage: 73.7, color: "#059669" },
+        { status: "Ongoing", count: 6, percentage: 15.8, color: "#2563eb" },
+        { status: "Delayed", count: 2, percentage: 5.3, color: "#f59e0b" },
+        { status: "Attention", count: 2, percentage: 5.3, color: "#dc2626" }
+      ],
+      trendChart: [
+        { year: "2022\u201323", rate: 45, display: "45%", spent: "\u20B94.1 Cr", total: "\u20B99.1 Cr" },
+        { year: "2023\u201324", rate: 55, display: "55%", spent: "\u20B95.4 Cr", total: "\u20B99.8 Cr" },
+        { year: "2024\u201325", rate: 63, display: "63%", spent: "\u20B97.1 Cr", total: "11.2 Cr" },
+        { year: "2025\u201326", rate: 70, display: "70%", spent: "\u20B98.7 Cr", total: "\u20B912.4 Cr" }
+      ],
+      attentionProjects: [
+        {
+          id: "proj-201",
+          title: "Rural Drainage Improvement",
+          location: "Bhagalpur, Bihar",
+          constituency: "Bhagalpur",
+          mpName: "Neha Reddy",
+          progress: 60,
+          overdueDays: 22,
+          financialUtilization: 65,
+          allocated: "\u20B990L",
+          spent: "\u20B958.5L",
+          remaining: "\u20B931.5L",
+          severity: "MEDIUM ATTENTION",
+          severityClass: "severity-medium",
+          category: "Sanitation",
+          signals: [
+            "Monsoon channel construction delayed by 22 days",
+            "Third-party audit requested by district magistrate"
+          ]
+        }
+      ]
+    }
+  };
   var mockData = {
     currentUser: {
       name: "Admin User",
@@ -23554,7 +23986,7 @@
       avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
       isAuthenticated: true
     },
-    years: ["2025\u201326", "2024\u201325", "2023\u201324", "2022\u201323"],
+    years: ["2025\u201326", "2024\u201325", "2023\u201324"],
     selectedYear: "2025\u201326",
     landingMetrics: {
       fundsTracked: "\u20B912.4 Cr",
@@ -23565,25 +23997,25 @@
       {
         id: "transparency",
         title: "Fund Transparency",
-        description: "Understand allocation, expenditure and remaining funds.",
+        description: "Understand allocation, expenditure and remaining funds with full audit fidelity.",
         icon: "fund"
       },
       {
         id: "monitoring",
         title: "Project Monitoring",
-        description: "Track project progress and expected completion.",
+        description: "Track project progress, milestone completions, and expected completion timelines.",
         icon: "monitoring"
       },
       {
         id: "alerts",
         title: "Explainable Alerts",
-        description: "Understand exactly why a project was flagged.",
+        description: "Understand exactly why a project was flagged through contextual signals.",
         icon: "alerts"
       },
       {
         id: "evidence",
         title: "Evidence",
-        description: "Connect project records with supporting evidence.",
+        description: "Connect project records with timestamped photographic and physical evidence.",
         icon: "evidence"
       }
     ],
@@ -23591,17 +24023,20 @@
       {
         step: "01",
         title: "Collect",
-        subtitle: "Fund and project data"
+        subtitle: "Fund and project data",
+        details: "Aggregate MP LAD fund sanction orders, treasury disbursements, and contractor allocations into an immutable civic ledger."
       },
       {
         step: "02",
         title: "Analyze",
-        subtitle: "Financial + physical progress + timeline"
+        subtitle: "Financial + physical progress + timeline",
+        details: "Cross-reference financial disbursements with verified on-site milestones, satellite inspection tags, and scheduled deliverables."
       },
       {
         step: "03",
         title: "Surface",
-        subtitle: "Projects that may require attention"
+        subtitle: "Projects that may require attention",
+        details: "Detect milestone stalls, abnormal spending velocity, or overdue delivery to surface explainable civic signals for administrators."
       }
     ],
     attentionExample: {
@@ -23617,139 +24052,41 @@
       ],
       explanation: "These indicators suggest that the project may require further verification. This is not a finding of wrongdoing."
     },
-    dashboardKPIs: {
-      totalAllocation: {
-        value: "\u20B912.4 Cr",
-        rawAmount: 12.4,
-        subtext: "\u2191 8.2% from previous year",
-        badgeType: "positive"
-      },
-      totalExpenditure: {
-        value: "\u20B98.7 Cr",
-        rawAmount: 8.7,
-        subtext: "70.2% utilization",
-        progress: 70.2,
-        badgeType: "neutral"
-      },
-      remaining: {
-        value: "\u20B93.7 Cr",
-        rawAmount: 3.7,
-        subtext: "30% of allocation",
-        badgeType: "neutral"
-      },
-      projects: {
-        value: "48",
-        subtext: "9 need attention",
-        badgeType: "attention"
-      }
-    },
-    fundUtilizationChart: [
-      { label: "Allocated", amount: 12.4, display: "\u20B912.4 Cr", color: "#0f172a" },
-      { label: "Spent", amount: 8.7, display: "\u20B98.7 Cr", color: "#0d9488" },
-      { label: "Remaining", amount: 3.7, display: "\u20B93.7 Cr", color: "#f59e0b" }
-    ],
-    projectStatusChart: [
-      { status: "Completed", count: 21, percentage: 43.8, color: "#059669" },
-      { status: "Ongoing", count: 18, percentage: 37.5, color: "#2563eb" },
-      { status: "Delayed", count: 6, percentage: 12.5, color: "#f59e0b" },
-      { status: "Attention", count: 3, percentage: 6.2, color: "#dc2626" }
-    ],
-    utilizationOverTimeChart: [
-      { year: "2022\u201323", rate: 45 },
-      { year: "2023\u201324", rate: 55 },
-      { year: "2024\u201325", rate: 63 },
-      { year: "2025\u201326", rate: 70 }
-    ],
-    attentionProjects: [
-      {
-        id: "proj-1",
-        title: "Road Construction \u2014 Ward 12",
-        location: "Patna, Bihar",
-        constituency: "Patna Sahib",
-        progress: 32,
-        overdueDays: 42,
-        financialUtilization: 25,
-        allocated: "\u20B91.00 Cr",
-        spent: "\u20B925L",
-        remaining: "\u20B975L",
-        severity: "HIGH ATTENTION",
-        severityClass: "severity-high",
-        signals: [
-          "Project is overdue by 42 days",
-          "Physical progress is below expected level",
-          "Last progress update was 78 days ago"
-        ]
-      },
-      {
-        id: "proj-2",
-        title: "Community Health Center",
-        location: "Muzaffarpur, Bihar",
-        constituency: "Muzaffarpur",
-        progress: 28,
-        overdueDays: 35,
-        financialUtilization: 75,
-        allocated: "\u20B975L",
-        spent: "\u20B956L",
-        remaining: "\u20B919L",
-        severity: "MEDIUM ATTENTION",
-        severityClass: "severity-medium",
-        signals: [
-          "Physical progress lagging behind financial burn rate",
-          "Milestone 2 pending sign-off for 35 days",
-          "Site inspection verification required"
-        ]
-      },
-      {
-        id: "proj-3",
-        title: "Water Supply Project \u2014 Phase 2",
-        location: "Gaya, Bihar",
-        constituency: "Gaya",
-        progress: 30,
-        overdueDays: 20,
-        financialUtilization: 30,
-        allocated: "\u20B91.15 Cr",
-        spent: "\u20B935L",
-        remaining: "\u20B980L",
-        severity: "ATTENTION",
-        severityClass: "severity-low",
-        signals: [
-          "20 days overdue on pipe laying phase",
-          "Vendor supply verification pending",
-          "Recent expenditure requires progress validation"
-        ]
-      }
-    ],
     notifications: [
       {
         id: "notif-1",
         title: "Attention Signal Logged",
         message: "Road Construction \u2014 Ward 12 flagged: 42 days overdue.",
         time: "10 mins ago",
-        type: "alert"
+        type: "alert",
+        read: false
       },
       {
         id: "notif-2",
         title: "Quarterly Utilization Update",
-        message: "FY 2025-26 utilization reached 70.2%.",
+        message: "FY 2025\u201326 fund utilization reached 70.2% across constituencies.",
         time: "2 hours ago",
-        type: "info"
+        type: "info",
+        read: false
       },
       {
         id: "notif-3",
         title: "New Verification Evidence",
         message: "Photographic record uploaded for Primary School Renovation.",
         time: "1 day ago",
-        type: "success"
+        type: "success",
+        read: false
       }
     ]
   };
   function getOverviewData(year = "2025\u201326") {
+    const dataset = yearDatasets[year] || yearDatasets["2025\u201326"];
     return {
-      kpis: mockData.dashboardKPIs,
-      fundChart: mockData.fundUtilizationChart,
-      statusChart: mockData.projectStatusChart,
-      trendChart: mockData.utilizationOverTimeChart,
-      attentionProjects: mockData.attentionProjects,
+      kpis: dataset.kpis,
+      fundChart: dataset.fundChart,
+      statusChart: dataset.statusChart,
+      trendChart: dataset.trendChart,
+      attentionProjects: dataset.attentionProjects,
       selectedYear: year
     };
   }
@@ -23761,11 +24098,29 @@
       attentionExample: mockData.attentionExample
     };
   }
-  function loginUser() {
-    localStorage.setItem("civictrack_auth", "true");
-    mockData.currentUser.isAuthenticated = true;
-    return mockData.currentUser;
-  }
+  var authService = {
+    loginWithGoogle(simulateFailure = false) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (simulateFailure) {
+            reject(new Error("Unable to connect to Google Identity Services. Please verify your network and try again."));
+          } else {
+            localStorage.setItem("civictrack_auth", "true");
+            mockData.currentUser.isAuthenticated = true;
+            resolve(mockData.currentUser);
+          }
+        }, 1e3);
+      });
+    },
+    logout() {
+      localStorage.removeItem("civictrack_auth");
+      mockData.currentUser.isAuthenticated = false;
+      return Promise.resolve();
+    },
+    isAuthenticated() {
+      return localStorage.getItem("civictrack_auth") === "true" || mockData.currentUser.isAuthenticated;
+    }
+  };
   function logoutUser() {
     localStorage.removeItem("civictrack_auth");
     mockData.currentUser.isAuthenticated = false;
@@ -23788,37 +24143,104 @@
   }
   function LandingPage() {
     const data = getLandingData();
-    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "landing-page" }, /* @__PURE__ */ import_react3.default.createElement(Navbar, null), /* @__PURE__ */ import_react3.default.createElement("main", null, /* @__PURE__ */ import_react3.default.createElement("section", { className: "landing-hero", "aria-label": "Hero Section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "hero-content" }, /* @__PURE__ */ import_react3.default.createElement("h1", { className: "hero-title" }, "Track where ", /* @__PURE__ */ import_react3.default.createElement("span", { className: "hero-title-accent" }, "public funds"), " are going."), /* @__PURE__ */ import_react3.default.createElement("p", { className: "hero-desc" }, "Monitor allocations, project progress, utilization and evidence \u2014 and quickly identify projects that may need attention."), /* @__PURE__ */ import_react3.default.createElement("div", { className: "hero-actions" }, /* @__PURE__ */ import_react3.default.createElement("a", { href: "#/dashboard", className: "btn btn-primary", id: "hero-btn-explore" }, "Explore Dashboard"), /* @__PURE__ */ import_react3.default.createElement("a", { href: "#how-it-works", className: "btn btn-secondary", id: "hero-btn-how" }, /* @__PURE__ */ import_react3.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react3.default.createElement("polygon", { points: "5 3 19 12 5 21 5 3" })), "How It Works"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "hero-visual-wrapper" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "hero-preview-card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-topbar" }, /* @__PURE__ */ import_react3.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "8px" } }, /* @__PURE__ */ import_react3.default.createElement("div", { style: { width: "20px", height: "20px", background: "#0f172a", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center", color: "#14b8a6", fontSize: "10px", fontWeight: 800 } }, "CT"), /* @__PURE__ */ import_react3.default.createElement("span", { style: { fontSize: "0.75rem", fontWeight: 700, color: "#0f172a" } }, "CivicTrack Preview")), /* @__PURE__ */ import_react3.default.createElement("span", { className: "badge badge-attention", style: { fontSize: "0.6875rem" } }, "2 projects may need attention")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpis" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-label" }, "Allocated"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-val" }, "\u20B912.4 Cr")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-label" }, "Spent"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-val" }, "\u20B98.7 Cr")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-label" }, "Remaining"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-val" }, "\u20B93.7 Cr")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-label" }, "Projects"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-val", style: { color: "#dc2626" } }, "48"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-charts-grid" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-chart-box" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-chart-title" }, "Utilization Over Time"), /* @__PURE__ */ import_react3.default.createElement("svg", { width: "100%", height: "80", viewBox: "0 0 200 80" }, /* @__PURE__ */ import_react3.default.createElement("polyline", { fill: "none", stroke: "#0284c7", strokeWidth: "2.5", strokeLinecap: "round", points: "20,60 70,48 120,38 175,25" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "20", cy: "60", r: "3", fill: "#fff", stroke: "#0284c7", strokeWidth: "2" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "70", cy: "48", r: "3", fill: "#fff", stroke: "#0284c7", strokeWidth: "2" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "120", cy: "38", r: "3", fill: "#fff", stroke: "#0284c7", strokeWidth: "2" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "175", cy: "25", r: "3", fill: "#fff", stroke: "#0284c7", strokeWidth: "2" }), /* @__PURE__ */ import_react3.default.createElement("text", { x: "20", y: "74", fontSize: "8", fill: "#94a3b8", textAnchor: "middle" }, "2022-23"), /* @__PURE__ */ import_react3.default.createElement("text", { x: "175", y: "74", fontSize: "8", fill: "#94a3b8", textAnchor: "middle" }, "2025-26"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-chart-box" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-chart-title" }, "Project Status"), /* @__PURE__ */ import_react3.default.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "center", height: "80px" } }, /* @__PURE__ */ import_react3.default.createElement("svg", { width: "70", height: "70", viewBox: "0 0 70 70" }, /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "35", cy: "35", r: "24", fill: "transparent", stroke: "#059669", strokeWidth: "10", strokeDasharray: "65 150", strokeDashoffset: "0" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "35", cy: "35", r: "24", fill: "transparent", stroke: "#2563eb", strokeWidth: "10", strokeDasharray: "55 150", strokeDashoffset: "-65" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "35", cy: "35", r: "24", fill: "transparent", stroke: "#f59e0b", strokeWidth: "10", strokeDasharray: "20 150", strokeDashoffset: "-120" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "35", cy: "35", r: "24", fill: "transparent", stroke: "#dc2626", strokeWidth: "10", strokeDasharray: "10 150", strokeDashoffset: "-140" })))))))), /* @__PURE__ */ import_react3.default.createElement("section", { className: "landing-metrics-section", id: "metrics", "aria-label": "Key Metrics" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "metrics-grid" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-value" }, data.metrics.fundsTracked), /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-label" }, "Funds Tracked")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-value" }, data.metrics.projectsMonitored), /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-label" }, "Projects Monitored")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-card attention" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-value" }, data.metrics.projectsNeedingAttention), /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-label" }, "Projects Needing Attention")))), /* @__PURE__ */ import_react3.default.createElement("section", { className: "landing-features-section", id: "features", "aria-label": "Platform Features" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "features-grid" }, data.features.map((f) => /* @__PURE__ */ import_react3.default.createElement("div", { key: f.id, className: "feature-card" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "feature-icon-wrapper" }, getFeatureIcon(f.icon)), /* @__PURE__ */ import_react3.default.createElement("h3", { className: "feature-title" }, f.title), /* @__PURE__ */ import_react3.default.createElement("p", { className: "feature-desc" }, f.description))))), /* @__PURE__ */ import_react3.default.createElement("section", { className: "landing-how-section", id: "how-it-works", "aria-label": "How It Works" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-header" }, /* @__PURE__ */ import_react3.default.createElement("h2", { className: "section-title" }, "How It Works")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "steps-container" }, data.howItWorks.map((step, idx) => /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, { key: step.step }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "step-card" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "step-number" }, step.step), /* @__PURE__ */ import_react3.default.createElement("h3", { className: "step-title" }, step.title), /* @__PURE__ */ import_react3.default.createElement("p", { className: "step-subtitle" }, step.subtitle)), idx < data.howItWorks.length - 1 && /* @__PURE__ */ import_react3.default.createElement("div", { className: "step-arrow", "aria-hidden": "true" }, /* @__PURE__ */ import_react3.default.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react3.default.createElement("line", { x1: "5", y1: "12", x2: "19", y2: "12" }), /* @__PURE__ */ import_react3.default.createElement("polyline", { points: "12 5 19 12 12 19" }))))))), /* @__PURE__ */ import_react3.default.createElement("section", { className: "landing-attention-example", "aria-label": "Explainable Attention Signals" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "attention-showcase-card" }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("h2", { className: "showcase-left-heading" }, "Not every anomaly is misconduct.", /* @__PURE__ */ import_react3.default.createElement("br", null), "But every signal deserves context."), /* @__PURE__ */ import_react3.default.createElement("p", { className: "showcase-left-subtext" }, "CivicTrack automatically detects anomalies in project milestones, spending velocity, and physical verification to surface actionable data signals without political bias."), /* @__PURE__ */ import_react3.default.createElement("div", { style: { marginTop: "1.5rem" } }, /* @__PURE__ */ import_react3.default.createElement("a", { href: "#/dashboard", className: "btn btn-primary" }, "See how it works"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-project-box" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-box-header" }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "showcase-box-title" }, data.attentionExample.title), /* @__PURE__ */ import_react3.default.createElement("span", { className: "showcase-box-loc" }, data.attentionExample.location)), /* @__PURE__ */ import_react3.default.createElement("span", { className: "badge badge-high" }, "High Attention")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-progress-grid" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-progress-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-progress-label" }, /* @__PURE__ */ import_react3.default.createElement("span", null, "Financial Utilization"), /* @__PURE__ */ import_react3.default.createElement("span", null, data.attentionExample.financialUtilization, "%")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "progress-track" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "progress-fill financial", style: { width: `${data.attentionExample.financialUtilization}%` } }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-progress-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-progress-label" }, /* @__PURE__ */ import_react3.default.createElement("span", null, "Physical Progress"), /* @__PURE__ */ import_react3.default.createElement("span", null, data.attentionExample.physicalProgress, "%")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "progress-track" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "progress-fill", style: { width: `${data.attentionExample.physicalProgress}%` } })))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-overdue-alert" }, /* @__PURE__ */ import_react3.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ import_react3.default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }), /* @__PURE__ */ import_react3.default.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" })), /* @__PURE__ */ import_react3.default.createElement("span", null, data.attentionExample.overdueDays, " days overdue")), /* @__PURE__ */ import_react3.default.createElement("div", { style: { fontSize: "0.8125rem", fontWeight: 600, color: "var(--slate-800)" } }, "3 attention signals:"), /* @__PURE__ */ import_react3.default.createElement("ul", { className: "showcase-signals-list" }, data.attentionExample.signals.map((s, idx) => /* @__PURE__ */ import_react3.default.createElement("li", { key: idx, className: "showcase-signal-item" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "signal-dot" }), /* @__PURE__ */ import_react3.default.createElement("span", null, s)))), /* @__PURE__ */ import_react3.default.createElement("div", { style: { marginTop: "0.5rem" } }, /* @__PURE__ */ import_react3.default.createElement("a", { href: "#/dashboard", className: "btn btn-primary", style: { width: "100%" } }, "See how it works")))))), /* @__PURE__ */ import_react3.default.createElement(Footer, null));
+    const [activeStepIndex, setActiveStepIndex] = (0, import_react3.useState)(0);
+    const handleScrollToSection = (e, targetId) => {
+      e.preventDefault();
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "landing-page" }, /* @__PURE__ */ import_react3.default.createElement(Navbar, null), /* @__PURE__ */ import_react3.default.createElement("main", { id: "main-content" }, /* @__PURE__ */ import_react3.default.createElement("section", { className: "landing-hero", "aria-label": "Hero Section" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "hero-content" }, /* @__PURE__ */ import_react3.default.createElement("h1", { className: "hero-title" }, "Track where ", /* @__PURE__ */ import_react3.default.createElement("span", { className: "hero-title-accent" }, "public funds"), " are going."), /* @__PURE__ */ import_react3.default.createElement("p", { className: "hero-desc" }, "Monitor allocations, project progress, utilization and evidence \u2014 and quickly identify projects that may need attention."), /* @__PURE__ */ import_react3.default.createElement("div", { className: "hero-actions" }, /* @__PURE__ */ import_react3.default.createElement("a", { href: "#/dashboard", className: "btn btn-primary", id: "hero-btn-explore" }, "Explore Dashboard"), /* @__PURE__ */ import_react3.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "btn btn-secondary",
+        id: "hero-btn-how",
+        onClick: (e) => handleScrollToSection(e, "how-it-works"),
+        "aria-label": "Scroll to How It Works section"
+      },
+      /* @__PURE__ */ import_react3.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react3.default.createElement("polygon", { points: "5 3 19 12 5 21 5 3" })),
+      "How It Works"
+    ))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "hero-visual-wrapper" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "hero-preview-card", role: "region", "aria-label": "Live Dashboard Snapshot Preview" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-topbar" }, /* @__PURE__ */ import_react3.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "8px" } }, /* @__PURE__ */ import_react3.default.createElement("div", { style: { width: "20px", height: "20px", background: "#0f172a", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center", color: "#14b8a6", fontSize: "10px", fontWeight: 800 } }, "CT"), /* @__PURE__ */ import_react3.default.createElement("span", { style: { fontSize: "0.75rem", fontWeight: 700, color: "#0f172a" } }, "CivicTrack Live Overview")), /* @__PURE__ */ import_react3.default.createElement("span", { className: "badge badge-attention", style: { fontSize: "0.6875rem" } }, "2 projects may need attention")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpis" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-label" }, "Allocated"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-val" }, "\u20B912.4 Cr")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-label" }, "Spent"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-val" }, "\u20B98.7 Cr")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-label" }, "Remaining"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-val" }, "\u20B93.7 Cr")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-label" }, "Projects"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-kpi-val", style: { color: "#dc2626" } }, "48"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-charts-grid" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-chart-box" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-chart-title" }, "Utilization Over Time"), /* @__PURE__ */ import_react3.default.createElement("svg", { width: "100%", height: "80", viewBox: "0 0 200 80" }, /* @__PURE__ */ import_react3.default.createElement("polyline", { fill: "none", stroke: "#0284c7", strokeWidth: "2.5", strokeLinecap: "round", points: "20,60 70,48 120,38 175,25" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "20", cy: "60", r: "3", fill: "#fff", stroke: "#0284c7", strokeWidth: "2" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "70", cy: "48", r: "3", fill: "#fff", stroke: "#0284c7", strokeWidth: "2" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "120", cy: "38", r: "3", fill: "#fff", stroke: "#0284c7", strokeWidth: "2" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "175", cy: "25", r: "3", fill: "#fff", stroke: "#0284c7", strokeWidth: "2" }), /* @__PURE__ */ import_react3.default.createElement("text", { x: "20", y: "74", fontSize: "8", fill: "#94a3b8", textAnchor: "middle" }, "2022-23"), /* @__PURE__ */ import_react3.default.createElement("text", { x: "175", y: "74", fontSize: "8", fill: "#94a3b8", textAnchor: "middle" }, "2025-26"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-chart-box" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "preview-chart-title" }, "Project Status"), /* @__PURE__ */ import_react3.default.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "center", height: "80px" } }, /* @__PURE__ */ import_react3.default.createElement("svg", { width: "70", height: "70", viewBox: "0 0 70 70" }, /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "35", cy: "35", r: "24", fill: "transparent", stroke: "#059669", strokeWidth: "10", strokeDasharray: "65 150", strokeDashoffset: "0" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "35", cy: "35", r: "24", fill: "transparent", stroke: "#2563eb", strokeWidth: "10", strokeDasharray: "55 150", strokeDashoffset: "-65" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "35", cy: "35", r: "24", fill: "transparent", stroke: "#f59e0b", strokeWidth: "10", strokeDasharray: "20 150", strokeDashoffset: "-120" }), /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "35", cy: "35", r: "24", fill: "transparent", stroke: "#dc2626", strokeWidth: "10", strokeDasharray: "10 150", strokeDashoffset: "-140" })))))))), /* @__PURE__ */ import_react3.default.createElement("section", { className: "landing-metrics-section", id: "metrics", "aria-label": "Key Metrics" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "metrics-grid" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-card", tabIndex: "0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-value" }, data.metrics.fundsTracked), /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-label" }, "Funds Tracked")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-card", tabIndex: "0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-value" }, data.metrics.projectsMonitored), /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-label" }, "Projects Monitored")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-card attention", tabIndex: "0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-value" }, data.metrics.projectsNeedingAttention), /* @__PURE__ */ import_react3.default.createElement("div", { className: "metric-label" }, "Projects Needing Attention")))), /* @__PURE__ */ import_react3.default.createElement("section", { className: "landing-features-section", id: "features", "aria-label": "Platform Features" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "features-grid" }, data.features.map((f) => /* @__PURE__ */ import_react3.default.createElement("div", { key: f.id, className: "feature-card", tabIndex: "0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "feature-icon-wrapper", "aria-hidden": "true" }, getFeatureIcon(f.icon)), /* @__PURE__ */ import_react3.default.createElement("h3", { className: "feature-title" }, f.title), /* @__PURE__ */ import_react3.default.createElement("p", { className: "feature-desc" }, f.description))))), /* @__PURE__ */ import_react3.default.createElement("section", { className: "landing-how-section", id: "how-it-works", "aria-label": "How It Works Pipeline" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "section-header" }, /* @__PURE__ */ import_react3.default.createElement("h2", { className: "section-title" }, "How It Works"), /* @__PURE__ */ import_react3.default.createElement("p", { style: { color: "var(--slate-500)", fontSize: "0.9375rem", marginTop: "0.5rem" } }, "Click any stage to understand how data moves from raw fund records into actionable civic insights.")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "steps-container", role: "tablist", "aria-label": "How it works stages" }, data.howItWorks.map((step, idx) => /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, { key: step.step }, /* @__PURE__ */ import_react3.default.createElement(
+      "div",
+      {
+        className: `step-card ${activeStepIndex === idx ? "step-card-active" : ""}`,
+        role: "tab",
+        tabIndex: 0,
+        "aria-selected": activeStepIndex === idx,
+        onClick: () => setActiveStepIndex(idx),
+        onKeyDown: (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setActiveStepIndex(idx);
+          }
+        }
+      },
+      /* @__PURE__ */ import_react3.default.createElement("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between" } }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "step-number" }, step.step), activeStepIndex === idx && /* @__PURE__ */ import_react3.default.createElement("span", { className: "badge badge-ongoing", style: { fontSize: "0.625rem" } }, "Active Stage")),
+      /* @__PURE__ */ import_react3.default.createElement("h3", { className: "step-title" }, step.title),
+      /* @__PURE__ */ import_react3.default.createElement("p", { className: "step-subtitle" }, step.subtitle)
+    ), idx < data.howItWorks.length - 1 && /* @__PURE__ */ import_react3.default.createElement("div", { className: "step-arrow", "aria-hidden": "true" }, /* @__PURE__ */ import_react3.default.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react3.default.createElement("line", { x1: "5", y1: "12", x2: "19", y2: "12" }), /* @__PURE__ */ import_react3.default.createElement("polyline", { points: "12 5 19 12 12 19" })))))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "step-active-detail-box", role: "tabpanel", "aria-live": "polite" }, /* @__PURE__ */ import_react3.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" } }, /* @__PURE__ */ import_react3.default.createElement("span", { style: { fontSize: "0.75rem", fontWeight: 800, color: "var(--teal-600)", letterSpacing: "0.05em" } }, "STAGE ", data.howItWorks[activeStepIndex].step, " DEEP-DIVE")), /* @__PURE__ */ import_react3.default.createElement("h4", { style: { fontSize: "1.125rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "6px" } }, data.howItWorks[activeStepIndex].title, ": ", data.howItWorks[activeStepIndex].subtitle), /* @__PURE__ */ import_react3.default.createElement("p", { style: { fontSize: "0.875rem", color: "var(--slate-600)", lineHeight: "1.6" } }, data.howItWorks[activeStepIndex].details))), /* @__PURE__ */ import_react3.default.createElement("section", { className: "landing-attention-example", "aria-label": "Explainable Attention Signals" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "attention-showcase-card" }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("h2", { className: "showcase-left-heading" }, "Not every anomaly is misconduct.", /* @__PURE__ */ import_react3.default.createElement("br", null), "But every signal deserves context."), /* @__PURE__ */ import_react3.default.createElement("p", { className: "showcase-left-subtext" }, "CivicTrack automatically detects anomalies in project milestones, spending velocity, and physical verification to surface actionable data signals without political bias."), /* @__PURE__ */ import_react3.default.createElement("div", { style: { marginTop: "1.75rem" } }, /* @__PURE__ */ import_react3.default.createElement("a", { href: "#/dashboard", className: "btn btn-primary" }, "Explore Live Dashboard"))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-project-box", tabIndex: "0", role: "region", "aria-label": "Sample Flagged Project Detail" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-box-header" }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("h3", { className: "showcase-box-title" }, data.attentionExample.title), /* @__PURE__ */ import_react3.default.createElement("span", { className: "showcase-box-loc" }, data.attentionExample.location)), /* @__PURE__ */ import_react3.default.createElement("span", { className: "badge badge-high" }, "High Attention")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-progress-grid" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-progress-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-progress-label" }, /* @__PURE__ */ import_react3.default.createElement("span", null, "Financial Utilization"), /* @__PURE__ */ import_react3.default.createElement("span", null, data.attentionExample.financialUtilization, "%")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "progress-track" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "progress-fill financial", style: { width: `${data.attentionExample.financialUtilization}%` } }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-progress-item" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-progress-label" }, /* @__PURE__ */ import_react3.default.createElement("span", null, "Physical Progress"), /* @__PURE__ */ import_react3.default.createElement("span", null, data.attentionExample.physicalProgress, "%")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "progress-track" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "progress-fill", style: { width: `${data.attentionExample.physicalProgress}%` } })))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "showcase-overdue-alert" }, /* @__PURE__ */ import_react3.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react3.default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ import_react3.default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }), /* @__PURE__ */ import_react3.default.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" })), /* @__PURE__ */ import_react3.default.createElement("span", null, data.attentionExample.overdueDays, " days overdue")), /* @__PURE__ */ import_react3.default.createElement("div", { style: { fontSize: "0.8125rem", fontWeight: 600, color: "var(--slate-800)" } }, "3 attention signals:"), /* @__PURE__ */ import_react3.default.createElement("ul", { className: "showcase-signals-list" }, data.attentionExample.signals.map((s, idx) => /* @__PURE__ */ import_react3.default.createElement("li", { key: idx, className: "showcase-signal-item" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "signal-dot" }), /* @__PURE__ */ import_react3.default.createElement("span", null, s)))), /* @__PURE__ */ import_react3.default.createElement("div", { style: { marginTop: "0.5rem" } }, /* @__PURE__ */ import_react3.default.createElement("a", { href: "#/dashboard", className: "btn btn-primary", style: { width: "100%" } }, "See how it works")))))), /* @__PURE__ */ import_react3.default.createElement(Footer, null));
   }
 
   // src/pages/LoginPage.jsx
   var import_react4 = __toESM(require_react(), 1);
   function LoginPage({ onLoginSuccess }) {
-    const [isLoading, setIsLoading] = (0, import_react4.useState)(false);
-    const handleGoogleLogin = () => {
-      setIsLoading(true);
-      setTimeout(() => {
-        loginUser();
-        setIsLoading(false);
+    const [authState, setAuthState] = (0, import_react4.useState)("idle");
+    const [errorMessage, setErrorMessage] = (0, import_react4.useState)("");
+    const [simulateFailure, setSimulateFailure] = (0, import_react4.useState)(false);
+    const handleGoogleLogin = async () => {
+      setAuthState("loading");
+      setErrorMessage("");
+      try {
+        await authService.loginWithGoogle(simulateFailure);
+        setAuthState("success");
         if (onLoginSuccess) {
           onLoginSuccess();
         } else {
           window.location.hash = "#/dashboard";
         }
-      }, 500);
+      } catch (err) {
+        setAuthState("error");
+        setErrorMessage(err.message || "Authentication failed. Please verify your Google account permissions and try again.");
+      }
     };
-    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-page-wrapper" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-backdrop-decor" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-card", role: "main" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-logo-container" }, /* @__PURE__ */ import_react4.default.createElement("a", { href: "#/", className: "civic-logo", style: { justifyContent: "center" } }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "civic-logo-icon" }, /* @__PURE__ */ import_react4.default.createElement("svg", { width: "34", height: "34", viewBox: "0 0 32 32", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, /* @__PURE__ */ import_react4.default.createElement("polygon", { points: "16,3 28,10 28,22 16,29 4,22 4,10", stroke: "#0f172a", strokeWidth: "2.5", fill: "#f8fafc" }), /* @__PURE__ */ import_react4.default.createElement("circle", { cx: "16", cy: "16", r: "4.5", fill: "#0d9488" }), /* @__PURE__ */ import_react4.default.createElement("line", { x1: "16", y1: "3", x2: "16", y2: "11.5", stroke: "#0d9488", strokeWidth: "2" }), /* @__PURE__ */ import_react4.default.createElement("line", { x1: "28", y1: "22", x2: "19.5", y2: "18.5", stroke: "#0d9488", strokeWidth: "2" }), /* @__PURE__ */ import_react4.default.createElement("line", { x1: "4", y1: "22", x2: "12.5", y2: "18.5", stroke: "#0d9488", strokeWidth: "2" }))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "civic-logo-text", style: { textAlign: "left" } }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "civic-logo-title" }, "CivicTrack"), /* @__PURE__ */ import_react4.default.createElement("span", { className: "civic-logo-subtitle" }, "MP Accountability & Fund Monitoring")))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-header-text" }, /* @__PURE__ */ import_react4.default.createElement("h1", { className: "login-title" }, "Welcome to CivicTrack"), /* @__PURE__ */ import_react4.default.createElement("p", { className: "login-subtitle" }, "Sign in to continue monitoring public development projects.")), /* @__PURE__ */ import_react4.default.createElement(
+    const handleRetry = () => {
+      setSimulateFailure(false);
+      setAuthState("idle");
+      setErrorMessage("");
+    };
+    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-page-wrapper" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-backdrop-decor" }), /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-card", role: "main", "aria-label": "Sign In Card" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-logo-container" }, /* @__PURE__ */ import_react4.default.createElement("a", { href: "#/", className: "civic-logo", style: { justifyContent: "center" }, "aria-label": "Back to CivicTrack Home" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "civic-logo-icon" }, /* @__PURE__ */ import_react4.default.createElement("svg", { width: "34", height: "34", viewBox: "0 0 32 32", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, /* @__PURE__ */ import_react4.default.createElement("polygon", { points: "16,3 28,10 28,22 16,29 4,22 4,10", stroke: "#0f172a", strokeWidth: "2.5", fill: "#f8fafc" }), /* @__PURE__ */ import_react4.default.createElement("circle", { cx: "16", cy: "16", r: "4.5", fill: "#0d9488" }), /* @__PURE__ */ import_react4.default.createElement("line", { x1: "16", y1: "3", x2: "16", y2: "11.5", stroke: "#0d9488", strokeWidth: "2" }), /* @__PURE__ */ import_react4.default.createElement("line", { x1: "28", y1: "22", x2: "19.5", y2: "18.5", stroke: "#0d9488", strokeWidth: "2" }), /* @__PURE__ */ import_react4.default.createElement("line", { x1: "4", y1: "22", x2: "12.5", y2: "18.5", stroke: "#0d9488", strokeWidth: "2" }))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "civic-logo-text", style: { textAlign: "left" } }, /* @__PURE__ */ import_react4.default.createElement("span", { className: "civic-logo-title" }, "CivicTrack"), /* @__PURE__ */ import_react4.default.createElement("span", { className: "civic-logo-subtitle" }, "MP Accountability & Fund Monitoring")))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-header-text" }, /* @__PURE__ */ import_react4.default.createElement("h1", { className: "login-title" }, "Welcome to CivicTrack"), /* @__PURE__ */ import_react4.default.createElement("p", { className: "login-subtitle" }, "Sign in to continue monitoring public development projects.")), authState === "error" && /* @__PURE__ */ import_react4.default.createElement("div", { className: "auth-error-banner", role: "alert", "aria-live": "assertive" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "auth-error-header" }, /* @__PURE__ */ import_react4.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", style: { color: "var(--rose-600)", flexShrink: 0 } }, /* @__PURE__ */ import_react4.default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ import_react4.default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }), /* @__PURE__ */ import_react4.default.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" })), /* @__PURE__ */ import_react4.default.createElement("span", { style: { fontWeight: 600, fontSize: "0.8125rem", color: "var(--rose-900)" } }, "Authentication Error")), /* @__PURE__ */ import_react4.default.createElement("p", { className: "auth-error-text" }, errorMessage), /* @__PURE__ */ import_react4.default.createElement("div", { style: { marginTop: "8px", display: "flex", gap: "8px" } }, /* @__PURE__ */ import_react4.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "btn btn-secondary",
+        style: { fontSize: "0.75rem", padding: "4px 10px", borderRadius: "4px" },
+        onClick: handleRetry
+      },
+      "Dismiss & Retry"
+    ))), /* @__PURE__ */ import_react4.default.createElement(
       "button",
       {
         type: "button",
         id: "btn-google-login",
         className: "btn-google-auth",
-        "aria-label": "Continue with Google",
+        "aria-label": authState === "loading" ? "Signing in with Google..." : "Continue with Google",
+        "aria-busy": authState === "loading",
         onClick: handleGoogleLogin,
-        disabled: isLoading
+        disabled: authState === "loading"
       },
-      isLoading ? /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement("span", { style: { display: "inline-block", animation: "spin 1s linear infinite" } }, "\u23F3"), /* @__PURE__ */ import_react4.default.createElement("span", null, "Signing in securely...")) : /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement("div", { className: "google-icon-box" }, /* @__PURE__ */ import_react4.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24" }, /* @__PURE__ */ import_react4.default.createElement("path", { fill: "#4285F4", d: "M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" }), /* @__PURE__ */ import_react4.default.createElement("path", { fill: "#34A853", d: "M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" }), /* @__PURE__ */ import_react4.default.createElement("path", { fill: "#FBBC05", d: "M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" }), /* @__PURE__ */ import_react4.default.createElement("path", { fill: "#EA4335", d: "M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" }))), /* @__PURE__ */ import_react4.default.createElement("span", null, "Continue with Google"))
-    ), /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-divider" }, /* @__PURE__ */ import_react4.default.createElement("span", null, "or")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-security-badge" }, /* @__PURE__ */ import_react4.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "#64748b", strokeWidth: "2" }, /* @__PURE__ */ import_react4.default.createElement("rect", { x: "3", y: "11", width: "18", height: "11", rx: "2", ry: "2" }), /* @__PURE__ */ import_react4.default.createElement("path", { d: "M7 11V7a5 5 0 0 1 10 0v4" })), /* @__PURE__ */ import_react4.default.createElement("span", null, "Secure authentication for authorized users.")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-disclaimer-box" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-disclaimer-text" }, /* @__PURE__ */ import_react4.default.createElement("strong", null, "CivicTrack"), " is an accountability and monitoring tool, not a system for declaring wrongdoing.")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-footer-copy" }, "\xA9 2026 CivicTrack. All rights reserved.")));
+      authState === "loading" ? /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement("svg", { className: "login-spinner", width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5" }, /* @__PURE__ */ import_react4.default.createElement("circle", { cx: "12", cy: "12", r: "10", strokeOpacity: "0.25" }), /* @__PURE__ */ import_react4.default.createElement("path", { d: "M12 2a10 10 0 0 1 10 10" })), /* @__PURE__ */ import_react4.default.createElement("span", null, "Signing in...")) : /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement("div", { className: "google-icon-box" }, /* @__PURE__ */ import_react4.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24" }, /* @__PURE__ */ import_react4.default.createElement("path", { fill: "#4285F4", d: "M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" }), /* @__PURE__ */ import_react4.default.createElement("path", { fill: "#34A853", d: "M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" }), /* @__PURE__ */ import_react4.default.createElement("path", { fill: "#FBBC05", d: "M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" }), /* @__PURE__ */ import_react4.default.createElement("path", { fill: "#EA4335", d: "M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" }))), /* @__PURE__ */ import_react4.default.createElement("span", null, "Continue with Google"))
+    ), /* @__PURE__ */ import_react4.default.createElement("div", { style: { marginTop: "0.75rem", fontSize: "0.6875rem", color: "var(--slate-400)", display: "flex", alignItems: "center", gap: "6px" } }, /* @__PURE__ */ import_react4.default.createElement("label", { style: { display: "flex", alignItems: "center", gap: "4px", cursor: "pointer" } }, /* @__PURE__ */ import_react4.default.createElement(
+      "input",
+      {
+        type: "checkbox",
+        id: "simulate-auth-error-checkbox",
+        checked: simulateFailure,
+        onChange: (e) => setSimulateFailure(e.target.checked),
+        style: { cursor: "pointer" }
+      }
+    ), /* @__PURE__ */ import_react4.default.createElement("span", null, "Simulate auth network failure"))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-divider" }, /* @__PURE__ */ import_react4.default.createElement("span", null, "or")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-security-badge" }, /* @__PURE__ */ import_react4.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "#64748b", strokeWidth: "2" }, /* @__PURE__ */ import_react4.default.createElement("rect", { x: "3", y: "11", width: "18", height: "11", rx: "2", ry: "2" }), /* @__PURE__ */ import_react4.default.createElement("path", { d: "M7 11V7a5 5 0 0 1 10 0v4" })), /* @__PURE__ */ import_react4.default.createElement("span", null, "Secure authentication for authorized users.")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-disclaimer-box" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-disclaimer-text" }, /* @__PURE__ */ import_react4.default.createElement("strong", null, "CivicTrack"), " is an accountability and monitoring tool, not a system for declaring wrongdoing.")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "login-footer-copy" }, "\xA9 2026 CivicTrack. All rights reserved.")));
   }
 
   // src/pages/DashboardPage.jsx
@@ -23826,73 +24248,123 @@
 
   // src/components/Sidebar.jsx
   var import_react5 = __toESM(require_react(), 1);
-  function Sidebar({ activeRoute = "/dashboard", onSignOut, onExternalModuleClick }) {
+  function Sidebar({
+    activeRoute = "/dashboard",
+    onSignOut,
+    onExternalModuleClick,
+    isMobileOpen = false,
+    onCloseMobileSidebar
+  }) {
     const handleExternalClick = (moduleName, owner) => {
+      if (onCloseMobileSidebar) onCloseMobileSidebar();
       if (onExternalModuleClick) {
         onExternalModuleClick(moduleName, owner);
       }
     };
-    return /* @__PURE__ */ import_react5.default.createElement("aside", { className: "dashboard-sidebar", "aria-label": "Sidebar Navigation" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "sidebar-header" }, /* @__PURE__ */ import_react5.default.createElement("a", { href: "#/dashboard", className: "civic-logo" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "civic-logo-icon" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "28", height: "28", viewBox: "0 0 32 32", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, /* @__PURE__ */ import_react5.default.createElement("polygon", { points: "16,3 28,10 28,22 16,29 4,22 4,10", stroke: "#38bdf8", strokeWidth: "2.5", fill: "#0f1f38" }), /* @__PURE__ */ import_react5.default.createElement("circle", { cx: "16", cy: "16", r: "4.5", fill: "#14b8a6" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "16", y1: "3", x2: "16", y2: "11.5", stroke: "#14b8a6", strokeWidth: "2" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "28", y1: "22", x2: "19.5", y2: "18.5", stroke: "#14b8a6", strokeWidth: "2" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "4", y1: "22", x2: "12.5", y2: "18.5", stroke: "#14b8a6", strokeWidth: "2" }))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "civic-logo-text" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "civic-logo-title" }, "CivicTrack"), /* @__PURE__ */ import_react5.default.createElement("span", { className: "civic-logo-subtitle" }, "MP Accountability & Fund Monitoring")))), /* @__PURE__ */ import_react5.default.createElement("nav", { className: "sidebar-nav" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "nav-section" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "nav-section-title" }, "Overview"), /* @__PURE__ */ import_react5.default.createElement("ul", { className: "nav-items-list" }, /* @__PURE__ */ import_react5.default.createElement("li", null, /* @__PURE__ */ import_react5.default.createElement("a", { href: "#/dashboard", className: `nav-item-btn ${activeRoute === "/dashboard" ? "active" : ""}`, id: "nav-dashboard" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "nav-icon" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("rect", { x: "3", y: "3", width: "7", height: "7", rx: "1" }), /* @__PURE__ */ import_react5.default.createElement("rect", { x: "14", y: "3", width: "7", height: "7", rx: "1" }), /* @__PURE__ */ import_react5.default.createElement("rect", { x: "14", y: "14", width: "7", height: "7", rx: "1" }), /* @__PURE__ */ import_react5.default.createElement("rect", { x: "3", y: "14", width: "7", height: "7", rx: "1" }))), /* @__PURE__ */ import_react5.default.createElement("span", null, "Dashboard"))))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "nav-section" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "nav-section-title" }, "Monitoring"), /* @__PURE__ */ import_react5.default.createElement("ul", { className: "nav-items-list" }, /* @__PURE__ */ import_react5.default.createElement("li", null, /* @__PURE__ */ import_react5.default.createElement(
-      "button",
+    return /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, isMobileOpen && /* @__PURE__ */ import_react5.default.createElement(
+      "div",
       {
-        type: "button",
-        className: "nav-item-btn external-module-btn",
-        onClick: () => handleExternalClick("Projects Directory", "Frontend Developer 2"),
-        id: "nav-projects"
-      },
-      /* @__PURE__ */ import_react5.default.createElement("span", { className: "nav-icon" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("path", { d: "M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" }))),
-      /* @__PURE__ */ import_react5.default.createElement("span", null, "Projects")
-    )), /* @__PURE__ */ import_react5.default.createElement("li", null, /* @__PURE__ */ import_react5.default.createElement(
-      "button",
+        className: "sidebar-mobile-backdrop",
+        onClick: onCloseMobileSidebar,
+        "aria-hidden": "true"
+      }
+    ), /* @__PURE__ */ import_react5.default.createElement(
+      "aside",
       {
-        type: "button",
-        className: "nav-item-btn external-module-btn",
-        onClick: () => handleExternalClick("MPs & Constituencies", "Frontend Developer 2"),
-        id: "nav-mps"
+        className: `dashboard-sidebar ${isMobileOpen ? "mobile-open" : ""}`,
+        "aria-label": "Sidebar Navigation",
+        id: "dashboard-sidebar-nav"
       },
-      /* @__PURE__ */ import_react5.default.createElement("span", { className: "nav-icon" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("path", { d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" }), /* @__PURE__ */ import_react5.default.createElement("circle", { cx: "9", cy: "7", r: "4" }), /* @__PURE__ */ import_react5.default.createElement("path", { d: "M23 21v-2a4 4 0 0 0-3-3.87" }), /* @__PURE__ */ import_react5.default.createElement("path", { d: "M16 3.13a4 4 0 0 1 0 7.75" }))),
-      /* @__PURE__ */ import_react5.default.createElement("span", null, "MPs / Constituencies")
-    )), /* @__PURE__ */ import_react5.default.createElement("li", null, /* @__PURE__ */ import_react5.default.createElement(
-      "button",
-      {
-        type: "button",
-        className: "nav-item-btn external-module-btn",
-        onClick: () => handleExternalClick("Attention Center", "Frontend Developer 3"),
-        id: "nav-attention"
-      },
-      /* @__PURE__ */ import_react5.default.createElement("span", { className: "nav-icon" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" }))),
-      /* @__PURE__ */ import_react5.default.createElement("span", null, "Attention Center")
-    )), /* @__PURE__ */ import_react5.default.createElement("li", null, /* @__PURE__ */ import_react5.default.createElement(
-      "button",
-      {
-        type: "button",
-        className: "nav-item-btn external-module-btn",
-        onClick: () => handleExternalClick("Evidence Library", "Frontend Developer 3"),
-        id: "nav-evidence"
-      },
-      /* @__PURE__ */ import_react5.default.createElement("span", { className: "nav-icon" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("path", { d: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" }), /* @__PURE__ */ import_react5.default.createElement("polyline", { points: "14 2 14 8 20 8" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "16", y1: "13", x2: "8", y2: "13" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "16", y1: "17", x2: "8", y2: "17" }), /* @__PURE__ */ import_react5.default.createElement("polyline", { points: "10 9 9 9 8 9" }))),
-      /* @__PURE__ */ import_react5.default.createElement("span", null, "Evidence")
-    )))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "nav-section" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "nav-section-title" }, "Account"), /* @__PURE__ */ import_react5.default.createElement("ul", { className: "nav-items-list" }, /* @__PURE__ */ import_react5.default.createElement("li", null, /* @__PURE__ */ import_react5.default.createElement(
-      "button",
-      {
-        type: "button",
-        className: "nav-item-btn external-module-btn",
-        onClick: () => handleExternalClick("Account Profile", "Frontend Developer 3"),
-        id: "nav-profile"
-      },
-      /* @__PURE__ */ import_react5.default.createElement("span", { className: "nav-icon" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("circle", { cx: "12", cy: "12", r: "3" }), /* @__PURE__ */ import_react5.default.createElement("path", { d: "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" }))),
-      /* @__PURE__ */ import_react5.default.createElement("span", null, "Profile")
-    ))))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "sidebar-footer" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "user-profile-widget" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "user-avatar-img", style: { background: "#0d9488", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "0.875rem" } }, "AU"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "user-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "user-name" }, "Admin User"), /* @__PURE__ */ import_react5.default.createElement("span", { className: "user-role" }, "Administrator"))), /* @__PURE__ */ import_react5.default.createElement(
-      "button",
-      {
-        type: "button",
-        id: "btn-sidebar-logout",
-        title: "Sign Out",
-        onClick: onSignOut,
-        style: { color: "var(--slate-400)", cursor: "pointer", padding: "4px", background: "none", border: "none" }
-      },
-      /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" }), /* @__PURE__ */ import_react5.default.createElement("polyline", { points: "16 17 21 12 16 7" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "21", y1: "12", x2: "9", y2: "12" }))
-    )));
+      /* @__PURE__ */ import_react5.default.createElement("div", { className: "sidebar-header" }, /* @__PURE__ */ import_react5.default.createElement("a", { href: "#/dashboard", className: "civic-logo", "aria-label": "CivicTrack Dashboard" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "civic-logo-icon" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "28", height: "28", viewBox: "0 0 32 32", fill: "none", xmlns: "http://www.w3.org/2000/svg" }, /* @__PURE__ */ import_react5.default.createElement("polygon", { points: "16,3 28,10 28,22 16,29 4,22 4,10", stroke: "#38bdf8", strokeWidth: "2.5", fill: "#0f1f38" }), /* @__PURE__ */ import_react5.default.createElement("circle", { cx: "16", cy: "16", r: "4.5", fill: "#14b8a6" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "16", y1: "3", x2: "16", y2: "11.5", stroke: "#14b8a6", strokeWidth: "2" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "28", y1: "22", x2: "19.5", y2: "18.5", stroke: "#14b8a6", strokeWidth: "2" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "4", y1: "22", x2: "12.5", y2: "18.5", stroke: "#14b8a6", strokeWidth: "2" }))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "civic-logo-text" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "civic-logo-title" }, "CivicTrack"), /* @__PURE__ */ import_react5.default.createElement("span", { className: "civic-logo-subtitle" }, "MP Accountability & Fund Monitoring"))), /* @__PURE__ */ import_react5.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "sidebar-mobile-close",
+          "aria-label": "Close navigation sidebar",
+          onClick: onCloseMobileSidebar
+        },
+        /* @__PURE__ */ import_react5.default.createElement("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" }))
+      )),
+      /* @__PURE__ */ import_react5.default.createElement("nav", { className: "sidebar-nav" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "nav-section" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "nav-section-title" }, "Overview"), /* @__PURE__ */ import_react5.default.createElement("ul", { className: "nav-items-list", role: "menu" }, /* @__PURE__ */ import_react5.default.createElement("li", { role: "none" }, /* @__PURE__ */ import_react5.default.createElement(
+        "a",
+        {
+          href: "#/dashboard",
+          className: `nav-item-btn ${activeRoute === "/dashboard" ? "active" : ""}`,
+          id: "nav-dashboard",
+          role: "menuitem",
+          onClick: () => onCloseMobileSidebar && onCloseMobileSidebar()
+        },
+        /* @__PURE__ */ import_react5.default.createElement("span", { className: "nav-icon", "aria-hidden": "true" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("rect", { x: "3", y: "3", width: "7", height: "7", rx: "1" }), /* @__PURE__ */ import_react5.default.createElement("rect", { x: "14", y: "3", width: "7", height: "7", rx: "1" }), /* @__PURE__ */ import_react5.default.createElement("rect", { x: "14", y: "14", width: "7", height: "7", rx: "1" }), /* @__PURE__ */ import_react5.default.createElement("rect", { x: "3", y: "14", width: "7", height: "7", rx: "1" }))),
+        /* @__PURE__ */ import_react5.default.createElement("span", null, "Dashboard")
+      )))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "nav-section" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "nav-section-title" }, "Monitoring"), /* @__PURE__ */ import_react5.default.createElement("ul", { className: "nav-items-list", role: "menu" }, /* @__PURE__ */ import_react5.default.createElement("li", { role: "none" }, /* @__PURE__ */ import_react5.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "nav-item-btn external-module-btn",
+          onClick: () => handleExternalClick("Projects Directory", "Frontend Developer 2"),
+          id: "nav-projects",
+          role: "menuitem"
+        },
+        /* @__PURE__ */ import_react5.default.createElement("span", { className: "nav-icon", "aria-hidden": "true" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("path", { d: "M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" }))),
+        /* @__PURE__ */ import_react5.default.createElement("span", null, "Projects")
+      )), /* @__PURE__ */ import_react5.default.createElement("li", { role: "none" }, /* @__PURE__ */ import_react5.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "nav-item-btn external-module-btn",
+          onClick: () => handleExternalClick("MPs & Constituencies", "Frontend Developer 2"),
+          id: "nav-mps",
+          role: "menuitem"
+        },
+        /* @__PURE__ */ import_react5.default.createElement("span", { className: "nav-icon", "aria-hidden": "true" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("path", { d: "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" }), /* @__PURE__ */ import_react5.default.createElement("circle", { cx: "9", cy: "7", r: "4" }), /* @__PURE__ */ import_react5.default.createElement("path", { d: "M23 21v-2a4 4 0 0 0-3-3.87" }), /* @__PURE__ */ import_react5.default.createElement("path", { d: "M16 3.13a4 4 0 0 1 0 7.75" }))),
+        /* @__PURE__ */ import_react5.default.createElement("span", null, "MPs / Constituencies")
+      )), /* @__PURE__ */ import_react5.default.createElement("li", { role: "none" }, /* @__PURE__ */ import_react5.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "nav-item-btn external-module-btn",
+          onClick: () => handleExternalClick("Attention Center", "Frontend Developer 3"),
+          id: "nav-attention",
+          role: "menuitem"
+        },
+        /* @__PURE__ */ import_react5.default.createElement("span", { className: "nav-icon", "aria-hidden": "true" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("circle", { cx: "12", cy: "12", r: "10" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" }))),
+        /* @__PURE__ */ import_react5.default.createElement("span", null, "Attention Center")
+      )), /* @__PURE__ */ import_react5.default.createElement("li", { role: "none" }, /* @__PURE__ */ import_react5.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "nav-item-btn external-module-btn",
+          onClick: () => handleExternalClick("Evidence Library", "Frontend Developer 3"),
+          id: "nav-evidence",
+          role: "menuitem"
+        },
+        /* @__PURE__ */ import_react5.default.createElement("span", { className: "nav-icon", "aria-hidden": "true" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("path", { d: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" }), /* @__PURE__ */ import_react5.default.createElement("polyline", { points: "14 2 14 8 20 8" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "16", y1: "13", x2: "8", y2: "13" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "16", y1: "17", x2: "8", y2: "17" }), /* @__PURE__ */ import_react5.default.createElement("polyline", { points: "10 9 9 9 8 9" }))),
+        /* @__PURE__ */ import_react5.default.createElement("span", null, "Evidence")
+      )))), /* @__PURE__ */ import_react5.default.createElement("div", { className: "nav-section" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "nav-section-title" }, "Account"), /* @__PURE__ */ import_react5.default.createElement("ul", { className: "nav-items-list", role: "menu" }, /* @__PURE__ */ import_react5.default.createElement("li", { role: "none" }, /* @__PURE__ */ import_react5.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "nav-item-btn external-module-btn",
+          onClick: () => handleExternalClick("Account Profile", "Frontend Developer 3"),
+          id: "nav-profile",
+          role: "menuitem"
+        },
+        /* @__PURE__ */ import_react5.default.createElement("span", { className: "nav-icon", "aria-hidden": "true" }, /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("circle", { cx: "12", cy: "12", r: "3" }), /* @__PURE__ */ import_react5.default.createElement("path", { d: "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" }))),
+        /* @__PURE__ */ import_react5.default.createElement("span", null, "Profile")
+      ))))),
+      /* @__PURE__ */ import_react5.default.createElement("div", { className: "sidebar-footer" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "user-profile-widget" }, /* @__PURE__ */ import_react5.default.createElement("div", { className: "user-avatar-img" }, "AU"), /* @__PURE__ */ import_react5.default.createElement("div", { className: "user-info" }, /* @__PURE__ */ import_react5.default.createElement("span", { className: "user-name" }, "Admin User"), /* @__PURE__ */ import_react5.default.createElement("span", { className: "user-role" }, "Administrator"))), /* @__PURE__ */ import_react5.default.createElement(
+        "button",
+        {
+          type: "button",
+          id: "btn-sidebar-logout",
+          title: "Sign Out",
+          "aria-label": "Sign Out",
+          onClick: onSignOut,
+          className: "sidebar-logout-btn"
+        },
+        /* @__PURE__ */ import_react5.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react5.default.createElement("path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" }), /* @__PURE__ */ import_react5.default.createElement("polyline", { points: "16 17 21 12 16 7" }), /* @__PURE__ */ import_react5.default.createElement("line", { x1: "21", y1: "12", x2: "9", y2: "12" }))
+      ))
+    ));
   }
 
   // src/components/Topbar.jsx
@@ -23901,15 +24373,25 @@
     selectedYear = "2025\u201326",
     onYearChange,
     searchQuery = "",
-    onSearchChange
+    onSearchChange,
+    onSignOut,
+    onOpenMobileSidebar,
+    onExternalModuleClick
   }) {
     const [showNotifications, setShowNotifications] = (0, import_react6.useState)(false);
-    const dropdownRef = (0, import_react6.useRef)(null);
-    const bellBtnRef = (0, import_react6.useRef)(null);
+    const [showUserMenu, setShowUserMenu] = (0, import_react6.useState)(false);
+    const [notifications, setNotifications] = (0, import_react6.useState)(mockData.notifications);
+    const notifDropdownRef = (0, import_react6.useRef)(null);
+    const notifBtnRef = (0, import_react6.useRef)(null);
+    const userMenuRef = (0, import_react6.useRef)(null);
+    const userBtnRef = (0, import_react6.useRef)(null);
     (0, import_react6.useEffect)(() => {
       function handleClickOutside(event) {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target) && bellBtnRef.current && !bellBtnRef.current.contains(event.target)) {
+        if (notifDropdownRef.current && !notifDropdownRef.current.contains(event.target) && notifBtnRef.current && !notifBtnRef.current.contains(event.target)) {
           setShowNotifications(false);
+        }
+        if (userMenuRef.current && !userMenuRef.current.contains(event.target) && userBtnRef.current && !userBtnRef.current.contains(event.target)) {
+          setShowUserMenu(false);
         }
       }
       document.addEventListener("click", handleClickOutside);
@@ -23917,7 +24399,34 @@
         document.removeEventListener("click", handleClickOutside);
       };
     }, []);
-    return /* @__PURE__ */ import_react6.default.createElement("header", { className: "dashboard-topbar", "aria-label": "Dashboard Header" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "topbar-header-info" }, /* @__PURE__ */ import_react6.default.createElement("h1", { className: "topbar-title" }, "Accountability Overview"), /* @__PURE__ */ import_react6.default.createElement("p", { className: "topbar-subtitle" }, "Monitor fund utilization and project progress across constituencies.")), /* @__PURE__ */ import_react6.default.createElement("div", { className: "topbar-actions" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "fy-selector-wrapper" }, /* @__PURE__ */ import_react6.default.createElement(
+    (0, import_react6.useEffect)(() => {
+      function handleKeyDown(e) {
+        if (e.key === "Escape") {
+          setShowNotifications(false);
+          setShowUserMenu(false);
+        }
+      }
+      window.addEventListener("keydown", handleKeyDown);
+      return () => window.removeEventListener("keydown", handleKeyDown);
+    }, []);
+    const handleDismissNotif = (id) => {
+      setNotifications((prev) => prev.filter((n) => n.id !== id));
+    };
+    const handleClearAllNotifs = () => {
+      setNotifications([]);
+    };
+    const unreadCount = notifications.length;
+    return /* @__PURE__ */ import_react6.default.createElement("header", { className: "dashboard-topbar", "aria-label": "Dashboard Header" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "topbar-left-cluster" }, /* @__PURE__ */ import_react6.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "topbar-sidebar-toggle",
+        id: "btn-topbar-sidebar-toggle",
+        "aria-label": "Open navigation sidebar",
+        onClick: onOpenMobileSidebar
+      },
+      /* @__PURE__ */ import_react6.default.createElement("svg", { width: "22", height: "22", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react6.default.createElement("line", { x1: "3", y1: "12", x2: "21", y2: "12" }), /* @__PURE__ */ import_react6.default.createElement("line", { x1: "3", y1: "6", x2: "21", y2: "6" }), /* @__PURE__ */ import_react6.default.createElement("line", { x1: "3", y1: "18", x2: "21", y2: "18" }))
+    ), /* @__PURE__ */ import_react6.default.createElement("div", { className: "topbar-header-info" }, /* @__PURE__ */ import_react6.default.createElement("h1", { className: "topbar-title" }, "Accountability Overview"), /* @__PURE__ */ import_react6.default.createElement("p", { className: "topbar-subtitle" }, "Monitor fund utilization and project progress across constituencies."))), /* @__PURE__ */ import_react6.default.createElement("div", { className: "topbar-actions" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "fy-selector-wrapper" }, /* @__PURE__ */ import_react6.default.createElement("label", { htmlFor: "fy-select-input", className: "sr-only" }, "Financial Year"), /* @__PURE__ */ import_react6.default.createElement(
       "select",
       {
         id: "fy-select-input",
@@ -23927,113 +24436,227 @@
         onChange: (e) => onYearChange && onYearChange(e.target.value)
       },
       mockData.years.map((yr) => /* @__PURE__ */ import_react6.default.createElement("option", { key: yr, value: yr }, yr))
-    ), /* @__PURE__ */ import_react6.default.createElement("span", { className: "fy-caret" }, /* @__PURE__ */ import_react6.default.createElement("svg", { width: "12", height: "12", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5" }, /* @__PURE__ */ import_react6.default.createElement("polyline", { points: "6 9 12 15 18 9" })))), /* @__PURE__ */ import_react6.default.createElement("div", { className: "topbar-search-box" }, /* @__PURE__ */ import_react6.default.createElement("span", { className: "search-icon" }, /* @__PURE__ */ import_react6.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react6.default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ import_react6.default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" }))), /* @__PURE__ */ import_react6.default.createElement(
+    ), /* @__PURE__ */ import_react6.default.createElement("span", { className: "fy-caret", "aria-hidden": "true" }, /* @__PURE__ */ import_react6.default.createElement("svg", { width: "12", height: "12", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.5" }, /* @__PURE__ */ import_react6.default.createElement("polyline", { points: "6 9 12 15 18 9" })))), /* @__PURE__ */ import_react6.default.createElement("div", { className: "topbar-search-box" }, /* @__PURE__ */ import_react6.default.createElement("span", { className: "search-icon", "aria-hidden": "true" }, /* @__PURE__ */ import_react6.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react6.default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ import_react6.default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" }))), /* @__PURE__ */ import_react6.default.createElement(
       "input",
       {
         type: "text",
         id: "dashboard-search-input",
         className: "search-input",
         placeholder: "Search projects, MPs, constituencies...",
-        "aria-label": "Search dashboard",
+        "aria-label": "Search projects, MPs, constituencies",
         value: searchQuery,
         onChange: (e) => onSearchChange && onSearchChange(e.target.value)
       }
+    ), searchQuery && /* @__PURE__ */ import_react6.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "search-clear-btn",
+        "aria-label": "Clear search input",
+        onClick: () => onSearchChange && onSearchChange("")
+      },
+      "\u2715"
     )), /* @__PURE__ */ import_react6.default.createElement("div", { style: { position: "relative" } }, /* @__PURE__ */ import_react6.default.createElement(
       "button",
       {
-        ref: bellBtnRef,
+        ref: notifBtnRef,
         type: "button",
         id: "btn-notification-bell",
-        className: "notif-btn",
+        className: `notif-btn ${showNotifications ? "active" : ""}`,
         title: "View Notifications",
-        "aria-label": "Notifications",
-        onClick: () => setShowNotifications(!showNotifications)
+        "aria-label": `Notifications (${unreadCount} unread)`,
+        "aria-expanded": showNotifications,
+        "aria-haspopup": "true",
+        onClick: () => {
+          setShowNotifications(!showNotifications);
+          setShowUserMenu(false);
+        }
       },
       /* @__PURE__ */ import_react6.default.createElement("svg", { width: "18", height: "18", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react6.default.createElement("path", { d: "M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" }), /* @__PURE__ */ import_react6.default.createElement("path", { d: "M13.73 21a2 2 0 0 1-3.46 0" })),
-      /* @__PURE__ */ import_react6.default.createElement("span", { className: "notif-badge" }, "3")
-    ), /* @__PURE__ */ import_react6.default.createElement(
+      unreadCount > 0 && /* @__PURE__ */ import_react6.default.createElement("span", { className: "notif-badge" }, unreadCount)
+    ), showNotifications && /* @__PURE__ */ import_react6.default.createElement(
       "div",
       {
-        ref: dropdownRef,
+        ref: notifDropdownRef,
         id: "notification-dropdown-menu",
-        className: `notif-dropdown ${showNotifications ? "open" : ""}`
+        className: "notif-dropdown open",
+        role: "dialog",
+        "aria-label": "Recent Civic Signals"
       },
-      /* @__PURE__ */ import_react6.default.createElement("div", { className: "notif-dropdown-header" }, /* @__PURE__ */ import_react6.default.createElement("span", { style: { fontSize: "0.875rem", fontWeight: 700, color: "var(--slate-900)" } }, "Recent Signals"), /* @__PURE__ */ import_react6.default.createElement("span", { style: { fontSize: "0.75rem", color: "var(--teal-600)", fontWeight: 600 } }, "3 new")),
-      /* @__PURE__ */ import_react6.default.createElement("div", { className: "notif-list" }, mockData.notifications.map((n) => /* @__PURE__ */ import_react6.default.createElement("div", { key: n.id, className: "notif-item" }, /* @__PURE__ */ import_react6.default.createElement("div", { style: { fontSize: "0.8125rem", fontWeight: 600, color: "var(--slate-800)" } }, n.title), /* @__PURE__ */ import_react6.default.createElement("div", { style: { fontSize: "0.75rem", color: "var(--slate-500)", marginTop: "2px" } }, n.message), /* @__PURE__ */ import_react6.default.createElement("div", { style: { fontSize: "0.6875rem", color: "var(--slate-400)", marginTop: "4px" } }, n.time))))
-    )), /* @__PURE__ */ import_react6.default.createElement("div", { className: "user-avatar-btn", style: { cursor: "pointer" }, id: "topbar-avatar-btn", title: "User Settings" }, /* @__PURE__ */ import_react6.default.createElement("div", { style: { width: "36px", height: "36px", borderRadius: "50%", background: "#0f766e", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "0.875rem", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" } }, "AU"))));
+      /* @__PURE__ */ import_react6.default.createElement("div", { className: "notif-dropdown-header" }, /* @__PURE__ */ import_react6.default.createElement("div", null, /* @__PURE__ */ import_react6.default.createElement("span", { style: { fontSize: "0.875rem", fontWeight: 700, color: "var(--slate-900)" } }, "Recent Signals"), unreadCount > 0 && /* @__PURE__ */ import_react6.default.createElement("span", { style: { fontSize: "0.75rem", color: "var(--teal-600)", fontWeight: 600, marginLeft: "6px" } }, "(", unreadCount, " new)")), unreadCount > 0 && /* @__PURE__ */ import_react6.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "notif-clear-all",
+          onClick: handleClearAllNotifs
+        },
+        "Clear all"
+      )),
+      /* @__PURE__ */ import_react6.default.createElement("div", { className: "notif-list" }, notifications.length === 0 ? /* @__PURE__ */ import_react6.default.createElement("div", { style: { padding: "1.5rem 1rem", textAlign: "center", color: "var(--slate-400)", fontSize: "0.8125rem" } }, "No new notifications") : notifications.map((n) => /* @__PURE__ */ import_react6.default.createElement("div", { key: n.id, className: "notif-item" }, /* @__PURE__ */ import_react6.default.createElement("div", { style: { display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "8px" } }, /* @__PURE__ */ import_react6.default.createElement("div", { style: { fontSize: "0.8125rem", fontWeight: 600, color: "var(--slate-800)" } }, n.title), /* @__PURE__ */ import_react6.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "notif-item-dismiss",
+          title: "Dismiss notification",
+          "aria-label": `Dismiss ${n.title}`,
+          onClick: () => handleDismissNotif(n.id)
+        },
+        "\u2715"
+      )), /* @__PURE__ */ import_react6.default.createElement("div", { style: { fontSize: "0.75rem", color: "var(--slate-600)", marginTop: "2px" } }, n.message), /* @__PURE__ */ import_react6.default.createElement("div", { style: { fontSize: "0.6875rem", color: "var(--slate-400)", marginTop: "4px" } }, n.time))))
+    )), /* @__PURE__ */ import_react6.default.createElement("div", { style: { position: "relative" } }, /* @__PURE__ */ import_react6.default.createElement(
+      "button",
+      {
+        ref: userBtnRef,
+        type: "button",
+        className: "user-avatar-btn",
+        id: "topbar-avatar-btn",
+        title: "User Account Menu",
+        "aria-label": "User Account Menu for Admin User",
+        "aria-expanded": showUserMenu,
+        "aria-haspopup": "menu",
+        onClick: () => {
+          setShowUserMenu(!showUserMenu);
+          setShowNotifications(false);
+        }
+      },
+      /* @__PURE__ */ import_react6.default.createElement("div", { className: "user-avatar-circle" }, "AU")
+    ), showUserMenu && /* @__PURE__ */ import_react6.default.createElement(
+      "div",
+      {
+        ref: userMenuRef,
+        id: "user-account-menu",
+        className: "user-menu-dropdown",
+        role: "menu",
+        "aria-label": "User profile options"
+      },
+      /* @__PURE__ */ import_react6.default.createElement("div", { className: "user-menu-header" }, /* @__PURE__ */ import_react6.default.createElement("div", { className: "user-menu-name" }, "Admin User"), /* @__PURE__ */ import_react6.default.createElement("div", { className: "user-menu-email" }, "admin@civictrack.gov.in"), /* @__PURE__ */ import_react6.default.createElement("span", { className: "badge badge-positive", style: { marginTop: "4px", alignSelf: "flex-start" } }, "Administrator")),
+      /* @__PURE__ */ import_react6.default.createElement("div", { className: "user-menu-divider" }),
+      /* @__PURE__ */ import_react6.default.createElement("ul", { className: "user-menu-list" }, /* @__PURE__ */ import_react6.default.createElement("li", null, /* @__PURE__ */ import_react6.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "user-menu-item",
+          role: "menuitem",
+          onClick: () => {
+            setShowUserMenu(false);
+            onExternalModuleClick && onExternalModuleClick("Account Profile", "Frontend Developer 3");
+          }
+        },
+        /* @__PURE__ */ import_react6.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react6.default.createElement("circle", { cx: "12", cy: "12", r: "3" }), /* @__PURE__ */ import_react6.default.createElement("path", { d: "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" })),
+        /* @__PURE__ */ import_react6.default.createElement("span", null, "Profile & Settings")
+      )), /* @__PURE__ */ import_react6.default.createElement("li", null, /* @__PURE__ */ import_react6.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "user-menu-item text-danger",
+          role: "menuitem",
+          onClick: () => {
+            setShowUserMenu(false);
+            onSignOut && onSignOut();
+          }
+        },
+        /* @__PURE__ */ import_react6.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react6.default.createElement("path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" }), /* @__PURE__ */ import_react6.default.createElement("polyline", { points: "16 17 21 12 16 7" }), /* @__PURE__ */ import_react6.default.createElement("line", { x1: "21", y1: "12", x2: "9", y2: "12" })),
+        /* @__PURE__ */ import_react6.default.createElement("span", null, "Sign Out")
+      )))
+    ))));
   }
 
   // src/components/KPICard.jsx
   var import_react7 = __toESM(require_react(), 1);
-  function KPICardGrid({ kpis }) {
+  function KPICardGrid({ kpis, isLoading = false }) {
+    if (isLoading) {
+      return /* @__PURE__ */ import_react7.default.createElement("section", { className: "kpi-cards-grid", "aria-label": "Loading Key Performance Indicators", "aria-busy": "true" }, [1, 2, 3, 4].map((n) => /* @__PURE__ */ import_react7.default.createElement("article", { key: n, className: "kpi-card skeleton-card" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "skeleton skeleton-label", style: { width: "40%", height: "14px", marginBottom: "12px" } }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "skeleton skeleton-value", style: { width: "60%", height: "32px", marginBottom: "12px" } }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "skeleton skeleton-badge", style: { width: "50%", height: "18px" } }))));
+    }
     if (!kpis) return null;
-    return /* @__PURE__ */ import_react7.default.createElement("section", { className: "kpi-cards-grid", "aria-label": "Key Performance Indicators" }, /* @__PURE__ */ import_react7.default.createElement("article", { className: "kpi-card", id: "kpi-allocation" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-header" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-label" }, "Total Allocation")), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-value" }, kpis.totalAllocation?.value), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-footer" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "badge badge-positive" }, kpis.totalAllocation?.subtext))), /* @__PURE__ */ import_react7.default.createElement("article", { className: "kpi-card", id: "kpi-expenditure" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-header" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-label" }, "Total Expenditure")), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-value" }, kpis.totalExpenditure?.value), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-footer", style: { flexDirection: "column", alignItems: "flex-start", gap: "4px" } }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-footer-subtext" }, /* @__PURE__ */ import_react7.default.createElement("strong", null, kpis.totalExpenditure?.subtext)), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-progress-bar", style: { width: "100%" } }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-progress-fill", style: { width: `${kpis.totalExpenditure?.progress || 0}%` } })))), /* @__PURE__ */ import_react7.default.createElement("article", { className: "kpi-card", id: "kpi-remaining" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-header" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-label" }, "Remaining")), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-value" }, kpis.remaining?.value), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-footer" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-footer-subtext" }, kpis.remaining?.subtext))), /* @__PURE__ */ import_react7.default.createElement("article", { className: "kpi-card", id: "kpi-projects" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-header" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-label" }, "Projects"), /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-alert-icon" }, /* @__PURE__ */ import_react7.default.createElement("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "#dc2626", stroke: "#dc2626", strokeWidth: "1.5" }, /* @__PURE__ */ import_react7.default.createElement("path", { d: "m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" }), /* @__PURE__ */ import_react7.default.createElement("line", { x1: "12", y1: "9", x2: "12", y2: "13", stroke: "#fff", strokeWidth: "2" }), /* @__PURE__ */ import_react7.default.createElement("line", { x1: "12", y1: "17", x2: "12.01", y2: "17", stroke: "#fff", strokeWidth: "2" })))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-value" }, kpis.projects?.value), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-footer" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "badge badge-attention" }, kpis.projects?.subtext))));
+    return /* @__PURE__ */ import_react7.default.createElement("section", { className: "kpi-cards-grid", "aria-label": "Key Performance Indicators" }, /* @__PURE__ */ import_react7.default.createElement("article", { className: "kpi-card", id: "kpi-allocation", tabIndex: 0, "aria-label": `Total Allocation: ${kpis.totalAllocation?.value}, ${kpis.totalAllocation?.subtext}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-header" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-label" }, "Total Allocation")), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-value" }, kpis.totalAllocation?.value), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-footer" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "badge badge-positive" }, kpis.totalAllocation?.subtext))), /* @__PURE__ */ import_react7.default.createElement("article", { className: "kpi-card", id: "kpi-expenditure", tabIndex: 0, "aria-label": `Total Expenditure: ${kpis.totalExpenditure?.value}, ${kpis.totalExpenditure?.subtext}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-header" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-label" }, "Total Expenditure")), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-value" }, kpis.totalExpenditure?.value), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-footer", style: { flexDirection: "column", alignItems: "flex-start", gap: "4px" } }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-footer-subtext" }, /* @__PURE__ */ import_react7.default.createElement("strong", null, kpis.totalExpenditure?.subtext)), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-progress-bar", style: { width: "100%" } }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-progress-fill", style: { width: `${kpis.totalExpenditure?.progress || 0}%` } })))), /* @__PURE__ */ import_react7.default.createElement("article", { className: "kpi-card", id: "kpi-remaining", tabIndex: 0, "aria-label": `Remaining Funds: ${kpis.remaining?.value}, ${kpis.remaining?.subtext}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-header" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-label" }, "Remaining")), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-value" }, kpis.remaining?.value), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-footer" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-footer-subtext" }, kpis.remaining?.subtext))), /* @__PURE__ */ import_react7.default.createElement("article", { className: "kpi-card", id: "kpi-projects", tabIndex: 0, "aria-label": `Total Projects: ${kpis.projects?.value}, ${kpis.projects?.subtext}` }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-header" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-label" }, "Projects"), /* @__PURE__ */ import_react7.default.createElement("span", { className: "kpi-alert-icon", "aria-hidden": "true" }, /* @__PURE__ */ import_react7.default.createElement("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "#dc2626", stroke: "#dc2626", strokeWidth: "1.5" }, /* @__PURE__ */ import_react7.default.createElement("path", { d: "m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" }), /* @__PURE__ */ import_react7.default.createElement("line", { x1: "12", y1: "9", x2: "12", y2: "13", stroke: "#fff", strokeWidth: "2" }), /* @__PURE__ */ import_react7.default.createElement("line", { x1: "12", y1: "17", x2: "12.01", y2: "17", stroke: "#fff", strokeWidth: "2" })))), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-value" }, kpis.projects?.value), /* @__PURE__ */ import_react7.default.createElement("div", { className: "kpi-footer" }, /* @__PURE__ */ import_react7.default.createElement("span", { className: "badge badge-attention" }, kpis.projects?.subtext))));
   }
 
   // src/components/Charts.jsx
   var import_react8 = __toESM(require_react(), 1);
-  function FundUtilizationChart({ data }) {
+  function FundUtilizationChart({ data, selectedYear }) {
+    const [hoveredBar, setHoveredBar] = (0, import_react8.useState)(null);
     const maxVal = 15;
-    const barWidth = 38;
-    const startX = 65;
-    const gap = 70;
-    return /* @__PURE__ */ import_react8.default.createElement("article", { className: "chart-card", id: "chart-fund-utilization" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "chart-card-header" }, /* @__PURE__ */ import_react8.default.createElement("h2", { className: "chart-title" }, "Fund Utilization")), /* @__PURE__ */ import_react8.default.createElement("div", { className: "chart-container-svg" }, /* @__PURE__ */ import_react8.default.createElement("svg", { width: "100%", height: "100%", viewBox: "0 0 320 220", preserveAspectRatio: "xMidYMid meet" }, /* @__PURE__ */ import_react8.default.createElement("g", { className: "grid-lines", stroke: "#e2e8f0", strokeWidth: "1", strokeDasharray: "3,3" }, /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "20", x2: "310", y2: "20" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "65", x2: "310", y2: "65" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "110", x2: "310", y2: "110" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "155", x2: "310", y2: "155" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "190", x2: "310", y2: "190", strokeDasharray: "none", stroke: "#cbd5e1" })), /* @__PURE__ */ import_react8.default.createElement("g", { className: "y-labels", fontSize: "10", fill: "#64748b", textAnchor: "end", fontFamily: "Inter, sans-serif" }, /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "24" }, "15 Cr"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "69" }, "10 Cr"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "114" }, "5 Cr"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "193" }, "0")), data.map((item, idx) => {
-      const h = item.amount / maxVal * 170;
+    const barWidth = 42;
+    const startX = 70;
+    const gap = 75;
+    return /* @__PURE__ */ import_react8.default.createElement("article", { className: "chart-card", id: "chart-fund-utilization", "aria-label": `Fund Utilization breakdown for FY ${selectedYear}` }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "chart-card-header" }, /* @__PURE__ */ import_react8.default.createElement("h2", { className: "chart-title" }, "Fund Utilization"), /* @__PURE__ */ import_react8.default.createElement("span", { style: { fontSize: "0.75rem", fontWeight: 600, color: "var(--slate-500)" } }, "FY ", selectedYear)), /* @__PURE__ */ import_react8.default.createElement("div", { className: "chart-container-svg", style: { position: "relative" } }, /* @__PURE__ */ import_react8.default.createElement("svg", { width: "100%", height: "100%", viewBox: "0 0 340 220", preserveAspectRatio: "xMidYMid meet", role: "img", "aria-label": "Fund Utilization Bar Chart" }, /* @__PURE__ */ import_react8.default.createElement("g", { className: "grid-lines", stroke: "#e2e8f0", strokeWidth: "1", strokeDasharray: "3,3" }, /* @__PURE__ */ import_react8.default.createElement("line", { x1: "50", y1: "25", x2: "325", y2: "25" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "50", y1: "65", x2: "325", y2: "65" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "50", y1: "105", x2: "325", y2: "105" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "50", y1: "145", x2: "325", y2: "145" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "50", y1: "185", x2: "325", y2: "185", strokeDasharray: "none", stroke: "#cbd5e1" })), /* @__PURE__ */ import_react8.default.createElement("g", { className: "y-labels", fontSize: "10", fill: "#64748b", textAnchor: "end", fontFamily: "Inter, sans-serif" }, /* @__PURE__ */ import_react8.default.createElement("text", { x: "42", y: "29" }, "15 Cr"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "42", y: "69" }, "10 Cr"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "42", y: "109" }, "5 Cr"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "42", y: "188" }, "0")), data.map((item, idx) => {
+      const h = item.amount / maxVal * 160;
       const x = startX + idx * gap;
-      const y = 190 - h;
-      return /* @__PURE__ */ import_react8.default.createElement("g", { key: item.label, className: "bar-group", tabIndex: "0" }, /* @__PURE__ */ import_react8.default.createElement(
-        "rect",
+      const y = 185 - h;
+      const isHovered = hoveredBar?.label === item.label;
+      return /* @__PURE__ */ import_react8.default.createElement(
+        "g",
         {
-          x,
-          y,
-          width: barWidth,
-          height: h,
-          fill: item.color,
-          rx: "4",
-          className: "chart-bar",
-          style: { transition: "all 0.3s ease", cursor: "pointer" },
-          "data-label": item.label,
-          "data-val": item.display
+          key: item.label,
+          className: "bar-group",
+          tabIndex: 0,
+          role: "graphics-symbol",
+          "aria-label": `${item.label}: ${item.display} (${item.pct} of allocation)`,
+          onMouseEnter: () => setHoveredBar(item),
+          onMouseLeave: () => setHoveredBar(null),
+          onFocus: () => setHoveredBar(item),
+          onBlur: () => setHoveredBar(null),
+          style: { outline: "none", cursor: "pointer" }
         },
-        /* @__PURE__ */ import_react8.default.createElement("title", null, `${item.label}: ${item.display}`)
-      ), /* @__PURE__ */ import_react8.default.createElement(
-        "text",
-        {
-          x: x + barWidth / 2,
-          y: y - 6,
-          fontSize: "10",
-          fontWeight: "700",
-          fill: "#0f172a",
-          textAnchor: "middle",
-          fontFamily: "Inter, sans-serif"
-        },
-        item.display
-      ), /* @__PURE__ */ import_react8.default.createElement(
-        "text",
-        {
-          x: x + barWidth / 2,
-          y: "206",
-          fontSize: "11",
-          fontWeight: "500",
-          fill: "#64748b",
-          textAnchor: "middle",
-          fontFamily: "Inter, sans-serif"
-        },
-        item.label
-      ));
-    }))));
+        /* @__PURE__ */ import_react8.default.createElement(
+          "rect",
+          {
+            x,
+            y,
+            width: barWidth,
+            height: h,
+            fill: item.color,
+            rx: "4",
+            className: "chart-bar",
+            opacity: hoveredBar && !isHovered ? 0.6 : 1,
+            style: {
+              transition: "all 0.25s ease",
+              filter: isHovered ? "drop-shadow(0 4px 8px rgba(0,0,0,0.15))" : "none"
+            }
+          }
+        ),
+        /* @__PURE__ */ import_react8.default.createElement(
+          "text",
+          {
+            x: x + barWidth / 2,
+            y: y - 8,
+            fontSize: "11",
+            fontWeight: "700",
+            fill: "#0f172a",
+            textAnchor: "middle",
+            fontFamily: "Inter, sans-serif"
+          },
+          item.display
+        ),
+        /* @__PURE__ */ import_react8.default.createElement(
+          "text",
+          {
+            x: x + barWidth / 2,
+            y: "202",
+            fontSize: "11",
+            fontWeight: "600",
+            fill: "#64748b",
+            textAnchor: "middle",
+            fontFamily: "Inter, sans-serif"
+          },
+          item.label
+        )
+      );
+    })), hoveredBar && /* @__PURE__ */ import_react8.default.createElement("div", { className: "chart-interactive-tooltip", role: "tooltip" }, /* @__PURE__ */ import_react8.default.createElement("div", { style: { fontWeight: 700, color: "#fff", marginBottom: "2px" } }, hoveredBar.label, " Fund"), /* @__PURE__ */ import_react8.default.createElement("div", { style: { color: "#99f6e4", fontSize: "0.875rem", fontWeight: 800 } }, hoveredBar.display), /* @__PURE__ */ import_react8.default.createElement("div", { style: { color: "#cbd5e1", fontSize: "0.6875rem" } }, "Share: ", hoveredBar.pct))));
   }
-  function ProjectStatusChart({ data }) {
+  function ProjectStatusChart({ data, selectedYear }) {
+    const [hoveredStatus, setHoveredStatus] = (0, import_react8.useState)(null);
     const total = data.reduce((acc, curr) => acc + curr.count, 0);
     const size = 160;
-    const strokeWidth = 26;
+    const strokeWidth = 24;
     const radius = (size - strokeWidth) / 2;
     const circumference = 2 * Math.PI * radius;
     let cumulativePercent = 0;
-    return /* @__PURE__ */ import_react8.default.createElement("article", { className: "chart-card", id: "chart-project-status" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "chart-card-header" }, /* @__PURE__ */ import_react8.default.createElement("h2", { className: "chart-title" }, "Project Status")), /* @__PURE__ */ import_react8.default.createElement("div", { className: "donut-chart-wrapper" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "donut-svg-box" }, /* @__PURE__ */ import_react8.default.createElement("svg", { width: size, height: size, viewBox: `0 0 ${size} ${size}` }, data.map((item) => {
+    return /* @__PURE__ */ import_react8.default.createElement("article", { className: "chart-card", id: "chart-project-status", "aria-label": `Project Status breakdown for FY ${selectedYear}` }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "chart-card-header" }, /* @__PURE__ */ import_react8.default.createElement("h2", { className: "chart-title" }, "Project Status"), /* @__PURE__ */ import_react8.default.createElement("span", { style: { fontSize: "0.75rem", fontWeight: 600, color: "var(--slate-500)" } }, "FY ", selectedYear)), /* @__PURE__ */ import_react8.default.createElement("div", { className: "donut-chart-wrapper" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "donut-svg-box" }, /* @__PURE__ */ import_react8.default.createElement("svg", { width: size, height: size, viewBox: `0 0 ${size} ${size}`, role: "img", "aria-label": "Project Status Donut Chart" }, data.map((item) => {
       const strokeDasharray = `${item.percentage / 100 * circumference} ${circumference}`;
       const strokeDashoffset = -(cumulativePercent / 100 * circumference);
       cumulativePercent += item.percentage;
+      const isHovered = hoveredStatus?.status === item.status;
       return /* @__PURE__ */ import_react8.default.createElement(
         "circle",
         {
@@ -24043,53 +24666,165 @@
           r: radius,
           fill: "transparent",
           stroke: item.color,
-          strokeWidth,
+          strokeWidth: isHovered ? strokeWidth + 4 : strokeWidth,
           strokeDasharray,
           strokeDashoffset,
-          style: { transition: "stroke-width 0.2s ease", cursor: "pointer" },
+          tabIndex: 0,
+          role: "graphics-symbol",
+          "aria-label": `${item.status}: ${item.count} projects (${item.percentage}%)`,
+          onMouseEnter: () => setHoveredStatus(item),
+          onMouseLeave: () => setHoveredStatus(null),
+          onFocus: () => setHoveredStatus(item),
+          onBlur: () => setHoveredStatus(null),
+          style: {
+            transition: "all 0.2s ease",
+            cursor: "pointer",
+            outline: "none",
+            opacity: hoveredStatus && !isHovered ? 0.6 : 1
+          },
           transform: `rotate(-90 ${size / 2} ${size / 2})`
-        },
-        /* @__PURE__ */ import_react8.default.createElement("title", null, `${item.status}: ${item.count} (${item.percentage}%)`)
+        }
       );
-    }), /* @__PURE__ */ import_react8.default.createElement("circle", { cx: size / 2, cy: size / 2, r: radius - strokeWidth / 2 - 2, fill: "#ffffff" }), /* @__PURE__ */ import_react8.default.createElement("text", { x: size / 2, y: size / 2 - 2, textAnchor: "middle", fontSize: "18", fontWeight: "800", fill: "#0f172a", fontFamily: "Inter, sans-serif" }, total), /* @__PURE__ */ import_react8.default.createElement("text", { x: size / 2, y: size / 2 + 14, textAnchor: "middle", fontSize: "10", fontWeight: "500", fill: "#64748b", fontFamily: "Inter, sans-serif" }, "Projects"))), /* @__PURE__ */ import_react8.default.createElement("div", { className: "donut-legend-list" }, data.map((item) => /* @__PURE__ */ import_react8.default.createElement("div", { key: item.status, className: "donut-legend-row" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "donut-legend-label" }, /* @__PURE__ */ import_react8.default.createElement("span", { className: "legend-color-dot", style: { backgroundColor: item.color } }), /* @__PURE__ */ import_react8.default.createElement("span", null, item.status)), /* @__PURE__ */ import_react8.default.createElement("div", null, /* @__PURE__ */ import_react8.default.createElement("span", { className: "donut-legend-count" }, item.count), /* @__PURE__ */ import_react8.default.createElement("span", { className: "donut-legend-pct" }, "(", item.percentage, "%)")))))));
+    }), /* @__PURE__ */ import_react8.default.createElement("circle", { cx: size / 2, cy: size / 2, r: radius - strokeWidth / 2 - 2, fill: "#ffffff" }), /* @__PURE__ */ import_react8.default.createElement("text", { x: size / 2, y: size / 2 - 2, textAnchor: "middle", fontSize: "18", fontWeight: "800", fill: "#0f172a", fontFamily: "Inter, sans-serif" }, hoveredStatus ? hoveredStatus.count : total), /* @__PURE__ */ import_react8.default.createElement("text", { x: size / 2, y: size / 2 + 14, textAnchor: "middle", fontSize: "9", fontWeight: "600", fill: "#64748b", fontFamily: "Inter, sans-serif" }, hoveredStatus ? hoveredStatus.status : "Projects"))), /* @__PURE__ */ import_react8.default.createElement("div", { className: "donut-legend-list", role: "list" }, data.map((item) => {
+      const isHovered = hoveredStatus?.status === item.status;
+      return /* @__PURE__ */ import_react8.default.createElement(
+        "div",
+        {
+          key: item.status,
+          className: `donut-legend-row ${isHovered ? "legend-row-active" : ""}`,
+          role: "listitem",
+          tabIndex: 0,
+          onMouseEnter: () => setHoveredStatus(item),
+          onMouseLeave: () => setHoveredStatus(null),
+          onFocus: () => setHoveredStatus(item),
+          onBlur: () => setHoveredStatus(null),
+          style: { cursor: "pointer", padding: "3px 6px", borderRadius: "4px", transition: "background-color 0.15s ease" }
+        },
+        /* @__PURE__ */ import_react8.default.createElement("div", { className: "donut-legend-label" }, /* @__PURE__ */ import_react8.default.createElement("span", { className: "legend-color-dot", style: { backgroundColor: item.color } }), /* @__PURE__ */ import_react8.default.createElement("span", { style: { fontWeight: isHovered ? 700 : 500 } }, item.status)),
+        /* @__PURE__ */ import_react8.default.createElement("div", null, /* @__PURE__ */ import_react8.default.createElement("span", { className: "donut-legend-count" }, item.count), /* @__PURE__ */ import_react8.default.createElement("span", { className: "donut-legend-pct" }, "(", item.percentage, "%)"))
+      );
+    }))));
   }
-  function UtilizationOverTimeChart({ data }) {
+  function UtilizationOverTimeChart({ data, selectedYear }) {
+    const [hoveredPoint, setHoveredPoint] = (0, import_react8.useState)(null);
     const points = [
-      { x: 60, y: 175 - 45 / 100 * 140, val: "45%", year: "2022\u201323" },
-      { x: 140, y: 175 - 55 / 100 * 140, val: "55%", year: "2023\u201324" },
-      { x: 220, y: 175 - 63 / 100 * 140, val: "63%", year: "2024\u201325" },
-      { x: 300, y: 175 - 70 / 100 * 140, val: "70%", year: "2025\u201326" }
+      { x: 55, y: 175 - 45 / 100 * 140, val: "45%", year: "2022\u201323", spent: "\u20B94.1 Cr", total: "\u20B99.1 Cr" },
+      { x: 135, y: 175 - 55 / 100 * 140, val: "55%", year: "2023\u201324", spent: "\u20B95.4 Cr", total: "\u20B99.8 Cr" },
+      { x: 215, y: 175 - 63 / 100 * 140, val: "63%", year: "2024\u201325", spent: "\u20B97.1 Cr", total: "\u20B911.2 Cr" },
+      { x: 295, y: 175 - 70 / 100 * 140, val: "70%", year: "2025\u201326", spent: "\u20B98.7 Cr", total: "\u20B912.4 Cr" }
     ];
     const pathD = `M ${points[0].x} ${points[0].y} L ${points[1].x} ${points[1].y} L ${points[2].x} ${points[2].y} L ${points[3].x} ${points[3].y}`;
     const areaD = `M ${points[0].x} ${points[0].y} L ${points[1].x} ${points[1].y} L ${points[2].x} ${points[2].y} L ${points[3].x} ${points[3].y} L ${points[3].x} 175 L ${points[0].x} 175 Z`;
-    return /* @__PURE__ */ import_react8.default.createElement("article", { className: "chart-card", id: "chart-utilization-trend" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "chart-card-header" }, /* @__PURE__ */ import_react8.default.createElement("h2", { className: "chart-title" }, "Fund Utilization Over Time")), /* @__PURE__ */ import_react8.default.createElement("div", { className: "chart-container-svg" }, /* @__PURE__ */ import_react8.default.createElement("svg", { width: "100%", height: "100%", viewBox: "0 0 340 220", preserveAspectRatio: "xMidYMid meet" }, /* @__PURE__ */ import_react8.default.createElement("defs", null, /* @__PURE__ */ import_react8.default.createElement("linearGradient", { id: "areaGradient", x1: "0", y1: "0", x2: "0", y2: "1" }, /* @__PURE__ */ import_react8.default.createElement("stop", { offset: "0%", stopColor: "#0284c7", stopOpacity: "0.25" }), /* @__PURE__ */ import_react8.default.createElement("stop", { offset: "100%", stopColor: "#0284c7", stopOpacity: "0.0" }))), /* @__PURE__ */ import_react8.default.createElement("g", { stroke: "#e2e8f0", strokeWidth: "1", strokeDasharray: "3,3" }, /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "35", x2: "325", y2: "35" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "70", x2: "325", y2: "70" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "105", x2: "325", y2: "105" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "140", x2: "325", y2: "140" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "175", x2: "325", y2: "175", strokeDasharray: "none", stroke: "#cbd5e1" })), /* @__PURE__ */ import_react8.default.createElement("g", { fontSize: "10", fill: "#64748b", textAnchor: "end", fontFamily: "Inter, sans-serif" }, /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "39" }, "100%"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "74" }, "75%"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "109" }, "50%"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "144" }, "25%"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "178" }, "0%")), /* @__PURE__ */ import_react8.default.createElement("path", { d: areaD, fill: "url(#areaGradient)" }), /* @__PURE__ */ import_react8.default.createElement("path", { d: pathD, fill: "none", stroke: "#0284c7", strokeWidth: "2.5", strokeLinecap: "round", strokeLinejoin: "round" }), points.map((p) => /* @__PURE__ */ import_react8.default.createElement("g", { key: p.year, className: "chart-point-group", style: { cursor: "pointer" } }, /* @__PURE__ */ import_react8.default.createElement("circle", { cx: p.x, cy: p.y, r: "5", fill: "#ffffff", stroke: "#0284c7", strokeWidth: "2.5" }), /* @__PURE__ */ import_react8.default.createElement("text", { x: p.x, y: p.y - 10, fontSize: "11", fontWeight: "700", fill: "#0f172a", textAnchor: "middle", fontFamily: "Inter, sans-serif" }, p.val), /* @__PURE__ */ import_react8.default.createElement("text", { x: p.x, y: "196", fontSize: "11", fontWeight: "500", fill: "#64748b", textAnchor: "middle", fontFamily: "Inter, sans-serif" }, p.year))))));
+    return /* @__PURE__ */ import_react8.default.createElement("article", { className: "chart-card", id: "chart-utilization-trend", "aria-label": "Fund Utilization Over Time Trend" }, /* @__PURE__ */ import_react8.default.createElement("div", { className: "chart-card-header" }, /* @__PURE__ */ import_react8.default.createElement("h2", { className: "chart-title" }, "Fund Utilization Over Time"), /* @__PURE__ */ import_react8.default.createElement("span", { className: "badge badge-positive", style: { fontSize: "0.6875rem" } }, "4-Year Growth Trend")), /* @__PURE__ */ import_react8.default.createElement("div", { className: "chart-container-svg", style: { position: "relative" } }, /* @__PURE__ */ import_react8.default.createElement("svg", { width: "100%", height: "100%", viewBox: "0 0 340 220", preserveAspectRatio: "xMidYMid meet", role: "img", "aria-label": "Line Chart: Fund Utilization Over Time" }, /* @__PURE__ */ import_react8.default.createElement("defs", null, /* @__PURE__ */ import_react8.default.createElement("linearGradient", { id: "areaGradient", x1: "0", y1: "0", x2: "0", y2: "1" }, /* @__PURE__ */ import_react8.default.createElement("stop", { offset: "0%", stopColor: "#0284c7", stopOpacity: "0.25" }), /* @__PURE__ */ import_react8.default.createElement("stop", { offset: "100%", stopColor: "#0284c7", stopOpacity: "0.0" }))), /* @__PURE__ */ import_react8.default.createElement("g", { stroke: "#e2e8f0", strokeWidth: "1", strokeDasharray: "3,3" }, /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "35", x2: "325", y2: "35" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "70", x2: "325", y2: "70" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "105", x2: "325", y2: "105" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "140", x2: "325", y2: "140" }), /* @__PURE__ */ import_react8.default.createElement("line", { x1: "45", y1: "175", x2: "325", y2: "175", strokeDasharray: "none", stroke: "#cbd5e1" })), /* @__PURE__ */ import_react8.default.createElement("g", { fontSize: "10", fill: "#64748b", textAnchor: "end", fontFamily: "Inter, sans-serif" }, /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "39" }, "100%"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "74" }, "75%"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "109" }, "50%"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "144" }, "25%"), /* @__PURE__ */ import_react8.default.createElement("text", { x: "38", y: "178" }, "0%")), /* @__PURE__ */ import_react8.default.createElement("path", { d: areaD, fill: "url(#areaGradient)" }), /* @__PURE__ */ import_react8.default.createElement("path", { d: pathD, fill: "none", stroke: "#0284c7", strokeWidth: "2.5", strokeLinecap: "round", strokeLinejoin: "round" }), points.map((p) => {
+      const isCurrentYear = p.year === selectedYear;
+      const isHovered = hoveredPoint?.year === p.year;
+      return /* @__PURE__ */ import_react8.default.createElement(
+        "g",
+        {
+          key: p.year,
+          className: "chart-point-group",
+          tabIndex: 0,
+          role: "graphics-symbol",
+          "aria-label": `FY ${p.year}: ${p.val} utilization (${p.spent} of ${p.total})`,
+          onMouseEnter: () => setHoveredPoint(p),
+          onMouseLeave: () => setHoveredPoint(null),
+          onFocus: () => setHoveredPoint(p),
+          onBlur: () => setHoveredPoint(null),
+          style: { cursor: "pointer", outline: "none" }
+        },
+        /* @__PURE__ */ import_react8.default.createElement(
+          "circle",
+          {
+            cx: p.x,
+            cy: p.y,
+            r: isHovered ? 7 : isCurrentYear ? 6 : 4.5,
+            fill: isCurrentYear ? "#0d9488" : "#ffffff",
+            stroke: isCurrentYear ? "#0f766e" : "#0284c7",
+            strokeWidth: isHovered ? 3.5 : 2.5,
+            style: { transition: "all 0.2s ease" }
+          }
+        ),
+        /* @__PURE__ */ import_react8.default.createElement(
+          "text",
+          {
+            x: p.x,
+            y: p.y - 10,
+            fontSize: "11",
+            fontWeight: "700",
+            fill: isCurrentYear ? "#0f766e" : "#0f172a",
+            textAnchor: "middle",
+            fontFamily: "Inter, sans-serif"
+          },
+          p.val
+        ),
+        /* @__PURE__ */ import_react8.default.createElement(
+          "text",
+          {
+            x: p.x,
+            y: "196",
+            fontSize: "11",
+            fontWeight: isCurrentYear ? "700" : "500",
+            fill: isCurrentYear ? "#0f172a" : "#64748b",
+            textAnchor: "middle",
+            fontFamily: "Inter, sans-serif"
+          },
+          p.year
+        )
+      );
+    })), hoveredPoint && /* @__PURE__ */ import_react8.default.createElement("div", { className: "chart-interactive-tooltip", role: "tooltip" }, /* @__PURE__ */ import_react8.default.createElement("div", { style: { fontWeight: 700, color: "#fff", marginBottom: "2px" } }, "Financial Year ", hoveredPoint.year), /* @__PURE__ */ import_react8.default.createElement("div", { style: { color: "#38bdf8", fontSize: "0.875rem", fontWeight: 800 } }, hoveredPoint.val, " Utilization"), /* @__PURE__ */ import_react8.default.createElement("div", { style: { color: "#cbd5e1", fontSize: "0.6875rem" } }, "Expenditure: ", hoveredPoint.spent, " / ", hoveredPoint.total))));
   }
 
   // src/components/AttentionCard.jsx
   var import_react9 = __toESM(require_react(), 1);
-  function AttentionSection({ projects, searchQuery = "", onSelectProject, onViewAll }) {
-    const filtered = !searchQuery.trim() ? projects : projects.filter(
-      (p) => p.title.toLowerCase().includes(searchQuery.toLowerCase()) || p.location.toLowerCase().includes(searchQuery.toLowerCase()) || p.constituency.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    return /* @__PURE__ */ import_react9.default.createElement("article", { className: "attention-section-card", id: "section-attention-projects" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "attention-section-header" }, /* @__PURE__ */ import_react9.default.createElement("h2", { className: "chart-title" }, "Projects that may need attention"), /* @__PURE__ */ import_react9.default.createElement(
+  function AttentionSection({
+    projects,
+    searchQuery = "",
+    onSelectProject,
+    onClearSearch,
+    onViewAll,
+    onNavigateToProject
+  }) {
+    const filtered = !searchQuery.trim() ? projects : projects.filter((p) => {
+      const q = searchQuery.toLowerCase();
+      return p.title?.toLowerCase().includes(q) || p.location?.toLowerCase().includes(q) || p.constituency?.toLowerCase().includes(q) || p.mpName?.toLowerCase().includes(q) || p.category?.toLowerCase().includes(q) || p.severity?.toLowerCase().includes(q);
+    });
+    const handleProjectClick = (proj) => {
+      if (onNavigateToProject) {
+        onNavigateToProject(proj.id, proj.title);
+      } else {
+        window.location.hash = `#/projects/${proj.id}`;
+      }
+    };
+    return /* @__PURE__ */ import_react9.default.createElement("article", { className: "attention-section-card", id: "section-attention-projects", "aria-label": "Projects that may need attention" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "attention-section-header" }, /* @__PURE__ */ import_react9.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "8px" } }, /* @__PURE__ */ import_react9.default.createElement("h2", { className: "chart-title" }, "Projects that may need attention"), /* @__PURE__ */ import_react9.default.createElement("span", { className: "badge badge-attention", style: { fontSize: "0.6875rem" } }, filtered.length, " Flagged")), /* @__PURE__ */ import_react9.default.createElement(
       "button",
       {
         type: "button",
         className: "btn-ghost external-module-btn",
         onClick: onViewAll,
-        style: { fontSize: "0.8125rem", fontWeight: 600, color: "var(--teal-600)" }
+        style: { fontSize: "0.8125rem", fontWeight: 600, color: "var(--teal-600)", padding: "4px 8px" },
+        "aria-label": "View all attention projects in Attention Center"
       },
       "View all"
-    )), /* @__PURE__ */ import_react9.default.createElement("div", { className: "attention-list-wrapper", id: "attention-projects-list" }, filtered.length === 0 ? /* @__PURE__ */ import_react9.default.createElement("div", { style: { padding: "20px", textAlign: "center", color: "var(--slate-500)", fontSize: "0.875rem" } }, 'No attention projects match "', searchQuery, '".') : filtered.map((proj) => /* @__PURE__ */ import_react9.default.createElement(
+    )), /* @__PURE__ */ import_react9.default.createElement("div", { className: "attention-list-wrapper", id: "attention-projects-list", role: "feed", "aria-busy": "false" }, filtered.length === 0 ? /* @__PURE__ */ import_react9.default.createElement("div", { className: "attention-empty-state", role: "status" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "empty-state-icon" }, /* @__PURE__ */ import_react9.default.createElement("svg", { width: "28", height: "28", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.75" }, /* @__PURE__ */ import_react9.default.createElement("circle", { cx: "11", cy: "11", r: "8" }), /* @__PURE__ */ import_react9.default.createElement("line", { x1: "21", y1: "21", x2: "16.65", y2: "16.65" }), /* @__PURE__ */ import_react9.default.createElement("line", { x1: "8", y1: "11", x2: "14", y2: "11", strokeDasharray: "2 2" }))), /* @__PURE__ */ import_react9.default.createElement("h3", { className: "empty-state-title" }, "No projects found"), /* @__PURE__ */ import_react9.default.createElement("p", { className: "empty-state-text" }, "We couldn't find any matching projects for ", /* @__PURE__ */ import_react9.default.createElement("strong", null, '"', searchQuery, '"'), "."), onClearSearch && /* @__PURE__ */ import_react9.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "btn btn-secondary",
+        style: { marginTop: "12px", fontSize: "0.8125rem", padding: "6px 14px" },
+        onClick: onClearSearch
+      },
+      "Clear search"
+    )) : filtered.map((proj) => /* @__PURE__ */ import_react9.default.createElement(
       AttentionItem,
       {
         key: proj.id,
         proj,
-        onClick: () => onSelectProject && onSelectProject(proj)
+        onClick: () => handleProjectClick(proj),
+        onOpenModal: () => onSelectProject && onSelectProject(proj)
       }
     ))));
   }
-  function AttentionItem({ proj, onClick }) {
+  function AttentionItem({ proj, onClick, onOpenModal }) {
     const badgeClass = proj.severityClass === "severity-high" ? "badge-high" : proj.severityClass === "severity-medium" ? "badge-medium" : "badge-low";
     return /* @__PURE__ */ import_react9.default.createElement(
       "div",
@@ -24097,8 +24832,8 @@
         className: "attention-item-row",
         "data-project-id": proj.id,
         tabIndex: 0,
-        role: "button",
-        "aria-label": `View details for ${proj.title}`,
+        role: "link",
+        "aria-label": `Navigate to project ${proj.title}, ${proj.overdueDays} days overdue, ${proj.progress}% physical progress`,
         onClick,
         onKeyDown: (e) => {
           if (e.key === "Enter" || e.key === " ") {
@@ -24107,19 +24842,30 @@
           }
         }
       },
-      /* @__PURE__ */ import_react9.default.createElement("div", { className: "attention-item-left" }, /* @__PURE__ */ import_react9.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "6px", marginBottom: "2px" } }, /* @__PURE__ */ import_react9.default.createElement("span", { className: `badge ${badgeClass}`, style: { fontSize: "0.625rem", padding: "1px 6px" } }, proj.severity)), /* @__PURE__ */ import_react9.default.createElement("span", { className: "attention-item-title" }, proj.title), /* @__PURE__ */ import_react9.default.createElement("span", { className: "attention-item-loc" }, proj.location)),
-      /* @__PURE__ */ import_react9.default.createElement("div", { className: "attention-item-progress-box" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "progress-track", style: { width: "90px", height: "6px" } }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "progress-fill", style: { width: `${proj.progress}%` } })), /* @__PURE__ */ import_react9.default.createElement("span", { className: "attention-progress-pct" }, proj.progress, "%")),
-      /* @__PURE__ */ import_react9.default.createElement("div", { className: "attention-item-right" }, /* @__PURE__ */ import_react9.default.createElement("span", { className: "attention-overdue-tag" }, proj.overdueDays, " days overdue"), /* @__PURE__ */ import_react9.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", style: { color: "var(--slate-400)" } }, /* @__PURE__ */ import_react9.default.createElement("polyline", { points: "9 18 15 12 9 6" })))
+      /* @__PURE__ */ import_react9.default.createElement("div", { className: "attention-item-left" }, /* @__PURE__ */ import_react9.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "6px", marginBottom: "2px" } }, /* @__PURE__ */ import_react9.default.createElement("span", { className: `badge ${badgeClass}`, style: { fontSize: "0.625rem", padding: "1px 6px" } }, proj.severity), proj.mpName && /* @__PURE__ */ import_react9.default.createElement("span", { style: { fontSize: "0.6875rem", color: "var(--slate-500)" } }, "MP: ", proj.mpName)), /* @__PURE__ */ import_react9.default.createElement("span", { className: "attention-item-title" }, proj.title), /* @__PURE__ */ import_react9.default.createElement("span", { className: "attention-item-loc" }, proj.location, " \u2022 ", proj.constituency)),
+      /* @__PURE__ */ import_react9.default.createElement("div", { className: "attention-item-progress-box" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "progress-track", style: { width: "90px", height: "6px" }, "aria-label": `Physical progress ${proj.progress}%` }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "progress-fill", style: { width: `${proj.progress}%` } })), /* @__PURE__ */ import_react9.default.createElement("span", { className: "attention-progress-pct" }, proj.progress, "%")),
+      /* @__PURE__ */ import_react9.default.createElement("div", { className: "attention-item-right" }, /* @__PURE__ */ import_react9.default.createElement("span", { className: "attention-overdue-tag" }, proj.overdueDays, " days overdue"), /* @__PURE__ */ import_react9.default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", style: { color: "var(--slate-400)" }, "aria-hidden": "true" }, /* @__PURE__ */ import_react9.default.createElement("polyline", { points: "9 18 15 12 9 6" })))
     );
   }
-  function ProjectSignalModal({ project, onClose }) {
+  function ProjectSignalModal({ project, onClose, onNavigateToProject }) {
     if (!project) return null;
     const badgeClass = project.severityClass === "severity-high" ? "badge-high" : project.severityClass === "severity-medium" ? "badge-medium" : "badge-low";
+    const handleOpenDetails = () => {
+      onClose();
+      if (onNavigateToProject) {
+        onNavigateToProject(project.id, project.title);
+      } else {
+        window.location.hash = `#/projects/${project.id}`;
+      }
+    };
     return /* @__PURE__ */ import_react9.default.createElement(
       "div",
       {
         className: "modal-backdrop",
         id: "project-detail-modal",
+        role: "dialog",
+        "aria-modal": "true",
+        "aria-labelledby": "modal-project-title",
         onClick: (e) => {
           if (e.target === e.currentTarget) {
             onClose();
@@ -24136,7 +24882,16 @@
           onClick: onClose
         },
         /* @__PURE__ */ import_react9.default.createElement("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" }, /* @__PURE__ */ import_react9.default.createElement("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), /* @__PURE__ */ import_react9.default.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" }))
-      ), /* @__PURE__ */ import_react9.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" } }, /* @__PURE__ */ import_react9.default.createElement("span", { className: `badge ${badgeClass}` }, project.severity), /* @__PURE__ */ import_react9.default.createElement("span", { style: { fontSize: "0.8125rem", color: "var(--slate-500)" } }, project.constituency)), /* @__PURE__ */ import_react9.default.createElement("h3", { style: { fontSize: "1.25rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "4px" } }, project.title), /* @__PURE__ */ import_react9.default.createElement("p", { style: { fontSize: "0.875rem", color: "var(--slate-500)", marginBottom: "16px" } }, project.location), /* @__PURE__ */ import_react9.default.createElement("div", { style: { background: "var(--slate-50)", border: "1px solid var(--slate-200)", borderRadius: "var(--radius-md)", padding: "14px", marginBottom: "16px" } }, /* @__PURE__ */ import_react9.default.createElement("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "10px", textAlign: "center", marginBottom: "12px" } }, /* @__PURE__ */ import_react9.default.createElement("div", null, /* @__PURE__ */ import_react9.default.createElement("div", { style: { fontSize: "0.6875rem", color: "var(--slate-500)" } }, "Allocated"), /* @__PURE__ */ import_react9.default.createElement("div", { style: { fontSize: "0.9375rem", fontWeight: 700, color: "var(--slate-900)" } }, project.allocated)), /* @__PURE__ */ import_react9.default.createElement("div", null, /* @__PURE__ */ import_react9.default.createElement("div", { style: { fontSize: "0.6875rem", color: "var(--slate-500)" } }, "Spent"), /* @__PURE__ */ import_react9.default.createElement("div", { style: { fontSize: "0.9375rem", fontWeight: 700, color: "var(--slate-900)" } }, project.spent)), /* @__PURE__ */ import_react9.default.createElement("div", null, /* @__PURE__ */ import_react9.default.createElement("div", { style: { fontSize: "0.6875rem", color: "var(--slate-500)" } }, "Physical Progress"), /* @__PURE__ */ import_react9.default.createElement("div", { style: { fontSize: "0.9375rem", fontWeight: 700, color: "var(--teal-700)" } }, project.progress, "%"))), /* @__PURE__ */ import_react9.default.createElement("div", { className: "progress-track" }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "progress-fill", style: { width: `${project.progress}%` } }))), /* @__PURE__ */ import_react9.default.createElement("div", { style: { marginBottom: "16px" } }, /* @__PURE__ */ import_react9.default.createElement("h4", { style: { fontSize: "0.875rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "8px" } }, "Why does this project need attention?"), /* @__PURE__ */ import_react9.default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "6px" } }, project.signals?.map((sig, idx) => /* @__PURE__ */ import_react9.default.createElement("div", { key: idx, style: { display: "flex", alignItems: "center", gap: "8px", fontSize: "0.8125rem", color: "var(--slate-700)" } }, /* @__PURE__ */ import_react9.default.createElement("span", { style: { width: "6px", height: "6px", borderRadius: "50%", background: "var(--rose-500)", flexShrink: 0 } }), /* @__PURE__ */ import_react9.default.createElement("span", null, sig))))), /* @__PURE__ */ import_react9.default.createElement("div", { className: "login-disclaimer-box", style: { marginBottom: "18px" } }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "login-disclaimer-text" }, /* @__PURE__ */ import_react9.default.createElement("strong", null, "Data Signal Context:"), " These indicators suggest that the project may require administrative follow-up or verification. This is not a finding of wrongdoing.")), /* @__PURE__ */ import_react9.default.createElement("div", { style: { display: "flex", justifyContent: "flex-end", gap: "10px" } }, /* @__PURE__ */ import_react9.default.createElement("button", { type: "button", className: "btn btn-secondary", id: "btn-modal-close-action", onClick: onClose }, "Close")))
+      ), /* @__PURE__ */ import_react9.default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px" } }, /* @__PURE__ */ import_react9.default.createElement("span", { className: `badge ${badgeClass}` }, project.severity), /* @__PURE__ */ import_react9.default.createElement("span", { style: { fontSize: "0.8125rem", color: "var(--slate-500)" } }, project.constituency)), /* @__PURE__ */ import_react9.default.createElement("h3", { id: "modal-project-title", style: { fontSize: "1.25rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "4px" } }, project.title), /* @__PURE__ */ import_react9.default.createElement("p", { style: { fontSize: "0.875rem", color: "var(--slate-500)", marginBottom: "16px" } }, project.location, " \u2022 MP: ", project.mpName || "District MP"), /* @__PURE__ */ import_react9.default.createElement("div", { style: { background: "var(--slate-50)", border: "1px solid var(--slate-200)", borderRadius: "var(--radius-md)", padding: "14px", marginBottom: "16px" } }, /* @__PURE__ */ import_react9.default.createElement("div", { style: { display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "10px", textAlign: "center", marginBottom: "12px" } }, /* @__PURE__ */ import_react9.default.createElement("div", null, /* @__PURE__ */ import_react9.default.createElement("div", { style: { fontSize: "0.6875rem", color: "var(--slate-500)" } }, "Allocated"), /* @__PURE__ */ import_react9.default.createElement("div", { style: { fontSize: "0.9375rem", fontWeight: 700, color: "var(--slate-900)" } }, project.allocated)), /* @__PURE__ */ import_react9.default.createElement("div", null, /* @__PURE__ */ import_react9.default.createElement("div", { style: { fontSize: "0.6875rem", color: "var(--slate-500)" } }, "Spent"), /* @__PURE__ */ import_react9.default.createElement("div", { style: { fontSize: "0.9375rem", fontWeight: 700, color: "var(--slate-900)" } }, project.spent)), /* @__PURE__ */ import_react9.default.createElement("div", null, /* @__PURE__ */ import_react9.default.createElement("div", { style: { fontSize: "0.6875rem", color: "var(--slate-500)" } }, "Physical Progress"), /* @__PURE__ */ import_react9.default.createElement("div", { style: { fontSize: "0.9375rem", fontWeight: 700, color: "var(--teal-700)" } }, project.progress, "%"))), /* @__PURE__ */ import_react9.default.createElement("div", { className: "progress-track", "aria-label": `Physical Progress: ${project.progress}%` }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "progress-fill", style: { width: `${project.progress}%` } }))), /* @__PURE__ */ import_react9.default.createElement("div", { style: { marginBottom: "16px" } }, /* @__PURE__ */ import_react9.default.createElement("h4", { style: { fontSize: "0.875rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "8px" } }, "Why does this project need attention?"), /* @__PURE__ */ import_react9.default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "6px" } }, project.signals?.map((sig, idx) => /* @__PURE__ */ import_react9.default.createElement("div", { key: idx, style: { display: "flex", alignItems: "center", gap: "8px", fontSize: "0.8125rem", color: "var(--slate-700)" } }, /* @__PURE__ */ import_react9.default.createElement("span", { style: { width: "6px", height: "6px", borderRadius: "50%", background: "var(--rose-500)", flexShrink: 0 } }), /* @__PURE__ */ import_react9.default.createElement("span", null, sig))))), /* @__PURE__ */ import_react9.default.createElement("div", { className: "login-disclaimer-box", style: { marginBottom: "18px" } }, /* @__PURE__ */ import_react9.default.createElement("div", { className: "login-disclaimer-text" }, /* @__PURE__ */ import_react9.default.createElement("strong", null, "Data Signal Context:"), " These indicators suggest that the project may require administrative follow-up or verification. This is not a finding of wrongdoing.")), /* @__PURE__ */ import_react9.default.createElement("div", { style: { display: "flex", justifyContent: "flex-end", gap: "10px" } }, /* @__PURE__ */ import_react9.default.createElement("button", { type: "button", className: "btn btn-secondary", id: "btn-modal-close-action", onClick: onClose }, "Close"), /* @__PURE__ */ import_react9.default.createElement(
+        "button",
+        {
+          type: "button",
+          className: "btn btn-primary",
+          id: "btn-modal-open-project",
+          onClick: handleOpenDetails
+        },
+        "Open Project Details \u2192"
+      )))
     );
   }
 
@@ -24145,12 +24900,24 @@
     const [selectedYear, setSelectedYear] = (0, import_react10.useState)("2025\u201326");
     const [searchQuery, setSearchQuery] = (0, import_react10.useState)("");
     const [selectedProject, setSelectedProject] = (0, import_react10.useState)(null);
+    const [isLoading, setIsLoading] = (0, import_react10.useState)(false);
+    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = (0, import_react10.useState)(false);
     const data = getOverviewData(selectedYear);
     const handleYearChange = (newYear) => {
+      setIsLoading(true);
       setSelectedYear(newYear);
       if (onShowToast) {
-        onShowToast(`Filtered dashboard data for Financial Year ${newYear}`, "info");
+        onShowToast(`Loaded financial data for FY ${newYear}`, "info");
       }
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 250);
+    };
+    const handleNavigateToProject = (projectId, projectTitle) => {
+      if (onShowToast) {
+        onShowToast(`Navigating to Project: "${projectTitle}" (/projects/${projectId}) [Frontend 2 Module]`, "info");
+      }
+      window.location.hash = `#/projects/${projectId}`;
     };
     const handleExternalModuleClick = (moduleName, owner) => {
       if (onShowToast) {
@@ -24162,7 +24929,9 @@
       {
         activeRoute: "/dashboard",
         onSignOut,
-        onExternalModuleClick: handleExternalModuleClick
+        onExternalModuleClick: handleExternalModuleClick,
+        isMobileOpen: isMobileSidebarOpen,
+        onCloseMobileSidebar: () => setIsMobileSidebarOpen(false)
       }
     ), /* @__PURE__ */ import_react10.default.createElement("div", { className: "dashboard-main" }, /* @__PURE__ */ import_react10.default.createElement(
       Topbar,
@@ -24170,21 +24939,27 @@
         selectedYear,
         onYearChange: handleYearChange,
         searchQuery,
-        onSearchChange: setSearchQuery
+        onSearchChange: setSearchQuery,
+        onSignOut,
+        onOpenMobileSidebar: () => setIsMobileSidebarOpen(true),
+        onExternalModuleClick: handleExternalModuleClick
       }
-    ), /* @__PURE__ */ import_react10.default.createElement("main", { className: "dashboard-content-body" }, /* @__PURE__ */ import_react10.default.createElement(KPICardGrid, { kpis: data.kpis }), /* @__PURE__ */ import_react10.default.createElement("section", { className: "charts-grid-row" }, /* @__PURE__ */ import_react10.default.createElement(FundUtilizationChart, { data: data.fundChart }), /* @__PURE__ */ import_react10.default.createElement(ProjectStatusChart, { data: data.statusChart })), /* @__PURE__ */ import_react10.default.createElement("section", { className: "charts-grid-row" }, /* @__PURE__ */ import_react10.default.createElement(UtilizationOverTimeChart, { data: data.trendChart }), /* @__PURE__ */ import_react10.default.createElement(
+    ), /* @__PURE__ */ import_react10.default.createElement("main", { className: "dashboard-content-body", id: "dashboard-main-content" }, /* @__PURE__ */ import_react10.default.createElement(KPICardGrid, { kpis: data.kpis, isLoading }), /* @__PURE__ */ import_react10.default.createElement("section", { className: "charts-grid-row", "aria-label": "Financial Overview Charts" }, isLoading ? /* @__PURE__ */ import_react10.default.createElement(import_react10.default.Fragment, null, /* @__PURE__ */ import_react10.default.createElement("article", { className: "chart-card skeleton-card" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "skeleton", style: { width: "40%", height: "20px", marginBottom: "20px" } }), /* @__PURE__ */ import_react10.default.createElement("div", { className: "skeleton", style: { width: "100%", height: "180px" } })), /* @__PURE__ */ import_react10.default.createElement("article", { className: "chart-card skeleton-card" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "skeleton", style: { width: "40%", height: "20px", marginBottom: "20px" } }), /* @__PURE__ */ import_react10.default.createElement("div", { className: "skeleton", style: { width: "100%", height: "180px" } }))) : /* @__PURE__ */ import_react10.default.createElement(import_react10.default.Fragment, null, /* @__PURE__ */ import_react10.default.createElement(FundUtilizationChart, { data: data.fundChart, selectedYear }), /* @__PURE__ */ import_react10.default.createElement(ProjectStatusChart, { data: data.statusChart, selectedYear }))), /* @__PURE__ */ import_react10.default.createElement("section", { className: "charts-grid-row", "aria-label": "Trend & Attention Signals" }, isLoading ? /* @__PURE__ */ import_react10.default.createElement(import_react10.default.Fragment, null, /* @__PURE__ */ import_react10.default.createElement("article", { className: "chart-card skeleton-card" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "skeleton", style: { width: "50%", height: "20px", marginBottom: "20px" } }), /* @__PURE__ */ import_react10.default.createElement("div", { className: "skeleton", style: { width: "100%", height: "180px" } })), /* @__PURE__ */ import_react10.default.createElement("article", { className: "attention-section-card skeleton-card" }, /* @__PURE__ */ import_react10.default.createElement("div", { className: "skeleton", style: { width: "60%", height: "20px", marginBottom: "20px" } }), /* @__PURE__ */ import_react10.default.createElement("div", { className: "skeleton", style: { width: "100%", height: "50px", marginBottom: "10px" } }), /* @__PURE__ */ import_react10.default.createElement("div", { className: "skeleton", style: { width: "100%", height: "50px", marginBottom: "10px" } }), /* @__PURE__ */ import_react10.default.createElement("div", { className: "skeleton", style: { width: "100%", height: "50px" } }))) : /* @__PURE__ */ import_react10.default.createElement(import_react10.default.Fragment, null, /* @__PURE__ */ import_react10.default.createElement(UtilizationOverTimeChart, { data: data.trendChart, selectedYear }), /* @__PURE__ */ import_react10.default.createElement(
       AttentionSection,
       {
         projects: data.attentionProjects,
         searchQuery,
+        onClearSearch: () => setSearchQuery(""),
         onSelectProject: (proj) => setSelectedProject(proj),
-        onViewAll: () => handleExternalModuleClick("Attention Center", "Frontend Developer 3")
+        onViewAll: () => handleExternalModuleClick("Attention Center", "Frontend Developer 3"),
+        onNavigateToProject: handleNavigateToProject
       }
-    )))), selectedProject && /* @__PURE__ */ import_react10.default.createElement(
+    ))))), selectedProject && /* @__PURE__ */ import_react10.default.createElement(
       ProjectSignalModal,
       {
         project: selectedProject,
-        onClose: () => setSelectedProject(null)
+        onClose: () => setSelectedProject(null),
+        onNavigateToProject: handleNavigateToProject
       }
     ));
   }
@@ -24220,7 +24995,7 @@
       setToasts((prev) => [...prev, { id, message, type }]);
       setTimeout(() => {
         setToasts((prev) => prev.filter((t) => t.id !== id));
-      }, 3500);
+      }, 4e3);
     }, []);
     const handleSignOut = () => {
       logoutUser();
@@ -24231,12 +25006,16 @@
       showToast("Signed in successfully as Administrator", "success");
       window.location.hash = "#/dashboard";
     };
-    const route = currentHash.replace(/^#/, "").split("?")[0] || "/";
+    const rawRoute = currentHash.replace(/^#/, "").split("?")[0] || "/";
+    const route = rawRoute.startsWith("/") ? rawRoute : `/${rawRoute}`;
     let pageContent;
     if (route === "/login") {
       pageContent = /* @__PURE__ */ import_react12.default.createElement(LoginPage, { onLoginSuccess: handleLoginSuccess });
     } else if (route === "/dashboard") {
       pageContent = /* @__PURE__ */ import_react12.default.createElement(DashboardPage, { onSignOut: handleSignOut, onShowToast: showToast });
+    } else if (route.startsWith("/projects/")) {
+      const projectId = route.replace("/projects/", "");
+      pageContent = /* @__PURE__ */ import_react12.default.createElement("div", { className: "external-route-placeholder" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "external-route-card" }, /* @__PURE__ */ import_react12.default.createElement("div", { className: "badge badge-ongoing", style: { marginBottom: "12px", alignSelf: "center" } }, "Frontend 2 Ownership Boundary"), /* @__PURE__ */ import_react12.default.createElement("h2", { style: { fontSize: "1.25rem", fontWeight: 700, color: "var(--slate-900)", marginBottom: "8px" } }, "Project Details: ", projectId), /* @__PURE__ */ import_react12.default.createElement("p", { style: { fontSize: "0.875rem", color: "var(--slate-600)", marginBottom: "20px", lineHeight: "1.5" } }, "This page (", /* @__PURE__ */ import_react12.default.createElement("code", null, "/projects/:id"), ") is owned and implemented by ", /* @__PURE__ */ import_react12.default.createElement("strong", null, "Frontend Developer 2"), ". Frontend Developer 1's navigation call was dispatched successfully."), /* @__PURE__ */ import_react12.default.createElement("div", { style: { display: "flex", gap: "12px", justifyContent: "center" } }, /* @__PURE__ */ import_react12.default.createElement("a", { href: "#/dashboard", className: "btn btn-primary" }, "\u2190 Return to Dashboard"))));
     } else {
       pageContent = /* @__PURE__ */ import_react12.default.createElement(LandingPage, null);
     }

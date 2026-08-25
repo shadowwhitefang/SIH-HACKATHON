@@ -3,7 +3,7 @@ import { LandingPage } from './pages/LandingPage.jsx';
 import { LoginPage } from './pages/LoginPage.jsx';
 import { DashboardPage } from './pages/DashboardPage.jsx';
 import { ToastContainer } from './components/Toast.jsx';
-import { isUserAuthenticated, logoutUser } from './data/mockData.js';
+import { authService, logoutUser } from './data/mockData.js';
 
 export function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash || '#/');
@@ -31,7 +31,7 @@ export function App() {
 
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 3500);
+    }, 4000);
   }, []);
 
   const handleSignOut = () => {
@@ -46,13 +46,37 @@ export function App() {
   };
 
   // Route normalization
-  const route = currentHash.replace(/^#/, '').split('?')[0] || '/';
+  const rawRoute = currentHash.replace(/^#/, '').split('?')[0] || '/';
+  const route = rawRoute.startsWith('/') ? rawRoute : `/${rawRoute}`;
 
   let pageContent;
   if (route === '/login') {
     pageContent = <LoginPage onLoginSuccess={handleLoginSuccess} />;
   } else if (route === '/dashboard') {
     pageContent = <DashboardPage onSignOut={handleSignOut} onShowToast={showToast} />;
+  } else if (route.startsWith('/projects/')) {
+    const projectId = route.replace('/projects/', '');
+    pageContent = (
+      <div className="external-route-placeholder">
+        <div className="external-route-card">
+          <div className="badge badge-ongoing" style={{ marginBottom: '12px', alignSelf: 'center' }}>
+            Frontend 2 Ownership Boundary
+          </div>
+          <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--slate-900)', marginBottom: '8px' }}>
+            Project Details: {projectId}
+          </h2>
+          <p style={{ fontSize: '0.875rem', color: 'var(--slate-600)', marginBottom: '20px', lineHeight: '1.5' }}>
+            This page (<code>/projects/:id</code>) is owned and implemented by <strong>Frontend Developer 2</strong>.
+            Frontend Developer 1's navigation call was dispatched successfully.
+          </p>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+            <a href="#/dashboard" className="btn btn-primary">
+              ← Return to Dashboard
+            </a>
+          </div>
+        </div>
+      </div>
+    );
   } else {
     pageContent = <LandingPage />;
   }
