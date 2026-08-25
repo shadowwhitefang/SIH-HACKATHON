@@ -1,0 +1,152 @@
+/* Login Page Styles */
+
+.login-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--slate-50);
+  background-image: 
+    radial-gradient(circle at 50% 20%, rgba(15, 118, 110, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(15, 23, 42, 0.04) 0%, transparent 50%);
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+
+.login-backdrop-decor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(226, 232, 240, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 232, 240, 0.4) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+}
+
+.login-card {
+  position: relative;
+  z-index: 10;
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl), 0 0 0 1px rgba(15, 23, 42, 0.04);
+  width: 100%;
+  max-width: 440px;
+  padding: 2.75rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.login-logo-container {
+  margin-bottom: 1.75rem;
+}
+
+.login-header-text {
+  margin-bottom: 2rem;
+}
+
+.login-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--slate-900);
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  font-size: 0.875rem;
+  color: var(--slate-600);
+  line-height: 1.5;
+}
+
+.btn-google-auth {
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  border-radius: var(--radius-md);
+  background-color: var(--slate-900);
+  color: var(--white);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.875rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.btn-google-auth:hover {
+  background-color: var(--slate-800);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.22);
+}
+
+.google-icon-box {
+  width: 22px;
+  height: 22px;
+  background: var(--white);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 1.5rem 0 1.25rem;
+  color: var(--slate-400);
+  font-size: 0.8125rem;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.login-divider span {
+  padding: 0 0.75rem;
+}
+
+.login-security-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--slate-600);
+  margin-bottom: 1.75rem;
+}
+
+.login-disclaimer-box {
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.login-disclaimer-text {
+  font-size: 0.75rem;
+  color: var(--slate-500);
+  line-height: 1.45;
+}
+
+.login-footer-copy {
+  margin-top: 2rem;
+  font-size: 0.8125rem;
+  color: var(--slate-400);
+  text-align: center;
+}
