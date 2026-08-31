@@ -23524,17 +23524,17 @@
   });
 
   // src/main.jsx
-  var import_react17 = __toESM(require_react(), 1);
-  var import_client = __toESM(require_client(), 1);
+  var import_react17 = __toESM(require_react());
+  var import_client = __toESM(require_client());
 
   // src/App.jsx
-  var import_react16 = __toESM(require_react(), 1);
+  var import_react16 = __toESM(require_react());
 
   // src/pages/LandingPage.jsx
-  var import_react3 = __toESM(require_react(), 1);
+  var import_react3 = __toESM(require_react());
 
   // src/components/Navbar.jsx
-  var import_react = __toESM(require_react(), 1);
+  var import_react = __toESM(require_react());
   function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = (0, import_react.useState)(false);
     (0, import_react.useEffect)(() => {
@@ -23686,7 +23686,7 @@
   }
 
   // src/components/Footer.jsx
-  var import_react2 = __toESM(require_react(), 1);
+  var import_react2 = __toESM(require_react());
   function Footer() {
     return /* @__PURE__ */ import_react2.default.createElement("footer", { className: "landing-footer", "aria-label": "Page Footer" }, /* @__PURE__ */ import_react2.default.createElement("div", { style: { maxWidth: "1240px", margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" } }, /* @__PURE__ */ import_react2.default.createElement("div", { style: { fontSize: "0.8125rem", color: "var(--slate-600)" } }, "CivicTrack is an accountability and monitoring tool, not a system for declaring wrongdoing."), /* @__PURE__ */ import_react2.default.createElement("div", { style: { fontSize: "0.75rem", color: "var(--slate-400)" } }, "\xA9 2026 CivicTrack. All rights reserved.")));
   }
@@ -24732,7 +24732,7 @@
   }
 
   // src/pages/LoginPage.jsx
-  var import_react4 = __toESM(require_react(), 1);
+  var import_react4 = __toESM(require_react());
   function LoginPage({ onLoginSuccess }) {
     const [authState, setAuthState] = (0, import_react4.useState)("idle");
     const [errorMessage, setErrorMessage] = (0, import_react4.useState)("");
@@ -24792,10 +24792,10 @@
   }
 
   // src/pages/DashboardPage.jsx
-  var import_react10 = __toESM(require_react(), 1);
+  var import_react10 = __toESM(require_react());
 
   // src/components/Sidebar.jsx
-  var import_react5 = __toESM(require_react(), 1);
+  var import_react5 = __toESM(require_react());
   function Sidebar({
     activeRoute = "/dashboard",
     onSignOut,
@@ -24919,7 +24919,7 @@
   }
 
   // src/components/Topbar.jsx
-  var import_react6 = __toESM(require_react(), 1);
+  var import_react6 = __toESM(require_react());
   function Topbar({
     selectedYear = "2025\u201326",
     onYearChange,
@@ -25113,7 +25113,7 @@
   }
 
   // src/components/KPICard.jsx
-  var import_react7 = __toESM(require_react(), 1);
+  var import_react7 = __toESM(require_react());
   function KPICardGrid({ kpis, isLoading = false }) {
     if (isLoading) {
       return /* @__PURE__ */ import_react7.default.createElement("section", { className: "kpi-cards-grid", "aria-label": "Loading Key Performance Indicators", "aria-busy": "true" }, [1, 2, 3, 4].map((n) => /* @__PURE__ */ import_react7.default.createElement("article", { key: n, className: "kpi-card skeleton-card" }, /* @__PURE__ */ import_react7.default.createElement("div", { className: "skeleton skeleton-label", style: { width: "40%", height: "14px", marginBottom: "12px" } }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "skeleton skeleton-value", style: { width: "60%", height: "32px", marginBottom: "12px" } }), /* @__PURE__ */ import_react7.default.createElement("div", { className: "skeleton skeleton-badge", style: { width: "50%", height: "18px" } }))));
@@ -25123,7 +25123,7 @@
   }
 
   // src/components/Charts.jsx
-  var import_react8 = __toESM(require_react(), 1);
+  var import_react8 = __toESM(require_react());
   function FundUtilizationChart({ data, selectedYear }) {
     const [hoveredBar, setHoveredBar] = (0, import_react8.useState)(null);
     const maxVal = 15;
@@ -25326,7 +25326,7 @@
   }
 
   // src/components/AttentionCard.jsx
-  var import_react9 = __toESM(require_react(), 1);
+  var import_react9 = __toESM(require_react());
   function AttentionSection({
     projects,
     searchQuery = "",
@@ -25516,17 +25516,46 @@
   }
 
   // src/pages/MPDetailsPage.jsx
-  var import_react11 = __toESM(require_react(), 1);
+  var import_react11 = __toESM(require_react());
 
   // src/services/apiService.js
+  var API_BASE_URL = "/api";
+  async function fetchWithFallback(url, options = {}, fallbackData = null) {
+    try {
+      const res = await fetch(url, {
+        ...options,
+        headers: {
+          "Content-Type": "application/json",
+          ...options.headers || {}
+        }
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (json && json.success && json.data !== void 0) {
+          return json.data;
+        }
+      }
+    } catch (error) {
+    }
+    return fallbackData;
+  }
   async function getMPById(mpId = "mp-1") {
+    const data = await fetchWithFallback(`${API_BASE_URL}/mps/${mpId}`, {}, null);
+    if (data) return data;
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(mpDetailsData);
-      }, 120);
+      }, 80);
     });
   }
   async function getMPProjects(mpId = "mp-1", filters = {}) {
+    const queryParams = new URLSearchParams();
+    if (filters.category && filters.category !== "All") queryParams.append("category", filters.category);
+    if (filters.status && filters.status !== "All") queryParams.append("status", filters.status);
+    if (filters.search) queryParams.append("q", filters.search);
+    const url = `${API_BASE_URL}/projects?mpId=${mpId}&${queryParams.toString()}`;
+    const data = await fetchWithFallback(url, {}, null);
+    if (Array.isArray(data) && data.length > 0) return data;
     return new Promise((resolve) => {
       setTimeout(() => {
         let list = [...mpDetailsData.projects];
@@ -25543,10 +25572,16 @@
           );
         }
         resolve(list);
-      }, 100);
+      }, 80);
     });
   }
   async function getAlerts(filters = {}) {
+    const queryParams = new URLSearchParams();
+    if (filters.severity && filters.severity !== "All") queryParams.append("severity", filters.severity);
+    if (filters.status && filters.status !== "All") queryParams.append("status", filters.status);
+    const url = `${API_BASE_URL}/alerts?${queryParams.toString()}`;
+    const data = await fetchWithFallback(url, {}, null);
+    if (Array.isArray(data) && data.length > 0) return data;
     return new Promise((resolve) => {
       setTimeout(() => {
         let list = [...attentionAlertsContractData];
@@ -25562,10 +25597,16 @@
           );
         }
         resolve(list);
-      }, 120);
+      }, 80);
     });
   }
   async function getEvidence(filters = {}) {
+    const queryParams = new URLSearchParams();
+    if (filters.type && filters.type !== "All") queryParams.append("type", filters.type);
+    const targetProjectId = filters.projectId && filters.projectId !== "All" ? filters.projectId : "all";
+    const url = targetProjectId !== "all" ? `${API_BASE_URL}/projects/${targetProjectId}/evidence` : `${API_BASE_URL}/projects/project_001/evidence`;
+    const data = await fetchWithFallback(url, {}, null);
+    if (Array.isArray(data) && data.length > 0) return data;
     return new Promise((resolve) => {
       setTimeout(() => {
         let list = [...evidenceContractData];
@@ -25582,14 +25623,21 @@
           );
         }
         resolve(list);
-      }, 120);
+      }, 80);
     });
   }
   async function getProfile() {
+    const token = localStorage.getItem("civictrack_token");
+    if (token) {
+      const data = await fetchWithFallback(`${API_BASE_URL}/auth/me`, {
+        headers: { Authorization: `Bearer ${token}` }
+      }, null);
+      if (data && data.user) return data.user;
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(userProfileContractData);
-      }, 100);
+      }, 80);
     });
   }
 
@@ -25862,7 +25910,7 @@
   }
 
   // src/pages/AttentionCenterPage.jsx
-  var import_react12 = __toESM(require_react(), 1);
+  var import_react12 = __toESM(require_react());
   function AttentionCenterPage({ onSignOut, onShowToast, onNavigateToProject }) {
     const [alertsList, setAlertsList] = (0, import_react12.useState)([]);
     const [isLoading, setIsLoading] = (0, import_react12.useState)(true);
@@ -26035,7 +26083,7 @@
   }
 
   // src/pages/EvidenceLibraryPage.jsx
-  var import_react13 = __toESM(require_react(), 1);
+  var import_react13 = __toESM(require_react());
   function EvidenceLibraryPage({ onSignOut, onShowToast }) {
     const [evidenceList, setEvidenceList] = (0, import_react13.useState)([]);
     const [isLoading, setIsLoading] = (0, import_react13.useState)(true);
@@ -26371,7 +26419,7 @@
   }
 
   // src/pages/ProfilePage.jsx
-  var import_react14 = __toESM(require_react(), 1);
+  var import_react14 = __toESM(require_react());
   function ProfilePage({ onSignOut, onShowToast }) {
     const [profile, setProfile] = (0, import_react14.useState)(null);
     const [isLoading, setIsLoading] = (0, import_react14.useState)(true);
@@ -26626,7 +26674,7 @@
   }
 
   // src/components/Toast.jsx
-  var import_react15 = __toESM(require_react(), 1);
+  var import_react15 = __toESM(require_react());
   function ToastContainer({ toasts }) {
     if (!toasts || toasts.length === 0) return null;
     return /* @__PURE__ */ import_react15.default.createElement("div", { id: "toast-container", className: "toast-container" }, toasts.map((toast) => {

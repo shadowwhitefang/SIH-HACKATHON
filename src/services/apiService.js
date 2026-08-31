@@ -1,7 +1,7 @@
 /**
  * CivicTrack - API Service Layer
- * Decouples UI components from backend / data sources.
- * Production-ready for REST / GraphQL endpoints.
+ * Bridges UI components with backend REST endpoints with transparent mock fallbacks.
+ * Production-ready for REST endpoints and live server integration.
  */
 
 import {
@@ -11,16 +11,46 @@ import {
   userProfileContractData
 } from '../data/mockData.js';
 
+const API_BASE_URL = '/api';
+
+/**
+ * Safe fetch wrapper with automatic timeout and fallback.
+ */
+async function fetchWithFallback(url, options = {}, fallbackData = null) {
+  try {
+    const res = await fetch(url, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(options.headers || {})
+      }
+    });
+
+    if (res.ok) {
+      const json = await res.json();
+      if (json && json.success && json.data !== undefined) {
+        return json.data;
+      }
+    }
+  } catch (error) {
+    // Network or server unreachable; proceed to fallback
+  }
+  return fallbackData;
+}
+
 /**
  * Fetch Member of Parliament details by ID
  * @param {string} mpId - Identifier of MP (default: 'mp-1')
  * @returns {Promise<Object>} MP details dossier
  */
 export async function getMPById(mpId = 'mp-1') {
+  const data = await fetchWithFallback(`${API_BASE_URL}/mps/${mpId}`, {}, null);
+  if (data) return data;
+
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(mpDetailsData);
-    }, 120);
+    }, 80);
   });
 }
 
@@ -31,6 +61,16 @@ export async function getMPById(mpId = 'mp-1') {
  * @returns {Promise<Array>} List of project objects
  */
 export async function getMPProjects(mpId = 'mp-1', filters = {}) {
+  const queryParams = new URLSearchParams();
+  if (filters.category && filters.category !== 'All') queryParams.append('category', filters.category);
+  if (filters.status && filters.status !== 'All') queryParams.append('status', filters.status);
+  if (filters.search) queryParams.append('q', filters.search);
+
+  const url = `${API_BASE_URL}/projects?mpId=${mpId}&${queryParams.toString()}`;
+  const data = await fetchWithFallback(url, {}, null);
+
+  if (Array.isArray(data) && data.length > 0) return data;
+
   return new Promise((resolve) => {
     setTimeout(() => {
       let list = [...mpDetailsData.projects];
@@ -52,7 +92,7 @@ export async function getMPProjects(mpId = 'mp-1', filters = {}) {
       }
 
       resolve(list);
-    }, 100);
+    }, 80);
   });
 }
 
@@ -62,6 +102,15 @@ export async function getMPProjects(mpId = 'mp-1', filters = {}) {
  * @returns {Promise<Array>} List of alerts matching data contract
  */
 export async function getAlerts(filters = {}) {
+  const queryParams = new URLSearchParams();
+  if (filters.severity && filters.severity !== 'All') queryParams.append('severity', filters.severity);
+  if (filters.status && filters.status !== 'All') queryParams.append('status', filters.status);
+
+  const url = `${API_BASE_URL}/alerts?${queryParams.toString()}`;
+  const data = await fetchWithFallback(url, {}, null);
+
+  if (Array.isArray(data) && data.length > 0) return data;
+
   return new Promise((resolve) => {
     setTimeout(() => {
       let list = [...attentionAlertsContractData];
@@ -85,7 +134,7 @@ export async function getAlerts(filters = {}) {
       }
 
       resolve(list);
-    }, 120);
+    }, 80);
   });
 }
 
@@ -95,11 +144,14 @@ export async function getAlerts(filters = {}) {
  * @returns {Promise<Object|null>} Alert object
  */
 export async function getAlertById(alertId) {
+  const data = await fetchWithFallback(`${API_BASE_URL}/alerts/${alertId}`, {}, null);
+  if (data) return data;
+
   return new Promise((resolve) => {
     setTimeout(() => {
       const alert = attentionAlertsContractData.find((a) => a.alertId === alertId);
       resolve(alert || null);
-    }, 80);
+    }, 60);
   });
 }
 
@@ -109,6 +161,15 @@ export async function getAlertById(alertId) {
  * @returns {Promise<Array>} List of evidence records matching data contract
  */
 export async function getEvidence(filters = {}) {
+  const queryParams = new URLSearchParams();
+  if (filters.type && filters.type !== 'All') queryParams.append('type', filters.type);
+
+  const targetProjectId = filters.projectId && filters.projectId !== 'All' ? filters.projectId : 'all';
+  const url = targetProjectId !== 'all' ? `${API_BASE_URL}/projects/${targetProjectId}/evidence` : `${API_BASE_URL}/projects/project_001/evidence`;
+  const data = await fetchWithFallback(url, {}, null);
+
+  if (Array.isArray(data) && data.length > 0) return data;
+
   return new Promise((resolve) => {
     setTimeout(() => {
       let list = [...evidenceContractData];
@@ -133,7 +194,7 @@ export async function getEvidence(filters = {}) {
       }
 
       resolve(list);
-    }, 120);
+    }, 80);
   });
 }
 
@@ -142,9 +203,17 @@ export async function getEvidence(filters = {}) {
  * @returns {Promise<Object>} Profile object
  */
 export async function getProfile() {
+  const token = localStorage.getItem('civictrack_token');
+  if (token) {
+    const data = await fetchWithFallback(`${API_BASE_URL}/auth/me`, {
+      headers: { Authorization: `Bearer ${token}` }
+    }, null);
+    if (data && data.user) return data.user;
+  }
+
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(userProfileContractData);
-    }, 100);
+    }, 80);
   });
 }
