@@ -8,7 +8,7 @@
   justify-content: center;
   background-color: var(--slate-50);
   background-image: 
-    radial-gradient(circle at 50% 20%, rgba(15, 118, 110, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 50% 20%, rgba(15, 118, 110, 0.06) 0%, transparent 60%),
     radial-gradient(circle at 80% 80%, rgba(15, 23, 42, 0.04) 0%, transparent 50%);
   padding: 2rem 1.5rem;
   position: relative;
@@ -42,6 +42,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  transition: box-shadow var(--transition-normal);
 }
 
 .login-logo-container {
@@ -49,7 +50,7 @@
 }
 
 .login-header-text {
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 }
 
 .login-title {
@@ -65,6 +66,32 @@
   line-height: 1.5;
 }
 
+/* Authentication Error Banner */
+.auth-error-banner {
+  width: 100%;
+  background-color: var(--rose-50);
+  border: 1px solid var(--rose-200);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem;
+  margin-bottom: 1.25rem;
+  text-align: left;
+  animation: fadeIn 0.2s ease;
+}
+
+.auth-error-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.auth-error-text {
+  font-size: 0.75rem;
+  color: var(--rose-700);
+  line-height: 1.45;
+}
+
+/* Google OAuth Button */
 .btn-google-auth {
   width: 100%;
   padding: 0.875rem 1.25rem;
@@ -80,12 +107,22 @@
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
   transition: all var(--transition-fast);
   cursor: pointer;
+  border: none;
 }
 
-.btn-google-auth:hover {
+.btn-google-auth:hover:not(:disabled) {
   background-color: var(--slate-800);
   transform: translateY(-1px);
   box-shadow: 0 6px 16px rgba(15, 23, 42, 0.22);
+}
+
+.btn-google-auth:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-google-auth:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
 }
 
 .google-icon-box {
@@ -98,11 +135,25 @@
   justify-content: center;
 }
 
+/* Spinning SVG Spinner */
+.login-spinner {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .login-divider {
   display: flex;
   align-items: center;
   width: 100%;
-  margin: 1.5rem 0 1.25rem;
+  margin: 1.25rem 0 1.25rem;
   color: var(--slate-400);
   font-size: 0.8125rem;
 }
@@ -124,7 +175,7 @@
   gap: 0.5rem;
   font-size: 0.8125rem;
   color: var(--slate-600);
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .login-disclaimer-box {
@@ -136,6 +187,7 @@
   align-items: flex-start;
   gap: 0.75rem;
   text-align: left;
+  width: 100%;
 }
 
 .login-disclaimer-text {
@@ -149,4 +201,13 @@
   font-size: 0.8125rem;
   color: var(--slate-400);
   text-align: center;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+  .login-title {
+    font-size: 1.25rem;
+  }
 }
