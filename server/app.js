@@ -36,6 +36,16 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+const authRoutes = require('./routes/authRoutes');
+const alertRoutes = require('./routes/alertRoutes');
+const evidenceRoutes = require('./routes/evidenceRoutes');
+const projectSubRoutes = require('./routes/projectSubRoutes');
+
+// ==========================================
+// Developer 2 Routes (Alerts & Evidence sub-routes for projects)
+// ==========================================
+app.use('/api/projects', projectSubRoutes);
+
 // ==========================================
 // Core Routes (Backend Developer 1 Ownership)
 // ==========================================
@@ -44,11 +54,12 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
 // ==========================================
-// Developer 2 Integration Points
+// Developer 2 Integration Points (Auth, Alerts, Evidence)
 // ==========================================
-// app.use('/api/auth', authRoutes);
-// app.use('/api/attention', attentionRoutes);
-// app.use('/api/evidence', evidenceRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/alerts', alertRoutes);
+app.use('/api/evidence', evidenceRoutes);
+
 
 // 404 Handler for undefined API routes
 app.use((req, res, next) => {
